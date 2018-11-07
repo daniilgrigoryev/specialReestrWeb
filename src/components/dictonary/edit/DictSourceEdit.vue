@@ -61,7 +61,7 @@
       </Row>
 
       <FormItem class="flex-parent flex-parent--center-main">
-        <Button v-if="file" type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
+        <Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
         <Button size="large" @click="getPrev">Отмена</Button>
       </FormItem>
     </Form>
@@ -96,7 +96,6 @@
 
           let eventResponse = await vm.$store.dispatch('prepareData', prepareParams);
           vm.dictSourceEdit = JSON.parse(eventResponse.response).data;
-          debugger;
           if (vm.dictSourceEdit.flgActive === 'T') {
             vm.dictSourceEdit.flgActive = true;
           } else if (vm.dictSourceEdit.flgActive === 'F') {
@@ -201,9 +200,14 @@
     },
     methods: {
       onFileChange(e) {
-        debugger;
         let vm = this;
         let files = e.target.files || e.dataTransfer.files;
+        if (files.length === 0 || files.length > 1) {
+          return;
+        } else if (files[0].type !== 'application/pdf') {
+          alert('Только PDF!!!');
+          return;
+        }
         let reader = new FileReader();
         reader.onload = (e) => {
           vm.file = e.currentTarget.result;
