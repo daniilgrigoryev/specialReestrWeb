@@ -96,6 +96,7 @@
 
           let eventResponse = await vm.$store.dispatch('prepareData', prepareParams);
           vm.dictSourceEdit = JSON.parse(eventResponse.response).data;
+          debugger;
           if (vm.dictSourceEdit.flgActive === 'T') {
             vm.dictSourceEdit.flgActive = true;
           } else if (vm.dictSourceEdit.flgActive === 'F') {
@@ -112,8 +113,8 @@
               vm.reasonDict.push({
                 value: prop,
                 label: reasonDict[prop],
-                checkReason: vm.dictSourceEdit.reasons.includes(reasonDict[prop]),
-                checkSpecReason: vm.dictSourceEdit.specReasons.includes(reasonDict[prop]),
+                checkReason: vm.dictSourceEdit.reasons.includes(+prop),
+                checkSpecReason: vm.dictSourceEdit.specReasons.includes(+prop),
               });
             }
           }
