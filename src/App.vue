@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Indicator/>
-        <Header :style="{background: '#2d8cf0', height: 'inherit'}" v-if="isHeaderRender()">
+        <Header :style="{background: '#2d8cf0', height: 'auto'}" v-if="isHeaderRender()">
     
     		<Row type="flex" justify="space-between" align="middle">
 				<Col>
@@ -59,6 +59,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped>
+
 
 </style>

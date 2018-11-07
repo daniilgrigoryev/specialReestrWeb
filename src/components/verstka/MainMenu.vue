@@ -1,5 +1,5 @@
 <template>
-    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu" width="auto" :style="{height: 'inherit'}">
+    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu" width="auto">
         <MenuItem name="1">
             <Icon type="ios-paper" />
             <span>Регистр</span>
