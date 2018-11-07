@@ -1,0 +1,54 @@
+{
+  "name": "specialReestrWeb",
+  "description": "Special Reestr Web Client",
+  "version": "1.0.0",
+  "author": "Semin Dmitry <semin@stdpr.ru>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --env.dev",
+    "build": "rimraf dist && webpack -p --progress"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.22.2",
+    "npm": "^6.4.1",
+    "vue": "^2.5.16",
+    "@mapbox/assembly": "^0.23.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "crypto-pro": "^1.1.0",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^2.24.1",
+    "iview": "^3.1.3",
+    "jquery": "^3.3.1",
+    "node-sass": "4.9.2",
+    "postcss-loader": "^1.3.3",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^7.0.3",
+    "spin.js": "^4.0.0",
+    "style-loader": "^0.13.2",
+    "svg-url-loader": "^2.3.2",
+    "url-loader": "^1.0.1",
+    "vue-loader": "^14.2.2",
+    "vue-router": "^3.0.1",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "vuex": "^3.0.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
