@@ -103,7 +103,8 @@
             render: (h, params) => {
               return h('Checkbox', {
                 props: {
-                  value: params.row.flgActive
+                  value: params.row.flgActive,
+                  disabled: true
                 }
               });
             }

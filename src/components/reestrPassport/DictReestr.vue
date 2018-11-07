@@ -3,7 +3,6 @@
     <div class="layout flex-parent flex-parent--column">
       <Layout>
         <Layout class="relative">
-          <TablePoptip></TablePoptip>
           <Content class="mx12">
             <Row :gutter="16">
               <Col :xs="{span: 24, order: 2}" :md="{span: 3, order: 1}">
