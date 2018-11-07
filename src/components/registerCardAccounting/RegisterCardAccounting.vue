@@ -316,202 +316,103 @@
                   <tbody>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Фамилия(организация)</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.avFirst}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.avFirst}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.avFirst !== cardAccounting.fisItem.avFirst ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.avFirst}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.avFirst !== cardAccounting.fisItem.avFirst ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.avFirst}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">ГРЗ</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.regno}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.regno}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.regno !== cardAccounting.fisItem.regno ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.regno}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.regno !== cardAccounting.fisItem.regno ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.regno}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Марка ТС</td>
-                    <td class="border--0 px0 py0">
-                      {{cardAccounting.fisItem.marka}}
-                      <span v-if="fisLoadData">
-                        {{fisLoadData.marka}}
-                      </span>
-                      <!--<div class="color-red">ИВЕКО ≠ IVECO</div>
-                      <div class="txt-xs color-red">данные отличаются</div>-->
-                    </td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.marka !== cardAccounting.fisItem.marka ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.marka}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.marka !== cardAccounting.fisItem.marka ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.marka}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Модель</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.model}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.model}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.model !== cardAccounting.fisItem.model ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.model}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.model !== cardAccounting.fisItem.model ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.model}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Тип ТС</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.typeTcName}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.typeTcName}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.typeTcName !== cardAccounting.fisItem.typeTcName ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.typeTcName}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.typeTcName !== cardAccounting.fisItem.typeTcName ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.typeTcName}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Год выпуска ТС</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.yearAvto}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.yearAvto}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.yearAvto !== cardAccounting.fisItem.yearAvto ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.yearAvto}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.yearAvto !== cardAccounting.fisItem.yearAvto ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.yearAvto}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Цвет</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.color}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.color}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.color !== cardAccounting.fisItem.color ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.color}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.color !== cardAccounting.fisItem.color ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.color}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">VIN</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.vin}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.vin}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.vin !== cardAccounting.fisItem.vin ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.vin}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.vin !== cardAccounting.fisItem.vin ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.vin}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Номер кузова</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.nkuzov}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.nkuzov}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.nkuzov !== cardAccounting.fisItem.nkuzov ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.nkuzov}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.nkuzov !== cardAccounting.fisItem.nkuzov ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.nkuzov}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Номер шасси</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.nshasi}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.nshasi}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.nshasi !== cardAccounting.fisItem.nshasi ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.nshasi}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.nshasi !== cardAccounting.fisItem.nshasi ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.nshasi}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Тип кузова</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.typeKuzovName}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.typeKuzovName}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.typeKuzovName !== cardAccounting.fisItem.typeKuzovName ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.typeKuzovName}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.typeKuzovName !== cardAccounting.fisItem.typeKuzovName ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.typeKuzovName}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Мощность л/c</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.powerLs}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.powerLs}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.powerLs !== cardAccounting.fisItem.powerLs ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.powerLs}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.powerLs !== cardAccounting.fisItem.powerLs ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.powerLs}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Мощность кВт</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.powerKwt}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.powerKwt}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.powerKwt !== cardAccounting.fisItem.powerKwt ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.powerKwt}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.powerKwt !== cardAccounting.fisItem.powerKwt ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.powerKwt}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Максимальная масса</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.massaDop}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.massaDop}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.massaDop !== cardAccounting.fisItem.massaDop ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.massaDop}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.massaDop !== cardAccounting.fisItem.massaDop ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.massaDop}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Масса полная</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.massaTotal}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.massaTotal}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.massaTotal !== cardAccounting.fisItem.massaTotal ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.massaTotal}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.massaTotal !== cardAccounting.fisItem.massaTotal ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.massaTotal}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Объем двигателя</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.vmotorCm3 + ' см'}}<sup>3</sup></td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.vmotorCm3 + ' см'}}<sup>3</sup></td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.vmotorCm3 !== cardAccounting.fisItem.vmotorCm3 ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.vmotorCm3 + ' см'}}<sup>3</sup></td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.vmotorCm3 !== cardAccounting.fisItem.vmotorCm3 ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.vmotorCm3 + ' см'}}<sup>3</sup></td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Тип двигателя</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.typeMotor}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.typeMotor}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.typeMotor !== cardAccounting.fisItem.typeMotor ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.typeMotor}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.typeMotor !== cardAccounting.fisItem.typeMotor ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.typeMotor}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Номер двигателя</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.nmotor}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.nmotor}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.nmotor !== cardAccounting.fisItem.nmotor ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.nmotor}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.nmotor !== cardAccounting.fisItem.nmotor ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.nmotor}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Количество мест</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.posadMest}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.posadMest}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.posadMest !== cardAccounting.fisItem.posadMest ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.posadMest}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.posadMest !== cardAccounting.fisItem.posadMest ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.posadMest}}</td>
                   </tr>
                   <tr class="txt-bold">
                     <td class="border--0 px0 py0 color-gray">Экологический класс</td>
-                    <td class="border--0 px0 py0">{{cardAccounting.fisItem.ecologClass}}</td>
-                    <td v-if="fisLoadData" class="border--0 px0 py0">{{fisLoadData.ecologClass}}</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </Card>
-            </Col>
-            <Col v-if="false" :xs="{span: 24}" :md="{span: 6}">
-              <Card class="my12">
-                <h3 slot="title" class="txt-h3">Данные ФИС</h3>
-                <table class="table border--0 table--fixed">
-                  <tbody>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Фамилия(организация)</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.avFirst}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">ГРЗ</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.regno}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Марка ТС</td>
-                    <td class="border--0 px0 py0">
-                      {{fisLoadData.marka}}
-                      <!--<div class="color-red">ИВЕКО ≠ IVECO</div>
-                      <div class="txt-xs color-red">данные отличаются</div>-->
-                    </td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Модель</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.model}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Тип ТС</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.typeTcName}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Год выпуска ТС</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.yearAvto}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Цвет</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.color}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">VIN</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.vin}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Номер кузова</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.nkuzov}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Номер шасси</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.nshasi}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Тип кузова</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.avFirst}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Мощность л/c</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.powerLs}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Мощность кВт</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.powerKwt}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Максимальная масса</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.massaDop}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Масса полная</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.massaTotal}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Объем двигателя</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.vmotorCm3}} <sup>3</sup></td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Тип двигателя</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.typeMotor}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Номер двигателя</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.nmotor}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Количество мест</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.posadMest}}</td>
-                  </tr>
-                  <tr class="txt-bold">
-                    <td class="border--0 px0 py0 color-gray">Экологический класс</td>
-                    <td class="border--0 px0 py0">{{fisLoadData.ecologClass}}</td>
+                    <td :style="{color: null !== fisLoadData && fisLoadData.ecologClass !== cardAccounting.fisItem.ecologClass ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{cardAccounting.fisItem.ecologClass}}</td>
+                    <td v-if="fisLoadData" :style="{color: fisLoadData.ecologClass !== cardAccounting.fisItem.ecologClass ? 'red' : '#3f3f3f'}" class="border--0 px0 py0">{{fisLoadData.ecologClass}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -537,51 +438,25 @@
                   <table class="table border--0">
                     <tbody>
                     <tr class="txt-bold">
-                      <td colspan="2" class="border--0 px0 py0 color-green">
-                        Добавлено
-                      </td>
+                      <td width="30%" class="border--0 px0 py0 color-gray-light">Основание</td>
+                      <td width="70%" class="border--0 px0 py0">{{package.reasonName}}</td>
                     </tr>
                     <tr class="txt-bold">
-                      <td width="30%" class="border--0 px0 py0 color-gray-light">Мощность кВт</td>
-                      <td width="70%" class="border--0 px0 py0">512</td>
+                      <td width="30%" class="border--0 px0 py0 color-gray-light">Источник</td>
+                      <td width="70%" class="border--0 px0 py0">{{package.sourceName}}</td>
                     </tr>
                     <tr class="txt-bold">
-                      <td width="30%" class="border--0 px0 py0 color-gray-light">Мощность кВт</td>
-                      <td width="70%" class="border--0 px0 py0">512</td>
-                    </tr>
-                    <tr class="txt-bold">
-                      <td width="30%" class="border--0 px0 py0 color-gray-light">Владелец</td>
-                      <td width="70%" class="border--0 px0 py0">Нормальное распределение концентрирует комплексный натуральный логарифм. </td>
+                      <td width="30%" class="border--0 px0 py0 color-gray-light">Исполнитель</td>
+                      <td width="70%" class="border--0 px0 py0">{{package.createIspName}}</td>
                     </tr>
                     </tbody>
                   </table>
                 </Col>
                 <Col :xs="{span: 12}" :md="{span: 12}">
-                  <a href="" class="flex-parent flex-parent--center-cross">
+                  <button type="button" @click="getPackageCard" class="flex-parent flex-parent--row flex-parent--center-cross">
                     <Icon type="ios-link" :size="30" class="mx12"/>
-                    <b class="text-b txt-underline">3e0bf6e9-f7e3-4716-bcef-d0dddfad4d8c.xml</b>
-                    <Icon type="ios-download" :size="30" class="ml6"/>
-                    <Icon type="ios-document" :size="30" class="ml6"/>
-                  </a>
-                </Col>
-              </Row>
-
-
-              <Row class="border-t">
-                <Col :xs="{span: 12}" :md="{span: 12}">
-                  <table class="table border--0">
-                    <tbody>
-                    <tr class="txt-bold">
-                      <td colspan="2" class="border--0 px0 py0 color-orange">
-                        Изменено
-                      </td>
-                    </tr>
-                    <tr class="txt-bold">
-                      <td width="30%" class="border--0 px0 py0 color-gray-light">Мощность кВт</td>
-                      <td width="70%" class="border--0 px0 py0">512</td>
-                    </tr>
-                    </tbody>
-                  </table>
+                    <b class="text-b txt-underline">{{package.name}}</b>
+                  </button>
                 </Col>
               </Row>
             </Card>
@@ -687,6 +562,10 @@
         let res;
         let data = this.$store.state.registerCardAccounting.data;
         if (data) {
+          data.loadItems.sort((a, b) => {
+            return b.reestrTime - a.reestrTime;
+          });
+
           data.loadItems.forEach((item) => {
             item.icon = '<i class="ivu-icon ivu-icon-ios-eye" style="font-size: 30px;"></i>';
             item.operName = funcUtils.lookupValue('operTipes', item.operType).label;
@@ -723,12 +602,10 @@
         })();
       },
       selectPackage(row) {
-        debugger;
         this.getLoadHead(row);
         this.getFisLoadData(row);
       },
       getLoadHead(row) {
-        debugger;
         let vm = this;
 
         (async () => {
@@ -747,7 +624,6 @@
         })();
       },
       getFisLoadData(row) {
-        debugger;
         let vm = this;
 
         (async () => {
@@ -780,6 +656,28 @@
                 'pageName': currentPage.params.routeName
               });
             }
+          } catch (e) {
+            alert(e.message);
+          }
+        })();
+      },
+      getPackageCard() {
+        let params = {
+          'routeName': this.$store.state.registerCardAccounting.routeName,
+          'headId': this.package.id
+        };
+
+        let vm = this;
+        (async () => {
+          try {
+            await vm.$store.dispatch('getNextComponent', {
+              'beanName': vm.$store.state.packageCard.bean
+            });
+            vm.$store.dispatch('getNextPage', {
+              'vm': vm,
+              'pageName': vm.$store.state.packageCard.routeName,
+              'params': params
+            });
           } catch (e) {
             alert(e.message);
           }
