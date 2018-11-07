@@ -9,7 +9,10 @@
                 <Card>
                   <Menu @on-select="onMenuClick" :active-name="activeDict">
                     <MenuGroup title="Типы справочников">
-                      <MenuItem v-for="(dict, key) in dictionaries" :key="key" :name="dict.beanName">{{dict.description}}</MenuItem>
+                      <MenuItem name="DictAreaView">Типы территорий</MenuItem>
+                      <MenuItem name="DictSourceView">Источники данных</MenuItem>
+                      <MenuItem name="DictCategoryView">Категории ТС</MenuItem>
+                      <MenuItem name="DictReasonView">Основания включения</MenuItem>
                     </MenuGroup>
                   </Menu>
                 </Card>
@@ -55,23 +58,6 @@
       let dictSource = this.$store.state.dictSource.bean;
       let dictCategory = this.$store.state.dictCategory.bean;
       let dictReason = this.$store.state.dictReason.bean;
-
-      this.dictionaries.push({
-        beanName: dictArea,
-        description: 'Типы территорий'
-      });
-      this.dictionaries.push({
-        beanName: dictSource,
-        description: 'Источники данных'
-      });
-      this.dictionaries.push({
-        beanName: dictCategory,
-        description: 'Категории ТС'
-      });
-      this.dictionaries.push({
-        beanName: dictReason,
-        description: 'Основания включения'
-      });
 
       (async () => {
         try {
@@ -163,8 +149,7 @@
     },
     data() {
       return {
-        activeDict: null,
-        dictionaries: []
+        activeDict: "DictCategoryView"
       }
     },
     computed: {

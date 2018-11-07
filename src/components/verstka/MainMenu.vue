@@ -1,5 +1,5 @@
 <template>
-    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu" width="auto">
+    <Menu mode="horizontal" theme="primary" :active-name="activeName" @on-select="selectMenu" width="auto">
         <MenuItem name="1">
             <Icon type="ios-paper" />
             <span>Регистр</span>
@@ -17,8 +17,21 @@
 
 
 <script>
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
+
   export default {
     name: 'MainMenu',
+    mounted() {
+      let activeName = funcUtils.getFromSessionStorage('mainMenuActiveName');
+      if (funcUtils.isNotEmpty(activeName)) {
+        this.activeName = activeName;
+      }
+    },
+    data() {
+      return {
+        activeName: '1'
+      }
+    },
     methods: {
       selectMenu(activeName) {
         switch (+activeName) {
@@ -35,6 +48,7 @@
             break;
           }
         }
+        funcUtils.addToSessionStorage('mainMenuActiveName', activeName);
       },
     }
   }
