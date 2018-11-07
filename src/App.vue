@@ -2,7 +2,6 @@
     <div id="app">
         <Indicator/>
         <Header :style="{background: '#2d8cf0', height: 'auto'}" v-if="isHeaderRender()">
-    
     		<Row type="flex" justify="space-between" align="middle">
 				<Col>
 					<div class="layout-logo">
@@ -31,8 +30,9 @@
 					</Row>
 				</Col>
 			</Row>
-        
         </Header>
+
+		
         <router-view></router-view>
     </div>
 </template>
