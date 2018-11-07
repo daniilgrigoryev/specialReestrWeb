@@ -1,25 +1,17 @@
 <template>
-    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu">
-        <div class="layout-logo fl">
-            <b class="txt-bold">Спецтранспорт</b>
-        </div>
-        <div class="layout-nav mx-auto flex-parent flex-parent--center-main">
-            <MenuItem name="1">
-                <Icon type="ios-paper" />
-                Регистр
-            </MenuItem>
-            <MenuItem name="2">
-              <Icon type="ios-bookmark" />
-                Справочники
-            </MenuItem>
-            <MenuItem name="3">
-                <Icon type="md-folder-open" />
-                Пакеты данных
-            </MenuItem>
-        </div>
-        <div class="fr">
-          <Button size="large" @click="logout" type="primary">Выйти</Button>
-        </div>
+    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu" width="auto" :style="{height: 'inherit'}">
+        <MenuItem name="1">
+            <Icon type="ios-paper" />
+            <span>Регистр</span>
+        </MenuItem>
+        <MenuItem name="2">
+            <Icon type="ios-people" />
+            <span>Справочники</span>
+        </MenuItem>
+        <MenuItem name="3">
+            <Icon type="md-folder-open" />
+            <span>Пакеты данных</span>
+        </MenuItem>
     </Menu>
 </template>
 
@@ -43,9 +35,6 @@
             break;
           }
         }
-      },
-      logout() {
-        this.$root.logout();
       },
     }
   }
