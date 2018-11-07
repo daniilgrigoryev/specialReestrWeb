@@ -141,7 +141,7 @@
             <Card class="scroll-auto border--0 unround" style="max-height: 250px">
               <Row>
                 <Col :xs="{span: 12}" :md="{span: 12}">
-                  <button type="button" @click="" class="txt-bold txt-underline">
+                  <button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
                     <span>{{selectedItem.tcRegno}}</span>
                     <Icon type="ios-share-alt" class="mx12 mb6" size="20" />
                   </button>
@@ -403,6 +403,29 @@
                 'pageName': currentPage.params.routeName
               });
             }
+          } catch (e) {
+            alert(e.message);
+          }
+        })();
+      },
+      getCardAccounting() {
+        let params = {
+          'routeName': this.$store.state.packageCard.routeName,
+          'id': this.selectedItem.reestrId,
+          'sourceId': this.packageCard.head.sourceId
+        };
+
+        let vm = this;
+        (async () => {
+          try {
+            await vm.$store.dispatch('getNextComponent', {
+              'beanName': vm.$store.state.registerCardAccounting.bean
+            });
+            vm.$store.dispatch('getNextPage', {
+              'vm': vm,
+              'pageName': vm.$store.state.registerCardAccounting.routeName,
+              'params': params
+            });
           } catch (e) {
             alert(e.message);
           }
