@@ -17,30 +17,29 @@
 
 
 <script>
-  export default {
-    name: 'MainMenu',
-    methods: {
-      selectMenu(activeName) {
-        switch (+activeName) {
-          case 1: {
-            this.$root.getRegisterReestr();
-            break;
-          }
-          case 2: {
-            this.$root.getDictReestr();
-            break;
-          }
-          case 3: {
-            this.$root.getPackageReestr();
-            break;
-          }
+export default {
+  name: "MainMenu",
+  methods: {
+    selectMenu(activeName) {
+      switch (+activeName) {
+        case 1: {
+          this.$root.getRegisterReestr();
+          break;
         }
-      },
+        case 2: {
+          this.$root.getDictReestr();
+          break;
+        }
+        case 3: {
+          this.$root.getPackageReestr();
+          break;
+        }
+      }
     }
   }
+};
 </script>
 
 
 <style scoped>
-
 </style>
