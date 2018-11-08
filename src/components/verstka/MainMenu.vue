@@ -1,5 +1,5 @@
 <template>
-    <Menu mode="horizontal" theme="primary" active-name="1" @on-select="selectMenu" width="auto">
+    <Menu mode="horizontal" theme="primary" :active-name="activeName" @on-select="selectMenu" width="auto">
         <MenuItem name="1">
             <Icon type="ios-paper" />
             <span>Регистр</span>
@@ -17,6 +17,7 @@
 
 
 <script>
+<<<<<<< HEAD
 export default {
   name: "MainMenu",
   methods: {
@@ -35,6 +36,41 @@ export default {
           break;
         }
       }
+=======
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
+
+  export default {
+    name: 'MainMenu',
+    mounted() {
+      let activeName = funcUtils.getFromSessionStorage('mainMenuActiveName');
+      if (funcUtils.isNotEmpty(activeName)) {
+        this.activeName = activeName;
+      }
+    },
+    data() {
+      return {
+        activeName: '1'
+      }
+    },
+    methods: {
+      selectMenu(activeName) {
+        switch (+activeName) {
+          case 1: {
+            this.$root.getRegisterReestr();
+            break;
+          }
+          case 2: {
+            this.$root.getDictReestr();
+            break;
+          }
+          case 3: {
+            this.$root.getPackageReestr();
+            break;
+          }
+        }
+        funcUtils.addToSessionStorage('mainMenuActiveName', activeName);
+      },
+>>>>>>> 1497e1f99de4bae62745efa247cff0843ff12432
     }
   }
 };
