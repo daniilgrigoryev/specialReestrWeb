@@ -1,11 +1,9 @@
 <template>
 	<div>
 		<Row type="flex" justify="space-between" align="middle">
-
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<h2 class="txt-h2 my12">Основания включения</h2>
 			</Col>
-
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<Row type="flex" justify="center" class="my12">
 					<Form style="width: 100%; max-width: 400px;">

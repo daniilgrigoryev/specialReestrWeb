@@ -1,201 +1,197 @@
 <template>
-	<div class="layout flex-parent flex-parent--column">
-		<Layout>
-			<Layout class="relative">
-				<div class="list_actions absolute flex-parent flex-parent--column">
-					<Poptip placement="left" class="poptip my12">
-						<Avatar icon="ios-cog" size="large" style="background-color: green" />
-						<div slot="content" class="px0">
-							<Button size="large" @click="packageCardFromFile" type="primary">Создать пакет данных из файла</Button>
-						</div>
-					</Poptip>
-	
-					<Poptip placement="left" class="poptip my12">
-						<Avatar icon="ios-create" size="large" style="background-color: green" />
-						<div slot="content" class="px0">
-							<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
-						</div>
-					</Poptip>
+	<!-- <div class="list_actions absolute flex-parent flex-parent--column">
+			<Poptip placement="left" class="poptip my12">
+				<Avatar icon="ios-cog" size="large" style="background-color: green" />
+				<div slot="content" class="px0">
+					<Button size="large" @click="packageCardFromFile" type="primary">Создать пакет данных из файла</Button>
 				</div>
+			</Poptip>
 	
-				<Content class="mx12">
-					<Row :gutter="16">
-						<Col :xs="{span: 24, order: 2}" :md="{span: 5, order: 1}">
-						<Card>
-							<Form label-position="top">
-								<h3 class="txt-h2 my12">Фильтр</h3>
+			<Poptip placement="left" class="poptip my12">
+				<Avatar icon="ios-create" size="large" style="background-color: green" />
+				<div slot="content" class="px0">
+					<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
+				</div>
+			</Poptip>
+		</div> -->
+	<Layout>
+		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
+			<Form label-position="top">
+				<h3 class="txt-h2 my12">Фильтр</h3>
 	
-								<Row :gutter="16">
-									<Col :xs="{span: 24}" :md="{span: 12}">
-									<FormItem label="Время создания записи" :style="{width: '100%'}">
-										<DatePicker size="large" type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" placeholder="Период от"></DatePicker>
-									</FormItem>
-									</Col>
-									<Col :xs="{span: 24}" :md="{span: 12}">
-									<FormItem label=" " :style="{width: '100%'}">
-										<DatePicker size="large" type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" placeholder="Период по"></DatePicker>
-									</FormItem>
-									</Col>
-								</Row>
-	
-								<FormItem label="Тип пакета документа" prop="">
-									<Select size="large" :clearable="true" v-model="filter.formatType.value1">
-	                      <Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                    </Select>
-								</FormItem>
-	
-	
-								<FormItem label="Статус обработки" prop="">
-									<Select size="large" :clearable="true" v-model="filter.status.value1">
-	                      <Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                    </Select>
-								</FormItem>
-	
-								<FormItem label="Источник" prop="">
-									<Select size="large" :clearable="true" v-model="filter.sourceId.value1">
-	                      <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                    </Select>
-								</FormItem>
-	
-								<FormItem label="Основание" prop="">
-									<Select size="large" :clearable="true" v-model="filter.reasonId.value1">
-	                      <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                    </Select>
-								</FormItem>
-	
-								<FormItem>
-									<Button @click="filterRegisters" size="large" type="primary">Применить</Button>
-									<Button size="large" class="mx6">Отчистить</Button>
-								</FormItem>
-							</Form>
-						</Card>
+				<FormItem label="Время создания записи" :style="{width: '100%'}">
+					<Row :gutter="8">
+						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
+						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%" placeholder="Период от"></DatePicker>
 						</Col>
-						<Col :xs="{span: 24, order: 1}" :md="{span: 19, order: 2}">
-						<Card>
-							<div>
-								<div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-									<h2 class="txt-h2 my12">Список пакетов данных</h2>
-								</div>
-								<Table border ref="selection" :columns="columnsOption" :data="packages" @on-sort-change="sortRegisters"></Table>
-							</div>
-						</Card>
+						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
+						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%" placeholder="Период по"></DatePicker>
 						</Col>
 					</Row>
-				</Content>
-			</Layout>
-		</Layout>
-	</div>
+				</FormItem>
+	
+				<FormItem label="Тип пакета документа" prop="">
+					<Select :clearable="true" v-model="filter.formatType.value1">
+								<Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+				</FormItem>
+	
+	
+				<FormItem label="Статус обработки" prop="">
+					<Select :clearable="true" v-model="filter.status.value1">
+								<Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+				</FormItem>
+	
+				<FormItem label="Источник" prop="">
+					<Select :clearable="true" v-model="filter.sourceId.value1">
+								<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+				</FormItem>
+	
+				<FormItem label="Основание" prop="">
+					<Select :clearable="true" v-model="filter.reasonId.value1">
+								<Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+				</FormItem>
+	
+				<FormItem>
+					<Row type="flex" justify="center">
+						<Col class="my6">
+						<Button @click="filterRegisters" type="primary">Применить</Button>
+						</Col>
+						<Col class="my6">
+						<Button class="mx6">Отчистить</Button>
+						</Col>
+					</Row>
+				</FormItem>
+			</Form>
+		</Sider>
+	
+	
+		<Content>
+			<Card>
+				<Row type="flex" align="middle">
+					<Col>
+					<h2 class="txt-h2 my12">Список пакетов данных</h2>
+					</Col>
+				</Row>
+				<Table border size="small" ref="selection" :columns="columnsOption" :data="packages" @on-sort-change="sortRegisters"></Table>
+			</Card>
+		</Content>
+	</Layout>
+	
 	
 	<!--<div>
-	    <div>
-	      <div style="display: flex;">
-	        <div style="width: 30%; display: flex; flex-direction: column;">
-	          <div>
-	            <span>Источник</span>
-	            <Select :clearable="true" v-model="filter.sourceId.value1">
-	              <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	            </Select>
-	          </div>
-	          <div>
-	            <span>Основание</span>
-	            <Select :clearable="true" v-model="filter.reasonId.value1">
-	              <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	            </Select>
-	          </div>
-	          <div>
-	            <span>Статус обработки</span>
-	            <Select :clearable="true" v-model="filter.status.value1">
-	              <Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	            </Select>
-	          </div>
-	          <div>
-	            <span>Тип пакета документа</span>
-	            <Select :clearable="true" v-model="filter.formatType.value1">
-	              <Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	            </Select>
-	          </div>
-	          <div>
-	            <span>Время создания записи</span>
-	            <div style="display: flex;">
-	              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1"
-	                          placeholder="Select time1"></DatePicker>
-	              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2"
-	                          placeholder="Select time2"></DatePicker>
-	            </div>
-	          </div>
-	
-	          <button type="button" @click="filterRegisters">Применить</button>
-	
-	          <button type="button" @click="packageCardFromFile">Создать пакет данных из файла</button>
-	          <button type="button" @click="packageCardNew">Создать пакет данных в ручную</button>
-	        </div>
-	        <div style="width: 70%;">
-	          <table style="width: 100%;">
-	            <thead>
-	            <tr>
-	              <td style="cursor: pointer;" :style="isSorted('name')" @click="sortRegisters('name')">Имя</td>
-	              <td style="cursor: pointer;" :style="isSorted('sourceId')" @click="sortRegisters('sourceId')">Источник
-	              </td>
-	              <td style="cursor: pointer;">Тип документа</td>
-	              <td style="cursor: pointer;" :style="isSorted('reasonId')" @click="sortRegisters('reasonId')">Основание
-	                включения
-	              </td>
-	              <td style="cursor: pointer;" :style="isSorted('status')" @click="sortRegisters('status')">Статус
-	                обработки
-	              </td>
-	              <td style="cursor: pointer;" :style="isSorted('createdTime')" @click="sortRegisters('createdTime')">Время
-	                загрузки
-	              </td>
-	              <td style="cursor: pointer;">ФИО исполнителя</td>
-	              <td style="cursor: pointer;">Время формирования подписи</td>
-	              <td style="cursor: pointer;">Подпись</td>
-	              <td style="cursor: pointer;">Вложение</td>
-	            </tr>
-	            </thead>
-	
-	            <tbody>
-	            <tr v-for="(packageItem, index) in packages" class="registersRow" @click="getPackageCard(packageItem)" :key="index">
-	              <td>
-	                {{packageItem.name}}
-	              </td>
-	              <td>
-	                {{packageItem.sourceName}}
-	              </td>
-	              <td>
-	                {{packageItem.formatName}}
-	              </td>
-	              <td>
-	                {{packageItem.reasonName}}
-	              </td>
-	              <td>
-	                {{packageItem.statusName}}
-	              </td>
-	              <td>
-	                {{packageItem.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}
-	              </td>
-	              <td>
-	                {{packageItem.createIspName}}
-	              </td>
-	              <td>
-	                {{packageItem.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}
-	              </td>
-	              <td>
-	                <button @click="downloadSign(packageItem)" v-if="packageItem.formatType === 1 || packageItem.formatType === 2" type="button">Скачать
-	                </button>
-	                <span v-else>&#45;&#45;</span>
-	              </td>
-	              <td>
-	                <button @click="downloadBody(packageItem)" v-if="packageItem.formatType === 2 || packageItem.formatType === 1" type="button">Скачать
-	                </button>
-	                <span v-else>&#45;&#45;</span>
-	              </td>
-	            </tr>
-	            </tbody>
-	          </table>
-	        </div>
-	      </div>
-	    </div>
-	  </div>-->
+			    <div>
+			      <div style="display: flex;">
+			        <div style="width: 30%; display: flex; flex-direction: column;">
+			          <div>
+			            <span>Источник</span>
+			            <Select :clearable="true" v-model="filter.sourceId.value1">
+			              <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+			            </Select>
+			          </div>
+			          <div>
+			            <span>Основание</span>
+			            <Select :clearable="true" v-model="filter.reasonId.value1">
+			              <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+			            </Select>
+			          </div>
+			          <div>
+			            <span>Статус обработки</span>
+			            <Select :clearable="true" v-model="filter.status.value1">
+			              <Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+			            </Select>
+			          </div>
+			          <div>
+			            <span>Тип пакета документа</span>
+			            <Select :clearable="true" v-model="filter.formatType.value1">
+			              <Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+			            </Select>
+			          </div>
+			          <div>
+			            <span>Время создания записи</span>
+			            <div style="display: flex;">
+			              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1"
+			                          placeholder="Select time1"></DatePicker>
+			              <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2"
+			                          placeholder="Select time2"></DatePicker>
+			            </div>
+			          </div>
+			
+			          <button type="button" @click="filterRegisters">Применить</button>
+			
+			          <button type="button" @click="packageCardFromFile">Создать пакет данных из файла</button>
+			          <button type="button" @click="packageCardNew">Создать пакет данных в ручную</button>
+			        </div>
+			        <div style="width: 70%;">
+			          <table style="width: 100%;">
+			            <thead>
+			            <tr>
+			              <td style="cursor: pointer;" :style="isSorted('name')" @click="sortRegisters('name')">Имя</td>
+			              <td style="cursor: pointer;" :style="isSorted('sourceId')" @click="sortRegisters('sourceId')">Источник
+			              </td>
+			              <td style="cursor: pointer;">Тип документа</td>
+			              <td style="cursor: pointer;" :style="isSorted('reasonId')" @click="sortRegisters('reasonId')">Основание
+			                включения
+			              </td>
+			              <td style="cursor: pointer;" :style="isSorted('status')" @click="sortRegisters('status')">Статус
+			                обработки
+			              </td>
+			              <td style="cursor: pointer;" :style="isSorted('createdTime')" @click="sortRegisters('createdTime')">Время
+			                загрузки
+			              </td>
+			              <td style="cursor: pointer;">ФИО исполнителя</td>
+			              <td style="cursor: pointer;">Время формирования подписи</td>
+			              <td style="cursor: pointer;">Подпись</td>
+			              <td style="cursor: pointer;">Вложение</td>
+			            </tr>
+			            </thead>
+			
+			            <tbody>
+			            <tr v-for="(packageItem, index) in packages" class="registersRow" @click="getPackageCard(packageItem)" :key="index">
+			              <td>
+			                {{packageItem.name}}
+			              </td>
+			              <td>
+			                {{packageItem.sourceName}}
+			              </td>
+			              <td>
+			                {{packageItem.formatName}}
+			              </td>
+			              <td>
+			                {{packageItem.reasonName}}
+			              </td>
+			              <td>
+			                {{packageItem.statusName}}
+			              </td>
+			              <td>
+			                {{packageItem.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}
+			              </td>
+			              <td>
+			                {{packageItem.createIspName}}
+			              </td>
+			              <td>
+			                {{packageItem.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}
+			              </td>
+			              <td>
+			                <button @click="downloadSign(packageItem)" v-if="packageItem.formatType === 1 || packageItem.formatType === 2" type="button">Скачать
+			                </button>
+			                <span v-else>&#45;&#45;</span>
+			              </td>
+			              <td>
+			                <button @click="downloadBody(packageItem)" v-if="packageItem.formatType === 2 || packageItem.formatType === 1" type="button">Скачать
+			                </button>
+			                <span v-else>&#45;&#45;</span>
+			              </td>
+			            </tr>
+			            </tbody>
+			          </table>
+			        </div>
+			      </div>
+			    </div>
+			  </div>-->
 </template>
 
 <script>
@@ -367,46 +363,57 @@ export default {
 					title: "Имя",
 					key: "name",
 					sortable: true,
-					referenceName: "name"
+					referenceName: "name",
+					minWidth: 100,
 				},
 				{
 					title: "Источник",
 					key: "sourceName",
 					sortable: true,
-					referenceName: "sourceId"
+					referenceName: "sourceId",
+					minWidth: 120,
 				},
 				{
 					title: "Основание",
 					key: "reasonName",
 					sortable: true,
-					referenceName: "reasonId"
+					referenceName: "reasonId",
+					minWidth: 300,
 				},
 				{
 					title: "Тип документа",
-					key: "formatName"
+					key: "formatName",
+					minWidth: 130,
+					maxWidth: 150
 				},
 				{
 					title: "Статус обработки",
 					key: "statusName",
 					sortable: true,
-					referenceName: "statusId"
+					referenceName: "statusId",
+					minWidth: 180,
 				},
 				{
 					title: "Время загрузки",
 					key: "createTime",
 					sortable: true,
-					referenceName: "createTime"
+					referenceName: "createTime",
+					minWidth: 150,
 				},
 				{
 					title: "ФИО исполнителя",
-					key: "createIspName"
+					key: "createIspName",
+					minWidth: 150,
 				},
 				{
 					title: "Время формирования подписи",
-					key: "signingTime"
+					key: "signingTime",
+					minWidth: 200
 				},
 				{
 					title: "Подпись",
+					align: "center",
+					width: 150,
 					render: (h, params) => {
 						if (params.row.formatType === 1 || params.row.formatType === 2) {
 							return h(
@@ -433,6 +440,8 @@ export default {
 				},
 				{
 					title: "Вложение",
+					align: "center",
+					width: 150,
 					render: (h, params) => {
 						if (params.row.formatType === 1 || params.row.formatType === 2) {
 							return h(
@@ -456,7 +465,7 @@ export default {
 							return h("p", "--");
 						}
 					}
-				}
+				},
 				/*
 				         {
 				           title: ' ',
@@ -481,9 +490,9 @@ export default {
 				             },
 				           ],
 				         },*/
-				,
 				{
 					title: "Действия",
+					align: "center",
 					width: 150,
 					render: (h, params) => {
 						return h("div", [
