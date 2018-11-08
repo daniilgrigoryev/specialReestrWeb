@@ -3,13 +3,11 @@
         <Indicator/>
         <Header :style="{background: '#2d8cf0', height: 'auto'}" v-if="isHeaderRender()">
     		<Row type="flex" justify="space-between" align="middle">
-				
 				<Col>
 					<div class="layout-logo">
 						<h3 class="color-white txt-h3">Спецтранспорт</h3>
 					</div>
 				</Col>
-
 				<Col>
 					<Row type="flex" justify="center">
  						<MainMenu></MainMenu>
@@ -60,7 +58,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+	.main-wrapper{
+		min-height: calc(100vh - 64px);
+	}
 
 </style>

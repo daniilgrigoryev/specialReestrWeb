@@ -1,6 +1,6 @@
 <template>
-    <Layout class="main-wrapper" style="min-height: calc(100vh - 64px)">
-        <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
+    <Layout>
+            <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
             <Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
                 <Form label-position="top">
                     <h3 class="txt-h2 my12">Фильтр объектов</h3>
@@ -99,7 +99,6 @@
                         <Col :xs="{span: 24}" :md="{span: 12}">
                             <h2 class="txt-h2 my12">Регистр учета объектов ({{countRegister}})</h2>
                         </Col>
-
                         <Col :xs="{span: 24}" :md="{span: 12}">
                             <Row type="flex" justify="center">
                                 <Page class="fr" :total="countRegister" :current="currentPage" :page-size="limit" @on-change="changePage" />
