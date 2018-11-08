@@ -1,13 +1,6 @@
 <template>
     <Layout class="main-wrapper" style="min-height: calc(100vh - 64px)">
         <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
-        
-            
-
-                <!-- :xs="{span: 24, order: 2}" :sm="{span: 1, order: 2}" :md="{span: 10, order: 1}" :lg="{span: 4, order: 1}" -->
-                 <!-- :xs="{span: 24, order: 1}" :sm="{span: 1, order: 2}" :md="{span: 14, order: 2}" :lg="{span: 20, order: 2}" -->
-
-
             <Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
                 <Form label-position="top">
                     <h3 class="txt-h2 my12">Фильтр объектов</h3>
@@ -100,7 +93,6 @@
                     </FormItem>
                 </Form>
             </Sider>
-
             <Content>
                 <Card>
                     <Row type="flex" justify="space-between" align="middle">
@@ -109,8 +101,8 @@
                         </Col>
 
                         <Col :xs="{span: 24}" :md="{span: 12}">
-                            <Row type="flex" justify="end">
-                                <Page :total="countRegister" :current="currentPage" :page-size="limit" @on-change="changePage" />
+                            <Row type="flex" justify="center">
+                                <Page class="fr" :total="countRegister" :current="currentPage" :page-size="limit" @on-change="changePage" />
                             </Row>
                         </Col>
                     </Row>
@@ -118,11 +110,6 @@
                     <Table border ref="selection" size="small" :columns="columnsOption" @on-select="selectRegister" :data="registers" @on-sort-change="sortRegisters"></Table>
                 </Card>
             </Content>  
-   
-
-
-
-
     </Layout>
     
     

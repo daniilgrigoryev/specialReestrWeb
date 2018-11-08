@@ -17,26 +17,6 @@
 
 
 <script>
-<<<<<<< HEAD
-export default {
-  name: "MainMenu",
-  methods: {
-    selectMenu(activeName) {
-      switch (+activeName) {
-        case 1: {
-          this.$root.getRegisterReestr();
-          break;
-        }
-        case 2: {
-          this.$root.getDictReestr();
-          break;
-        }
-        case 3: {
-          this.$root.getPackageReestr();
-          break;
-        }
-      }
-=======
   import * as funcUtils from "../../assets/js/utils/funcUtils";
 
   export default {
@@ -70,10 +50,8 @@ export default {
         }
         funcUtils.addToSessionStorage('mainMenuActiveName', activeName);
       },
->>>>>>> 1497e1f99de4bae62745efa247cff0843ff12432
     }
   }
-};
 </script>
 
 

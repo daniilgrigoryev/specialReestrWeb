@@ -59,7 +59,6 @@ export default {
     let dictCategory = this.$store.state.dictCategory.bean;
     let dictReason = this.$store.state.dictReason.bean;
 
-<<<<<<< HEAD
     this.dictionaries.push({
       beanName: dictArea,
       description: "Типы территорий"
@@ -98,29 +97,6 @@ export default {
             cid: null,
             moduleName: vm.$store.state.dictReason.moduleName
           };
-=======
-      (async () => {
-        try {
-          let eventResponse;
-          if (funcUtils.isNull(dictReestr)) {
-            dictReestr = {};
-            dictReestr[dictArea] = {
-              cid: null,
-              moduleName: vm.$store.state.dictArea.moduleName
-            };
-            dictReestr[dictSource] = {
-              cid: null,
-              moduleName: vm.$store.state.dictSource.moduleName
-            };
-            dictReestr[dictCategory] = {
-              cid: null,
-              moduleName: vm.$store.state.dictCategory.moduleName
-            };
-            dictReestr[dictReason] = {
-              cid: null,
-              moduleName: vm.$store.state.dictReason.moduleName
-            };
->>>>>>> 1497e1f99de4bae62745efa247cff0843ff12432
 
           eventResponse = await vm.$store.dispatch("prepareData", {
             beanName: dictCategory,
@@ -200,15 +176,8 @@ export default {
     showDictCategory() {
       return this.$store.state.dictCategory.bean === this.activeDict;
     },
-<<<<<<< HEAD
     showDictReason() {
       return this.$store.state.dictReason.bean === this.activeDict;
-=======
-    data() {
-      return {
-        activeDict: "DictCategoryView"
-      }
->>>>>>> 1497e1f99de4bae62745efa247cff0843ff12432
     },
     showDictSource() {
       return this.$store.state.dictSource.bean === this.activeDict;
