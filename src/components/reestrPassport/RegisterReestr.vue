@@ -100,8 +100,8 @@
                             <h2 class="txt-h2 my12">Регистр учета объектов ({{countRegister}})</h2>
                         </Col>
                         <Col :xs="{span: 24}" :md="{span: 12}">
-                            <Row type="flex" justify="center">
-                                <Page class="fr" :total="countRegister" :current="currentPage" :page-size="limit" @on-change="changePage" />
+                            <Row type="flex" justify="center" class="my12">
+                                <Page :total="countRegister" :current="currentPage" :page-size="limit" @on-change="changePage" />
                             </Row>
                         </Col>
                     </Row>

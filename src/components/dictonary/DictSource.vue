@@ -4,20 +4,20 @@
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<h2 class="txt-h2 my12">Источники данных</h2>
 			</Col>
-			<Col :xs="{span: 24}" :md="{span: 5}">
-				<Form :label-width="80">
-					<Row type="flex" justify="center">
-						<FormItem>
+			<Col :xs="{span: 24}" :md="{span: 12}">
+				<Row type="flex" justify="center" class="my12">
+					<Form style="width: 100%; max-width: 400px;">
+						<FormItem class="mb0">
 							<Input placeholder="Enter something...">
 								<Icon type="ios-search" slot="prepend"></Icon>
 							</Input>
 						</FormItem>
-					</Row>
-				</Form>
+					</Form>	
+				</Row>
 			</Col>
 		</Row>
 
-		<Table border ref="selection" :columns="columnsOption" :data="dictSource"></Table>
+		<Table border ref="selection" size="small" :columns="columnsOption" :data="dictSource"></Table>
 
 	</div>
 
@@ -57,14 +57,19 @@ export default {
 					title: "Код",
 					key: "code",
 					width: 100,
+                    align: "center",
 				},
 				{
 					title: "Название источника",
 					key: "name",
+					minWidth: 150,
+					maxWidth: 300
 				},
 				{
 					title: "Название организации",
 					key: "orgName",
+					minWidth: 200,
+					maxWidth: 300
 				},
 				{
 					title: "Активно",
@@ -95,19 +100,24 @@ export default {
 				},*/
 				{
 					title: "Дата внесения",
-					key: "addTime"
+					key: "addTime",
+					width: 200,
 				},
 				{
 					title: "Контактное лицо",
-					key: "contacts"
+					key: "contacts",
+					minWidth: 200,
+					maxWidth: 300
 				},
 				{
 					title: "Описание",
-					key: "note"
+					key: "note",
+                    minWidth: 300,
 				},
 				{
 					title: "Вложение",
 					width: 150,
+					align: 'center',
 					render: (h, params) => {
 						if (params.row.hasBody) {
 							return h('Button', {
@@ -132,6 +142,7 @@ export default {
 				{
 					title: "Действия",
 					width: 150,
+					align: 'center',
 					render: (h, params) => {
 						return h('div', [
 							h('Button', {
