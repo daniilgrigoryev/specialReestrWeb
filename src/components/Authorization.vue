@@ -1,7 +1,7 @@
 <template>
 	<Layout class="viewport-full">
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross viewport-full">
-			<div class="auth-container">
+			<div class="w-full wmax360">
 				<div class="prose prose--dark align-center my24">
 					<h3>Спецтранспорт</h3>
 					<p>Единый реестр специальных <br> транспортных средств</p>
@@ -15,8 +15,6 @@
 						<FormItem label="Пароль" for="userName">
 							<Input size="large" id="password" v-model="password" />
 						</FormItem>		
-
-
 						<div class="py12 align-center">		
 							<Button size="large" @click="authorize" type="primary">Войти</Button>
 							<br/>
