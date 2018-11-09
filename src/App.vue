@@ -62,5 +62,4 @@ export default {
 	.main-wrapper{
 		min-height: calc(100vh - 64px);
 	}
-
 </style>

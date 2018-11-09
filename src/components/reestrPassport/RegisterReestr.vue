@@ -105,7 +105,6 @@
                         </Row>
                     </Col>
                 </Row>
-
                 <Table border ref="selection" size="small" :columns="columnsOption" @on-select="selectRegister" :data="registers" @on-sort-change="sortRegisters"></Table>
             </Card>
         </Content>  

@@ -1,67 +1,75 @@
 <template>
-	<!-- <div class="list_actions absolute flex-parent flex-parent--column">
+	<Layout>
+
+
+
+
+		<div class="acitionsButtons absolute flex-parent flex-parent--column">
 			<Poptip placement="left" class="poptip my12">
 				<Avatar icon="ios-cog" size="large" style="background-color: green" />
 				<div slot="content" class="px0">
 					<Button size="large" @click="packageCardFromFile" type="primary">Создать пакет данных из файла</Button>
 				</div>
 			</Poptip>
-	
+
 			<Poptip placement="left" class="poptip my12">
 				<Avatar icon="ios-create" size="large" style="background-color: green" />
 				<div slot="content" class="px0">
 					<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
 				</div>
 			</Poptip>
-		</div> -->
-	<Layout>
+		</div>
+
+
+
+
+
 		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
 			<Form label-position="top">
 				<h3 class="txt-h2 my12">Фильтр</h3>
-	
 				<FormItem label="Время создания записи" :style="{width: '100%'}">
 					<Row :gutter="8">
 						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
-						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%" placeholder="Период от"></DatePicker>
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%" placeholder="Период от"></DatePicker>
 						</Col>
 						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
-						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%" placeholder="Период по"></DatePicker>
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%" placeholder="Период по"></DatePicker>
 						</Col>
 					</Row>
 				</FormItem>
 	
 				<FormItem label="Тип пакета документа" prop="">
 					<Select :clearable="true" v-model="filter.formatType.value1">
-								<Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-							</Select>
+						<Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
 				</FormItem>
 	
 	
 				<FormItem label="Статус обработки" prop="">
 					<Select :clearable="true" v-model="filter.status.value1">
-								<Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-							</Select>
+						<Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
 				</FormItem>
 	
 				<FormItem label="Источник" prop="">
 					<Select :clearable="true" v-model="filter.sourceId.value1">
-								<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-							</Select>
+						<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
 				</FormItem>
 	
 				<FormItem label="Основание" prop="">
-					<Select :clearable="true" v-model="filter.reasonId.value1">
-								<Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-							</Select>
+					<Select :clearable="true" v-model="filter.reasonId.value1" >
+						<Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
 				</FormItem>
 	
 				<FormItem>
 					<Row type="flex" justify="center">
 						<Col class="my6">
-						<Button @click="filterRegisters" type="primary">Применить</Button>
+							<Button @click="filterRegisters" type="primary">Применить</Button>
 						</Col>
 						<Col class="my6">
-						<Button class="mx6">Отчистить</Button>
+							<Button class="mx6">Отчистить</Button>
 						</Col>
 					</Row>
 				</FormItem>
@@ -73,7 +81,7 @@
 			<Card>
 				<Row type="flex" align="middle">
 					<Col>
-					<h2 class="txt-h2 my12">Список пакетов данных</h2>
+						<h2 class="txt-h2 my12">Список пакетов данных</h2>
 					</Col>
 				</Row>
 				<Table border size="small" ref="selection" :columns="columnsOption" :data="packages" @on-sort-change="sortRegisters"></Table>
@@ -847,7 +855,7 @@ export default {
 </script>
 
 <style lang="scss">
-.list_actions {
+.acitionsButtons {
 	bottom: 5%;
 	right: 5%;
 	z-index: 1;
