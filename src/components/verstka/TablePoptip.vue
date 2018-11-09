@@ -11,7 +11,6 @@
 
 		<div slot="content">
 			<Form label-position="top">
-
 				<Row>
 					<Col span="24">
 						<p class="txt-bold">Дата окончания действия разрешения</p>
@@ -27,8 +26,6 @@
 						</FormItem>					
 					</Col>
 				</Row>
-
-
 			</Form>
 		</div>
 	</Poptip>
