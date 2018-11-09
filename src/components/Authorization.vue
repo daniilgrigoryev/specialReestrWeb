@@ -1,6 +1,6 @@
 <template>
-	<Layout class="main-wrapper" style="min-height: 100vh;">
-		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross" style="min-height: 100vh;">
+	<Layout class="viewport-full">
+		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross viewport-full">
 			<div class="auth-container">
 				<div class="prose prose--dark align-center my24">
 					<h3>Спецтранспорт</h3>

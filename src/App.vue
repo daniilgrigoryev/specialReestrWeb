@@ -59,7 +59,8 @@ export default {
 </script>
 
 <style>
-	.main-wrapper{
+	.height100-header{
 		min-height: calc(100vh - 64px);
 	}
+
 </style>

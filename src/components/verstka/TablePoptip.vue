@@ -1,14 +1,6 @@
 <template>
-
-
-
 	<Poptip placement="left"  class="poptip" width="300">
-
-		
 		<Icon type="md-calendar" class="poptip__icon"/>
-
-
-
 		<div slot="content">
 			<Form label-position="top">
 				<Row>
@@ -29,10 +21,6 @@
 			</Form>
 		</div>
 	</Poptip>
-
-
-
-
 </template>
 
 <style scoped>
@@ -40,6 +28,7 @@
 		position: fixed;
 		bottom: 50px;
 		right: 50px;
+		z-index: 8;
 	}
 	.poptip__icon{
 		background-color: red;

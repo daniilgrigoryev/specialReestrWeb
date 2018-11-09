@@ -1,71 +1,73 @@
 <template>
-	<Card class="card mx-auto" v-if="dictSourceEdit">
-		<b slot="title" class="txt-h4">
-	      Редактирование записи
-	    </b>
-		<Form label-position="top">
-			<Row :gutter="16" class="my12">
-	
-				<Col :xs="{span: 24}" :md="{span: 24}">
-				<FormItem>
-					<Checkbox v-model="dictSourceEdit.flgActive"><b class="txt-m mx6">Активно</b></Checkbox>
-					<!--<Checkbox v-model="single"><b class="txt-m mx6">Возможность аннулирования</b></Checkbox>-->
-				</FormItem>
-				</Col>
-	
-				<Col :xs="{span: 24}" :md="{span: 12}">
-				<Row :gutter="16">
-					<Col :xs="{span: 24}" :md="{span: 12}">
-					<FormItem label="Код">
-						<Input size="large" v-model="dictSourceEdit.code"></Input>
+	<Layout class="height100-header">
+		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
+			<Card v-if="dictSourceEdit" class="w-full" style="max-width: 1200px;">
+				<b slot="title" class="txt-h4">Редактирование записи</b>
+				<Form label-position="top">
+					
+					<FormItem>
+						<Checkbox v-model="dictSourceEdit.flgActive"><b class="txt-m mx6">Активно</b></Checkbox>
+						<!--<Checkbox v-model="single"><b class="txt-m mx6">Возможность аннулирования</b></Checkbox>-->
 					</FormItem>
-					</Col>
-					<Col :xs="{span: 24}" :md="{span: 12}">
-					<FormItem label="Название источника">
-						<Input size="large" v-model="dictSourceEdit.name"></Input>
-					</FormItem>
-					</Col>
-				</Row>
+
+					<Row :gutter="16">
+						<Col :xs="{span: 24}" :md="{span: 12}">
+							<Row :gutter="16">
+								<Col :xs="{span: 24}" :md="{span: 12}">
+									<FormItem label="Код">
+										<Input v-model="dictSourceEdit.code"></Input>
+									</FormItem>
+								</Col>
+								<Col :xs="{span: 24}" :md="{span: 12}">
+									<FormItem label="Название источника">
+										<Input v-model="dictSourceEdit.name"></Input>
+									</FormItem>
+								</Col>
+								<Col :xs="{span: 24}" :md="{span: 12}">
+									<FormItem label="Название организации">
+										<Input v-model="dictSourceEdit.orgName"></Input>
+									</FormItem>	
+								</Col>
+								<Col :xs="{span: 24}" :md="{span: 12}">
+									<FormItem label="Контактное лицо">
+										<Input v-model="dictSourceEdit.contacts"></Input>
+									</FormItem>
+								</Col>
+								<Col>
+									<FormItem label="Вложение">
+										<div>
+											<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+											<p>Click or drag files here to upload</p>
+										</div>	
+										<input type="file" @change="onFileChange">
+									</FormItem>
+								</Col>
+							</Row>
+						</Col>
 	
-				<FormItem label="Название организации">
-					<Input size="large" v-model="dictSourceEdit.orgName"></Input>
-				</FormItem>
-	
-	
-				<FormItem label="Контактное лицо">
-					<Input size="large" v-model="dictSourceEdit.contacts"></Input>
-				</FormItem>
-	
-	
-				<FormItem label="Описание">
-					<Input type="textarea" v-model="dictSourceEdit.note" :autosize="{minRows: 4,maxRows: 5}" placeholder="Описание" size="large"></Input>
-				</FormItem>
-	
-				<FormItem label="Вложение">
-					<div class="py24">
-						<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-						<p>Click or drag files here to upload</p>
-					</div>
-					<input type="file" @change="onFileChange">
-				</FormItem>
-				</Col>
-	
-				<Col :xs="{span: 24}" :md="{span: 12}">
-				<Card>
-					<p slot="title">Список оснований</p>
-					<div class="content scroll-auto" style="max-height: 450px;">
+						<Col :xs="{span: 24}" :md="{span: 12}">
+							<FormItem label="Описание">
+								<Input type="textarea" v-model="dictSourceEdit.note" :autosize="{minRows: 5, maxRows: 5}" placeholder="Описание"></Input>
+							</FormItem>
+						</Col>
+					</Row>
+
+
+
+					<FormItem label="Список оснований">
 						<Table border ref="selection" :columns="columnsOption" :data="reasonDict"></Table>
-					</div>
-				</Card>
-				</Col>
-			</Row>
-	
-			<FormItem class="flex-parent flex-parent--center-main">
-				<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
-				<Button size="large" @click="getPrev">Отмена</Button>
-			</FormItem>
-		</Form>
-	</Card>
+					</FormItem>
+
+
+			
+					<FormItem class="flex-parent flex-parent--center-main">
+						<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
+						<Button size="large" @click="getPrev">Отмена</Button>
+					</FormItem>
+				</Form>
+			</Card>
+		</div>
+	</Layout>
 </template>
 
 <script>
@@ -161,7 +163,7 @@ export default {
 				},
 				{
 					title: "Специальное",
-					width: 100,
+					width: 120,
 					align: "center",
 					key: 'checkSpecReason',
 					render: (h, params) => {

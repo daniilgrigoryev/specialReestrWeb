@@ -1,5 +1,5 @@
 <template>
-    <Layout class="main-wrapper">
+    <Layout class="height100-header">
 
         
         <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>

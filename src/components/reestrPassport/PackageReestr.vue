@@ -1,12 +1,6 @@
 <template>
-	<Layout class="main-wrapper">
-
-
-
-
-
-
-		<!-- <div class="acitionsButtons absolute flex-parent flex-parent--column">
+	<Layout class="height100-header">
+		<div class="acitionsButtons absolute flex-parent flex-parent--column">
 			<Poptip placement="left" class="poptip my12">
 				<Avatar icon="ios-cog" size="large" style="background-color: green" />
 				<div slot="content" class="px0">
@@ -20,12 +14,7 @@
 					<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
 				</div>
 			</Poptip>
-		</div> -->
-
-
-
-
-
+		</div>
 		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
 			<Form label-position="top">
 				<h3 class="txt-h2 my12">Фильтр</h3>
