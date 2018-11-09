@@ -13,13 +13,11 @@
 							<Input size="large" id="userName" v-model="userName" />
 						</FormItem>
 						<FormItem label="Пароль" for="userName">
-							<Input size="large" id="password" v-model="password" />
+							<Input size="large" type="password" id="password" v-model="password" />
 						</FormItem>		
 						<div class="py12 align-center">		
 							<Button size="large" @click="authorize" type="primary">Войти</Button>
-							<br/>
-							<Button size="large" type="text" class="link">Восстановление пароля</Button>
-						</div>	
+            </div>
 					</Form>
 				</Card>
 			</div>
