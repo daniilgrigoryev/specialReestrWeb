@@ -1,44 +1,47 @@
 <template>
-	<Card class="card mx-auto" v-if="dictReasonEdit">
-		<b slot="title" class="txt-h4">
-	      Редактирование записи
-	    </b>
-		<Form label-position="top">
-			<Checkbox v-model="dictReasonEdit.flgActive">
-				<b class="txt-m mx6">Активно</b>
-			</Checkbox>
-	
-			<Row :gutter="16" class="my12">
-				<Col :xs="{span: 24, order: 2}" :md="{span: 12}">
-				<FormItem label="Код">
-					<Input size="large" v-model="dictReasonEdit.code"></Input>
-				</FormItem>
-				</Col>
-				<Col :xs="{span: 24, order: 2}" :md="{span: 12}">
-				<FormItem label="Название категории">
-					<Input size="large" v-model="dictReasonEdit.name"></Input>
-				</FormItem>
-				</Col>
-			</Row>
-	
-			<FormItem label="Описание">
-				<Input type="textarea" v-model="dictReasonEdit.note" :autosize="{minRows: 4,maxRows: 5}" placeholder="Описание" size="large"></Input>
-			</FormItem>
-	
-			<FormItem label="Вложение">
-				<div class="py24">
-					<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-					<p>Click or drag files here to upload</p>
-				</div>
-				<input type="file" @change="onFileChange">
-			</FormItem>
-	
-			<FormItem class="flex-parent flex-parent--center-main">
-				<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
-				<Button size="large" @click="getPrev">Отмена</Button>
-			</FormItem>
-		</Form>
-	</Card>
+	<Layout class="height100-header">
+		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
+			<Card class="w-full wmax600" v-if="dictReasonEdit">
+				<b slot="title" class="txt-h4">Редактирование записи</b>
+				<Form label-position="top">
+					<Checkbox v-model="dictReasonEdit.flgActive">
+						<b class="txt-m mx6">Активно</b>
+					</Checkbox>
+			
+					<Row :gutter="16" class="my12">
+						<Col :xs="{span: 24}" :md="{span: 8}">
+							<FormItem label="Код">
+								<Input size="large" v-model="dictReasonEdit.code"></Input>
+							</FormItem>
+						</Col>
+						<Col :xs="{span: 24}" :md="{span: 16}">
+							<FormItem label="Название категории">
+								<Input size="large" v-model="dictReasonEdit.name"></Input>
+							</FormItem>
+						</Col>
+					</Row>
+			
+					<FormItem label="Описание">
+						<Input type="textarea" v-model="dictReasonEdit.note" :autosize="{minRows: 4,maxRows: 5}" placeholder="Описание" size="large"></Input>
+					</FormItem>
+			
+					<FormItem label="Вложение">
+						<div class="py24">
+							<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+							<p>Click or drag files here to upload</p>
+						</div>
+						<input type="file" @change="onFileChange">
+					</FormItem>
+			
+					<FormItem class="flex-parent flex-parent--center-main">
+						<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
+						<Button size="large" @click="getPrev">Отмена</Button>
+					</FormItem>
+				</Form>
+			</Card>
+		</div>
+	</Layout>
+
 </template>
 
 <script>
