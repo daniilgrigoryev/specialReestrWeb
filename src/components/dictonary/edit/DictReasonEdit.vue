@@ -1,166 +1,166 @@
 <template>
-  <Card class="card mx-auto" v-if="dictReasonEdit">
-    <b slot="title" class="txt-h4">
-      Редактирование записи
-    </b>
-    <Form label-position="top">
-      <Checkbox v-model="dictReasonEdit.flgActive">
-        <b class="txt-m mx6">Активно</b>
-      </Checkbox>
-
-      <Row :gutter="16" class="my12">
-        <Col :xs="{span: 24, order: 2}" :md="{span: 12}">
-          <FormItem label="Код">
-            <Input size="large" v-model="dictReasonEdit.code"></Input>
-          </FormItem>
-        </Col>
-        <Col :xs="{span: 24, order: 2}" :md="{span: 12}">
-          <FormItem label="Название категории">
-            <Input size="large" v-model="dictReasonEdit.name"></Input>
-          </FormItem>
-        </Col>
-      </Row>
-
-      <FormItem label="Описание">
-        <Input type="textarea" v-model="dictReasonEdit.note" :autosize="{minRows: 4,maxRows: 5}" placeholder="Описание" size="large"></Input>
-      </FormItem>
-
-      <FormItem label="Вложение">
-        <div class="py24">
-          <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-          <p>Click or drag files here to upload</p>
-        </div>
-        <input type="file" @change="onFileChange">
-      </FormItem>
-
-      <FormItem class="flex-parent flex-parent--center-main">
-        <Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
-        <Button size="large" @click="getPrev">Отмена</Button>
-      </FormItem>
-    </Form>
-  </Card>
+	<Card class="card mx-auto" v-if="dictReasonEdit">
+		<b slot="title" class="txt-h4">
+	      Редактирование записи
+	    </b>
+		<Form label-position="top">
+			<Checkbox v-model="dictReasonEdit.flgActive">
+				<b class="txt-m mx6">Активно</b>
+			</Checkbox>
+	
+			<Row :gutter="16" class="my12">
+				<Col :xs="{span: 24, order: 2}" :md="{span: 12}">
+				<FormItem label="Код">
+					<Input size="large" v-model="dictReasonEdit.code"></Input>
+				</FormItem>
+				</Col>
+				<Col :xs="{span: 24, order: 2}" :md="{span: 12}">
+				<FormItem label="Название категории">
+					<Input size="large" v-model="dictReasonEdit.name"></Input>
+				</FormItem>
+				</Col>
+			</Row>
+	
+			<FormItem label="Описание">
+				<Input type="textarea" v-model="dictReasonEdit.note" :autosize="{minRows: 4,maxRows: 5}" placeholder="Описание" size="large"></Input>
+			</FormItem>
+	
+			<FormItem label="Вложение">
+				<div class="py24">
+					<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+					<p>Click or drag files here to upload</p>
+				</div>
+				<input type="file" @change="onFileChange">
+			</FormItem>
+	
+			<FormItem class="flex-parent flex-parent--center-main">
+				<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
+				<Button size="large" @click="getPrev">Отмена</Button>
+			</FormItem>
+		</Form>
+	</Card>
 </template>
 
 <script>
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
+import * as funcUtils from "../../../assets/js/utils/funcUtils";
 
-  export default {
-    name: "DictReasonEdit",
-    beforeCreate: function () {
-      let vm = this;
-      (async () => {
-        try {
-          let wid = sessionStorage.getItem('wid');
-          let componentsRoute = funcUtils.getFromSessionStorage(wid);
-          let currentComponent = await vm.$store.dispatch('getCurrentComponent', {
-            componentArr: componentsRoute
-          });
-          let cid = currentComponent.cid;
-          vm.$store.dispatch('dictReasonEditSetCid', cid);
-          let prepareParams = {
-            cid: cid
-          };
-          if (!funcUtils.isUndefined(vm.$route.params.id)) {
-            prepareParams.method = 'getData';
-            prepareParams.params = {
-              'id': vm.$route.params.id
-            };
-          }
+export default {
+	name: "DictReasonEdit",
+	beforeCreate: function() {
+		let vm = this;
+		(async () => {
+			try {
+				let wid = sessionStorage.getItem('wid');
+				let componentsRoute = funcUtils.getFromSessionStorage(wid);
+				let currentComponent = await vm.$store.dispatch('getCurrentComponent', {
+					componentArr: componentsRoute
+				});
+				let cid = currentComponent.cid;
+				vm.$store.dispatch('dictReasonEditSetCid', cid);
+				let prepareParams = {
+					cid: cid
+				};
+				if (!funcUtils.isUndefined(vm.$route.params.id)) {
+					prepareParams.method = 'getData';
+					prepareParams.params = {
+						'id': vm.$route.params.id
+					};
+				}
 
-          let eventResponse = await vm.$store.dispatch('prepareData', prepareParams);
-          vm.dictReasonEdit = JSON.parse(eventResponse.response).data;
-          if (vm.dictReasonEdit.flgActive === 'T') {
-            vm.dictReasonEdit.flgActive = true;
-          } else if (vm.dictReasonEdit.flgActive === 'F') {
-            vm.dictReasonEdit.flgActive = false;
-          }
-        } catch (e) {
-          alert(e.message);
-        }
-      })();
-    },
-    data() {
-      return {
-        dictReasonEdit: null,
-        file: null
-      }
-    },
-    methods: {
-      onFileChange(e) {
-        debugger;
-        let vm = this;
-        let files = e.target.files || e.dataTransfer.files;
-        if (files.length === 0 || files.length > 1) {
-          return;
-        } else if (files[0].type !== 'application/pdf') {
-          alert('Только PDF!!!');
-          return;
-        }
-        let reader = new FileReader();
-        reader.onload = (e) => {
-          vm.file = e.currentTarget.result;
+				let eventResponse = await vm.$store.dispatch('prepareData', prepareParams);
+				vm.dictReasonEdit = JSON.parse(eventResponse.response).data;
+				if (vm.dictReasonEdit.flgActive === 'T') {
+					vm.dictReasonEdit.flgActive = true;
+				} else if (vm.dictReasonEdit.flgActive === 'F') {
+					vm.dictReasonEdit.flgActive = false;
+				}
+			} catch (e) {
+				alert(e.message);
+			}
+		})();
+	},
+	data() {
+		return {
+			dictReasonEdit: null,
+			file: null
+		}
+	},
+	methods: {
+		onFileChange(e) {
+			debugger;
+			let vm = this;
+			let files = e.target.files || e.dataTransfer.files;
+			if (files.length === 0 || files.length > 1) {
+				return;
+			} else if (files[0].type !== 'application/pdf') {
+				alert('Только PDF!!!');
+				return;
+			}
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				vm.file = e.currentTarget.result;
 
-          (async () => {
-            try {
-              let body = vm.file.substr(vm.file.lastIndexOf(',') + 1);
-              let eventResponse = await vm.$store.dispatch('prepareData', {
-                params: {
-                  body: body
-                },
-                method: 'setFileBody'
-              });
-            } catch (e) {
-              alert(e.message);
-            }
-          })();
-        };
-        reader.readAsDataURL(files[0]);
-      },
-      saveOrEdit() {
-        let vm = this;
+				(async () => {
+					try {
+						let body = vm.file.substr(vm.file.lastIndexOf(',') + 1);
+						let eventResponse = await vm.$store.dispatch('prepareData', {
+							params: {
+								body: body
+							},
+							method: 'setFileBody'
+						});
+					} catch (e) {
+						alert(e.message);
+					}
+				})();
+			};
+			reader.readAsDataURL(files[0]);
+		},
+		saveOrEdit() {
+			let vm = this;
 
-        if (this.dictReasonEdit.flgActive === true) {
-          this.dictReasonEdit.flgActive = 'T';
-        } else if (this.dictReasonEdit.flgActive === false) {
-          this.dictReasonEdit.flgActive = 'F';
-        }
+			if (this.dictReasonEdit.flgActive === true) {
+				this.dictReasonEdit.flgActive = 'T';
+			} else if (this.dictReasonEdit.flgActive === false) {
+				this.dictReasonEdit.flgActive = 'F';
+			}
 
-        (async () => {
-          try {
-            let eventResponse = await vm.$store.dispatch('prepareData', {
-              params: {
-                item: vm.dictReasonEdit
-              },
-              method: 'save'
-            });
-            vm.getPrev();
-          } catch (e) {
-            alert(e.message);
-          }
-        })();
-      },
-      getPrev: function () {
-        let vm = this;
-        let path = funcUtils.getFromSessionStorage('path');
-        (async () => {
-          try {
-            let currentPage = await vm.$store.dispatch('getCurrentPage', path);
-            if (currentPage.params.routeName === vm.$store.state.dictReestr.routeName) {
-              vm.$root.getDictReestr();
-            } else {
-              await vm.$store.dispatch('getPrevComponent');
-              vm.$store.dispatch('getPrevPage', {
-                'vm': vm,
-                'pageName': currentPage.params.routeName
-              });
-            }
-          } catch (e) {
-            alert(e.message);
-          }
-        })();
-      },
-    }
-  }
+			(async () => {
+				try {
+					let eventResponse = await vm.$store.dispatch('prepareData', {
+						params: {
+							item: vm.dictReasonEdit
+						},
+						method: 'save'
+					});
+					vm.getPrev();
+				} catch (e) {
+					alert(e.message);
+				}
+			})();
+		},
+		getPrev: function() {
+			let vm = this;
+			let path = funcUtils.getFromSessionStorage('path');
+			(async () => {
+				try {
+					let currentPage = await vm.$store.dispatch('getCurrentPage', path);
+					if (currentPage.params.routeName === vm.$store.state.dictReestr.routeName) {
+						vm.$root.getDictReestr();
+					} else {
+						await vm.$store.dispatch('getPrevComponent');
+						vm.$store.dispatch('getPrevPage', {
+							'vm': vm,
+							'pageName': currentPage.params.routeName
+						});
+					}
+				} catch (e) {
+					alert(e.message);
+				}
+			})();
+		},
+	}
+}
 </script>
 
 <style scoped>

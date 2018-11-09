@@ -1,10 +1,12 @@
 <template>
-	<Layout>
+	<Layout class="main-wrapper">
 
 
 
 
-		<div class="acitionsButtons absolute flex-parent flex-parent--column">
+
+
+		<!-- <div class="acitionsButtons absolute flex-parent flex-parent--column">
 			<Poptip placement="left" class="poptip my12">
 				<Avatar icon="ios-cog" size="large" style="background-color: green" />
 				<div slot="content" class="px0">
@@ -18,7 +20,7 @@
 					<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
 				</div>
 			</Poptip>
-		</div>
+		</div> -->
 
 
 
@@ -40,26 +42,26 @@
 	
 				<FormItem label="Тип пакета документа" prop="">
 					<Select :clearable="true" v-model="filter.formatType.value1">
-						<Option v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						<Option style="white-space: pre-wrap" v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	
 	
 				<FormItem label="Статус обработки" prop="">
 					<Select :clearable="true" v-model="filter.status.value1">
-						<Option v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						<Option style="white-space: pre-wrap" v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	
 				<FormItem label="Источник" prop="">
 					<Select :clearable="true" v-model="filter.sourceId.value1">
-						<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						<Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	
 				<FormItem label="Основание" prop="">
 					<Select :clearable="true" v-model="filter.reasonId.value1" >
-						<Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						<Option style="white-space: pre-wrap" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	

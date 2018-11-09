@@ -1,5 +1,5 @@
 <template>
-	<Layout>
+	<Layout class="main-wrapper">
 		<Sider width="350px" style="min-width: 350px" class="bg-white">
 			<Menu @on-select="onMenuClick" :active-name="activeDict" width="auto" theme="primary">
 				<MenuGroup title="Типы справочников">

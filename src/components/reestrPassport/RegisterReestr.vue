@@ -1,6 +1,10 @@
 <template>
-    <Layout>
+    <Layout class="main-wrapper">
+
+        
         <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
+
+
         <Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
             <Form label-position="top">
                 <h3 class="txt-h2 my12">Фильтр объектов</h3>
@@ -26,19 +30,19 @@
 
                 <FormItem label="Источник" prop="">
                     <Select :clearable="true" v-model="filter.sourceId.value1">
-                            <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            <Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                 </FormItem>
 
                 <FormItem label="Основание" prop="">
                     <Select :clearable="true" v-model="filter.reasonId.value1">
-                            <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            <Option style="white-space: pre-wrap" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                 </FormItem>
 
                 <FormItem label="Категория" prop="">
                     <Select :clearable="true" v-model="filter.categoryId.value1">
-                            <Option v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            <Option style="white-space: pre-wrap" v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                 </FormItem>
 
@@ -837,15 +841,5 @@ export default {
         background: azure;
         cursor: pointer;
     }
-}
-
-.poptip {
-    bottom: 2%;
-    right: 50px;
-    padding: 0;
-}
-
-.datePicker {
-    width: 100%;
 }
 </style>

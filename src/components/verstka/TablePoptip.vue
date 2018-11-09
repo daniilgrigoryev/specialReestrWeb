@@ -1,29 +1,58 @@
 <template>
-	<Poptip placement="left" class="poptip absolute" style="z-index: 1;">
-		<Avatar icon="ios-calendar" size="large" style="background-color: red" />
-		<div slot="content" class="px0">
+
+
+
+	<Poptip placement="left"  class="poptip" width="300">
+
+		
+		<Icon type="md-calendar" class="poptip__icon"/>
+
+
+
+		<div slot="content">
 			<Form label-position="top">
-				<FormItem label="Дата окончания действия разрешения" class="mx0 my0 py0 px0">
-					<DatePicker class="datePicker" size="small" type="date" format="yyyy-MM-dd" v-model="expDate" autosize placeholder="Дата окончания действия" transfer></DatePicker>
-				</FormItem>
-				<FormItem class="mx0 my0 py0 px0">
-					<Button type="error" @click="onClick" size="small" long>Применить к выбранным</Button>
-				</FormItem>
+
+				<Row>
+					<Col span="24">
+						<p class="txt-bold">Дата окончания действия разрешения</p>
+					</Col>
+					<Col span="24">
+						<FormItem class="mx0 my0 py0 px0">
+							<DatePicker style="width: 100%" class="datePicker" size="small" type="date" format="yyyy-MM-dd" v-model="expDate" autosize placeholder="Дата окончания действия" transfer></DatePicker>
+						</FormItem>
+					</Col>
+					<Col span="24">
+						<FormItem class="mx0 my0 py0 px0">
+							<Button style="width: 100%" type="error" @click="onClick" size="small">Применить к выбранным</Button>
+						</FormItem>					
+					</Col>
+				</Row>
+
+
 			</Form>
 		</div>
 	</Poptip>
+
+
+
+
 </template>
 
 <style scoped>
-.poptip {
-	bottom: 2%;
-	right: 50px;
-	padding: 0;
-}
-
-.datePicker {
-	width: 100%;
-}
+	.poptip{
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+	}
+	.poptip__icon{
+		background-color: red;
+		font-size: 40px;
+		color: #fff;
+		border-radius: 100%;
+		padding: 10px;
+		cursor: pointer;
+		
+	}
 </style>
 
 <script>
