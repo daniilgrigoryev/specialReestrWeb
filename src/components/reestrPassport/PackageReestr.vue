@@ -1,20 +1,40 @@
 <template>
 	<Layout class="height100-header">
-		<div class="acitionsButtons absolute flex-parent flex-parent--column">
-			<Poptip placement="left" class="poptip my12">
-				<Avatar icon="ios-cog" size="large" style="background-color: green" />
-				<div slot="content" class="px0">
-					<Button size="large" @click="packageCardFromFile" type="primary">Создать пакет данных из файла</Button>
+
+
+		<div class="poptips_wrapper">
+
+
+			<Poptip placement="left" width="300" class="block poptip">
+				<Icon type="ios-cog" class="poptip__icon" />
+				<div slot="content">
+					<Form>
+						<Col span="24">
+							<FormItem class="mx0 my0 py0 px0">
+								<Button size="large" style="width: 100%" @click="packageCardFromFile" type="primary">Создать пакет данных из файла</Button>
+							</FormItem>
+						</Col>
+					</Form>
 				</div>
 			</Poptip>
 
-			<Poptip placement="left" class="poptip my12">
-				<Avatar icon="ios-create" size="large" style="background-color: green" />
-				<div slot="content" class="px0">
-					<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
+
+			<Poptip placement="left" width="300" class="block poptip">
+				<Icon type="ios-create" class="poptip__icon" />
+				<div slot="content">
+					<Form>
+						<Col span="24">
+							<FormItem class="mx0 my0 py0 px0">
+								<Button size="large" @click="packageCardNew" type="primary">Создать пакет данных в ручную</Button>
+							</FormItem>
+						</Col>
+					</Form>
 				</div>
 			</Poptip>
+
 		</div>
+
+
 		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
 			<Form label-position="top">
 				<h3 class="txt-h2 my12">Фильтр</h3>
@@ -845,10 +865,22 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.acitionsButtons {
-	bottom: 5%;
-	right: 5%;
-	z-index: 1;
+<style scoped>
+.poptips_wrapper{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	z-index: 8;
 }
+
+.poptip__icon{
+	background-color: green;
+	font-size: 40px;
+	color: #fff;
+	border-radius: 100%;
+	padding: 10px;
+	cursor: pointer;
+}
+
+
 </style>
