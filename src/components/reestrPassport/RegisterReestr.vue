@@ -1,10 +1,6 @@
 <template>
-    <Layout class="height100-header">
-
-        
+    <Layout class="height100-header"> 
         <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
-
-
         <Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
             <Form label-position="top">
                 <h3 class="txt-h2 my12">Фильтр объектов</h3>

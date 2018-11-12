@@ -1,34 +1,34 @@
 <template>
 	<!--<div v-if="packageCard">
-	    <button type="button" @click="getPrev">Назад</button>
-	    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
-	    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
-	    {{packageCard}}
-	  </div>-->
+		    <button type="button" @click="getPrev">Назад</button>
+		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
+		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
+		    {{packageCard}}
+		  </div>-->
 	
+	
+	
+	
+	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column">
+		<Header style="background: inherit;">
+			<button type="button" @click="getPrev" class="txt-h2 my12">
+					<Icon type="ios-arrow-back" size="45"/> 
+					<span>Пакет: {{packageCard.head.name}}</span> 
+				</button>
+		</Header>
 
-	
-	<div v-if="packageCard" class="layout flex-parent flex-parent--column">
-		<Layout>
-			<Layout class="relative">
-				<!--<TablePoptip></TablePoptip>-->
-				<Content class="mx12">
-					<button type="button" @click="getPrev" class="flex-parent flex-parent--row flex-parent--center-cross">
-	            <Icon type="ios-arrow-back" size="45"/>
-	            <h2 class="txt-h2 my12">Пакет: {{packageCard.head.name}} </h2>
-	          </button>
-	
-					<div class="content mx-auto">
-						<Row :gutter="16">
-							<Col :xs="{span: 24}" :md="{span: 12}">
-							<Card>
+
+		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-moving="changeTableHeight">
+			<div slot="top" style="height: 100%;">
+				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
+					<Row :gutter="16">
+						<Col :xs="{span: 12}" :md="{span: 12}">
+							<Card class="my12">
 								<b slot="title" class="txt-h4">Основные сведения</b>
-	
 								<div class="flex-parent flex-parent--column align-center my24">
 									<Icon type="ios-document" size="150" />
 									<span>{{packageCard.head.name + '.' + packageCard.head.formatName.toLowerCase()}}</span>
 								</div>
-	
 								<table class="table border--0">
 									<tbody>
 										<tr class="txt-bold">
@@ -58,9 +58,9 @@
 									</tbody>
 								</table>
 							</Card>
-							</Col>
-							<Col :xs="{span: 24}" :md="{span: 12}">
-							<Card>
+						</Col>
+						<Col :xs="{span: 12}" :md="{span: 12}">
+							<Card class="my12">
 								<b slot="title" class="txt-h4">Результаты обработки</b>
 								<table class="table border--0">
 									<tbody>
@@ -99,10 +99,9 @@
 									</tbody>
 								</table>
 							</Card>
-	
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Связанные файлы</b>
-	
+				
 								<Row>
 									<Col :xs="{span: 24}" :md="{span: 12}">
 									<div style="cursor: pointer;" @click="downloadBody" class="flex-parent flex-parent--column align-center">
@@ -118,32 +117,27 @@
 									</Col>
 								</Row>
 							</Card>
-							</Col>
-						</Row>
-					</div>
+						</Col>
+					</Row>
 				</Content>
-			</Layout>
-		</Layout>
-		<Footer class="footer py0 px0">
-			<h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>
-			<Content class="bg-orange-light">
+			</div>
+
+			<div id="js-split" slot="bottom" class="bg-white scroll-hidden">
+				<!-- <h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4> -->
+
 				<Row>
-					<Col :xs="{span: 24}" :md="{span: 12}">
-					<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" height="250">
-					</Table>
+					<Col :xs="{span: 24}" :md="{span: 18}">
+						<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
+						</Table>
 					</Col>
-					<Col v-if="selectedItem" :xs="{span: 24}" :md="{span: 12}">
-					<Card class="scroll-auto border--0 unround" style="max-height: 250px">
-						<Row>
-							<Col :xs="{span: 12}" :md="{span: 12}">
+
+		
+					<Col v-if="selectedItem" :xs="{span: 24}" :md="{span: 6}">
+						<Card dis-hover>
 							<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
-	                    <span>{{selectedItem.tcRegno}}</span>
-	                    <Icon type="ios-share-alt" class="mx12 mb6" size="20" />
-	                  </button>
-							<!--<a href="" class="txt-bold txt-underline ">
-	                    <span>XA863299</span>
-	                    <Icon type="ios-share-alt" class="mx12 mb6" size="20" />
-	                  </a>-->
+								<span>{{selectedItem.tcRegno}}</span>
+								<Icon type="ios-share-alt" class="mx12 mb6" size="20" />
+							</button>
 							<table class="table border--0">
 								<tbody>
 									<tr class="txt-bold">
@@ -168,14 +162,19 @@
 									</tr>
 								</tbody>
 							</table>
-							</Col>
-						</Row>
-					</Card>
+						</Card>
 					</Col>
-				</Row>
-			</Content>
-		</Footer>
-	</div>
+				</Row>		
+			</div>
+
+		</Split>
+
+
+	
+	
+
+
+	</Layout>
 </template>
 
 <script>
@@ -230,6 +229,8 @@ export default {
 	},
 	data() {
 		return {
+			pageSplit: 0.7,
+			bottomSplit: 0.5,
 			columnsOption: [{
 					title: ' ',
 					key: 'icon',
@@ -269,7 +270,9 @@ export default {
 				accepted: 0,
 				awaited: 0,
 			},
-			selectedItem: null
+			selectedItem: null,
+			tableHeight: 400,
+			collHeight: 400
 		}
 	},
 	computed: {
@@ -324,6 +327,10 @@ export default {
 		}
 	},
 	methods: {
+		changeTableHeight(){
+			this.tableHeight = document.getElementById('js-split').offsetHeight;
+			this.collHeight = document.getElementById('js-split').offsetHeight;
+		},
 		selectItem(row) {
 			this.selectedItem = row;
 		},
@@ -437,10 +444,6 @@ export default {
 </script>
 
 <style lang="scss">
-.layout {
-	min-height: 100vh;
-}
-
 .footer {
 	min-height: 300px;
 }
@@ -448,4 +451,5 @@ export default {
 .content {
 	max-width: 780px;
 }
+
 </style>

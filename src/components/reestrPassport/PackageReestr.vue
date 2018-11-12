@@ -1,10 +1,6 @@
 <template>
 	<Layout class="height100-header">
-
-
 		<div class="poptips_wrapper">
-
-
 			<Poptip placement="left" width="300" class="block poptip">
 				<Icon type="ios-cog" class="poptip__icon" />
 				<div slot="content">
@@ -17,9 +13,7 @@
 					</Form>
 				</div>
 			</Poptip>
-
-
-			<Poptip placement="left" width="300" class="block poptip">
+			<Poptip placement="left" width="300" class="block poptip mt12">
 				<Icon type="ios-create" class="poptip__icon" />
 				<div slot="content">
 					<Form>
@@ -31,7 +25,6 @@
 					</Form>
 				</div>
 			</Poptip>
-
 		</div>
 
 
