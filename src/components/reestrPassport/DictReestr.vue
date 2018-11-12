@@ -138,7 +138,7 @@
     },
     data() {
       return {
-        activeDict: "DictCategoryView"
+        activeDict: ''
       }
     },
     computed: {
