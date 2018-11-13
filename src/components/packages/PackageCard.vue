@@ -23,37 +23,33 @@
 				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
 					<Row :gutter="8" justify="center">
 						<Col :xs="{span: 12}" :md="{span: 10}">
-							<Card class="my12">
+							<Card class="my12" :padding="0">
 								<b slot="title" class="txt-h4">Основные сведения</b>
-								<div class="flex-parent flex-parent--column align-center my24">
-									<Icon type="ios-document" size="150" />
-									<span>{{packageCard.head.name + '.' + packageCard.head.formatName.toLowerCase()}}</span>
-								</div>
-								<table class="table border--0">
+								<table class="table table--fixed border--0" style="max-width: 650px">
 									<tbody>
-										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Способ загрузки</td>
-											<td class="border--0 px0 py0">{{packageCard.head.formatName.toLowerCase()}}</td>
+										<tr class="txt-bold bg-green-light">
+											<td class="border--0">Статус обработки</td>
+											<td class="border--0 color-green-dark txt-h4">Завершено</td>
 										</tr>
 										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Дата создания</td>
-											<td class="border--0 px0 py0">{{packageCard.head.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+											<td class="border--0">Источник</td>
+											<td class="border--0">{{packageCard.head.sourceName}}</td>
 										</tr>
 										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Дата загрузки</td>
-											<td class="border--0 px0 py0">{{packageCard.head.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+											<td class="border--0">Основание</td>
+											<td class="border--0">{{packageCard.head.reasonName}}</td>
 										</tr>
 										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Исполнитель</td>
-											<td class="border--0 px0 py0">{{packageCard.head.createIspName}}</td>
+											<td class="border--0">Дата создания</td>
+											<td class="border--0">{{packageCard.head.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
 										</tr>
 										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Основание включения</td>
-											<td class="border--0 px0 py0">{{packageCard.head.reasonName}}</td>
+											<td class="border--0">Дата загрузки</td>
+											<td class="border--0">{{packageCard.head.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
 										</tr>
 										<tr class="txt-bold">
-											<td class="border--0 px0 py0 color-gray">Источник</td>
-											<td class="border--0 px0 py0">{{packageCard.head.sourceName}}</td>
+											<td class="border--0">Исполнитель</td>
+											<td class="border--0">{{packageCard.head.createIspName}}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -99,23 +95,6 @@
 									</tbody>
 								</table>
 							</Card>
-							<Card class="my12">
-								<b slot="title" class="txt-h4">Связанные файлы</b>
-								<Row>
-									<Col :xs="{span: 24}" :md="{span: 12}">
-									<div style="cursor: pointer;" @click="downloadBody" class="flex-parent flex-parent--column align-center">
-										<Icon type="ios-attach" size="60" />
-										<span>Вложение</span>
-									</div>
-									</Col>
-									<Col :xs="{span: 24}" :md="{span: 12}">
-									<div style="cursor: pointer;" @click="downloadSign" class="flex-parent flex-parent--column align-center">
-										<Icon type="ios-cog" size="60" />
-										<span>Сертификат</span>
-									</div>
-									</Col>
-								</Row>
-							</Card>
 						</Col>
 					</Row>
 				</Content>
@@ -124,7 +103,7 @@
 				<Split :stopSplit="true" v-model="bottomSplit" mode="vertical">
 					<div slot="top" id="js_split" class="bg-white" style="height: 100%; overflow: hidden">
 						<div id="js_headingSplit" class="py12 px24">
-							<h4 class="txt-h4 py0">Связанные объекты реестра</h4>
+							<h4 class="txt-h4 py0">Объекты реестра</h4>
 							<small class="py0">Отметьте объекты реестра для утверждения, исключите лишнее</small>
 						</div>
 						<Row>
@@ -235,8 +214,8 @@ export default {
 	},
 	data() {
 		return {
-			pageSplit: 0.7,
-			bottomSplit: 0.7,
+			pageSplit: 0.6,
+			bottomSplit: 0.8,
 			columnsOption: [{
 					title: ' ',
 					key: 'icon',
@@ -281,7 +260,7 @@ export default {
 				awaited: 0,
 			},
 			selectedItem: null,
-			tableHeight: 200,
+			tableHeight: 315,
 		}
 	},
 	computed: {
