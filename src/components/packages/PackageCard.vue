@@ -9,19 +9,19 @@
 	
 	
 	
-	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column">
-		<!-- <Header style="background: inherit;">
+	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column bg-gray">
+		<Header class="prose--dark bg-gray">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
-					<Icon type="ios-arrow-back" size="45"/> 
-					<span>Пакет: {{packageCard.head.name}}</span> 
-				</button>
-		</Header> -->
+				<Icon type="ios-arrow-back" size="45"/> 
+				<span>Пакет: {{packageCard.head.name}}</span> 
+			</button>
+		</Header>
 
 
-		<Split v-model="pageSplit" mode="vertical" class="height100-header" @on-move-end="changeTableHeight" min="520" max="300">
+		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
 			<div slot="top" style="height: 100%;">
-				<Content class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
-					<Row gutter="8" justify="center">
+				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
+					<Row :gutter="8" justify="center">
 						<Col :xs="{span: 12}" :md="{span: 10}">
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Основные сведения</b>
@@ -120,13 +120,12 @@
 					</Row>
 				</Content>
 			</div>
-			<div slot="bottom" style="height: 100%; overflow: hidden;" class="bg-white">
-				<Split v-model="bottomSplit" mode="vertical" @on-moving="doSomeWithSplit">
-					<div slot="top" id="js_split" style="height: 100%; overflow: hidden">
-
+			<div slot="bottom" style="height: 100%; overflow: hidden">
+				<Split :stopSplit="true" v-model="bottomSplit" mode="vertical">
+					<div slot="top" id="js_split" class="bg-white" style="height: 100%; overflow: hidden">
 						<div id="js_headingSplit" class="py12 px24">
-							<h4 class="txt-h4">Связанные объекты реестра</h4>
-							<small>Отметьте объекты реестра для утверждения, исключите лишнее</small>
+							<h4 class="txt-h4 py0">Связанные объекты реестра</h4>
+							<small class="py0">Отметьте объекты реестра для утверждения, исключите лишнее</small>
 						</div>
 						<Row>
 							<Col :xs="{span: 18}" :md="{span: 18}">
@@ -171,7 +170,7 @@
 						<div class="flex-parent flex-parent--center-main flex-parent--center-cross flex-parent--center-cross" style="height: 100%;">
 							<Form>
 								<p class="color-gray txt-m mb12">Выберете дату утверждения и нажмите кнопку "Утвердить"</p>
-								<Row type="flex" justify="center" align="center">
+								<Row type="flex" justify="center">
 									<DatePicker type="date" placeholder="Выберете дату" class="mr6"></DatePicker>
 									<Button type="primary" class="ml6">Утвердить</Button>
 								</Row>
@@ -342,6 +341,7 @@ export default {
 		},
 		doSomeWithSplit(e){
 			e.stopPropagation();
+			e.preventDefault();
 		},
 		selectItem(row) {
 			this.selectedItem = row;
