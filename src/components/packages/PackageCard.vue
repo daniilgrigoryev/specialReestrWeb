@@ -1,10 +1,10 @@
 <template>
-	<!--<div v-if="packageCard">
+	<!-- <div v-if="packageCard">
 		    <button type="button" @click="getPrev">Назад</button>
 		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
 		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
 		    {{packageCard}}
-		  </div>-->
+		  </div> -->
 	
 	
 	
@@ -120,10 +120,14 @@
 					</Row>
 				</Content>
 			</div>
-			<div slot="bottom" style="height: 100%; overflow: hidden">
+			<div slot="bottom" style="height: 100%; overflow: hidden;" class="bg-white">
 				<Split v-model="bottomSplit" mode="vertical" @on-moving="doSomeWithSplit">
 					<div slot="top" id="js_split" style="height: 100%; overflow: hidden">
-						<h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>				
+
+						<div id="js_headingSplit" class="py12 px24">
+							<h4 class="txt-h4">Связанные объекты реестра</h4>
+							<small>Отметьте объекты реестра для утверждения, исключите лишнее</small>
+						</div>
 						<Row>
 							<Col :xs="{span: 18}" :md="{span: 18}">
 								<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
@@ -177,12 +181,6 @@
 				</Split>
 			</div>
 		</Split>
-
-
-	
-	
-
-
 	</Layout>
 </template>
 
@@ -284,7 +282,7 @@ export default {
 				awaited: 0,
 			},
 			selectedItem: null,
-			tableHeight: 450,
+			tableHeight: 200,
 		}
 	},
 	computed: {
@@ -340,7 +338,7 @@ export default {
 	},
 	methods: {
 		changeTableHeight(){
-			this.tableHeight = document.getElementById('js_split').offsetHeight;
+			this.tableHeight = (document.getElementById('js_split').offsetHeight - document.getElementById('js_headingSplit').offsetHeight);
 		},
 		doSomeWithSplit(e){
 			e.stopPropagation();
