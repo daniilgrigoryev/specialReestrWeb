@@ -93,6 +93,13 @@ let vue = new Vue({
         'pageName': this.$store.state.dictReestr.routeName
       });
     },
+    getReportReestr() {
+      this.clearToStart();
+      this.$store.dispatch('getNextPage', {
+        'vm': this,
+        'pageName': this.$store.state.reportReestr.routeName
+      });
+    },
     activateTimer() {
       $("body").bind("mousemove keypress mousedown", (function (e) {
         localStorage.setItem('lastActive', JSON.stringify(new Date().getTime()));

@@ -11,6 +11,7 @@ import RegisterCardAccounting from './../components/registerCardAccounting/Regis
 import DictCategoryEdit from './../components/dictonary/edit/DictCategoryEdit';
 import DictReasonEdit from './../components/dictonary/edit/DictReasonEdit';
 import DictSourceEdit from './../components/dictonary/edit/DictSourceEdit';
+import ReportReestr from './../components/reestrPassport/ReportReestr';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 Vue.use(Router);
 
@@ -78,6 +79,11 @@ const router = new Router({
       component: DictSourceEdit,
       props: true
     },
+    {
+      path: '/reportReestr',
+      name: 'ReportReestr',
+      component: ReportReestr
+    }
   ]
 });
 

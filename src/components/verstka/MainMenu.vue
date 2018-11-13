@@ -12,6 +12,10 @@
             <Icon type="md-folder-open" />
             <span>Пакеты данных</span>
         </MenuItem>
+      <MenuItem name="4">
+        <Icon type="md-folder-open" />
+        <span>Отчеты</span>
+      </MenuItem>
     </Menu>
 </template>
 
@@ -45,6 +49,10 @@
           }
           case 3: {
             this.$root.getPackageReestr();
+            break;
+          }
+          case 4: {
+            this.$root.getReportReestr();
             break;
           }
         }

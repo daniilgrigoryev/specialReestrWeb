@@ -104,6 +104,7 @@ export function clearAll() {
   localStorage.removeItem('registerReestr');
   localStorage.removeItem('packageReestr');
   localStorage.removeItem('dictReestr');
+  localStorage.removeItem('reportReestr');
   sessionStorage.removeItem('mainMenuActiveName');
   addToSessionStorage('path', [{routeName: 'Authorization', current: true}]);
 }

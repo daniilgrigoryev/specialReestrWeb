@@ -17,12 +17,17 @@ import dictReestr from './modules/dictReestr';
 import dictCategoryEdit from './modules/dictCategoryEdit';
 import dictSourceEdit from './modules/dictSourceEdit';
 import dictReasonEdit from './modules/dictReasonEdit';
+import reportReestr from './modules/reportReestr';
+import reportCategory from './modules/reportCategory';
+import reportSpecial from './modules/reportSpecial';
+import reportZone from './modules/reportZone';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    modulesNames: ['registerReestr', 'registerCardAccounting', 'packageReestr', 'packageCardFromFile', 'packageCard', 'packageCardNew', 'dictArea', 'dictCategory', 'dictReason', 'dictSource', 'dictReestr', 'dictCategoryEdit', 'dictReasonEdit', 'dictSourceEdit'],
+    modulesNames: ['registerReestr', 'registerCardAccounting', 'packageReestr', 'packageCardFromFile', 'packageCard', 'packageCardNew', 'dictArea',
+      'dictCategory', 'dictReason', 'dictSource', 'dictReestr', 'dictCategoryEdit', 'dictReasonEdit', 'dictSourceEdit', 'reportReestr', 'reportCategory', 'reportSpecial', 'reportZone'],
     socketInstance: null
   },
   mutations: {
@@ -407,7 +412,11 @@ const store = new Vuex.Store({
     dictReestr,
     dictCategoryEdit,
     dictReasonEdit,
-    dictSourceEdit
+    dictSourceEdit,
+    reportReestr,
+    reportCategory,
+    reportSpecial,
+    reportZone
   }
 });
 
