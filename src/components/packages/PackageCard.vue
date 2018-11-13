@@ -120,15 +120,10 @@
 					</Row>
 				</Content>
 			</div>
-
-
-
-
 			<div slot="bottom" style="height: 100%; overflow: hidden">
-
-				<Split v-model="bottomSplit" mode="vertical" >
+				<Split v-model="bottomSplit" mode="vertical" @on-moving="doSomeWithSplit">
 					<div slot="top" id="js_split" style="height: 100%; overflow: hidden">
-						<!-- <h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>				 -->
+						<h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>				
 						<Row>
 							<Col :xs="{span: 18}" :md="{span: 18}">
 								<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
@@ -168,16 +163,19 @@
 							</Col>
 						</Row>	
 					</div>
-					<div slot="bottom" style="height: 100%; overflow: hidden">
-						Bottom 
+					<div slot="bottom" style="height: 100%; overflow: hidden" class="bg-white">
+						<div class="flex-parent flex-parent--center-main flex-parent--center-cross flex-parent--center-cross" style="height: 100%;">
+							<Form>
+								<p class="color-gray txt-m mb12">Выберете дату утверждения и нажмите кнопку "Утвердить"</p>
+								<Row type="flex" justify="center" align="center">
+									<DatePicker type="date" placeholder="Выберете дату" class="mr6"></DatePicker>
+									<Button type="primary" class="ml6">Утвердить</Button>
+								</Row>
+							</Form> 				
+						</div>
 					</div>
 				</Split>
-
 			</div>
-
-	
-
-
 		</Split>
 
 
@@ -241,7 +239,7 @@ export default {
 	data() {
 		return {
 			pageSplit: 0.7,
-			bottomSplit: 0.2,
+			bottomSplit: 0.7,
 			columnsOption: [{
 					title: ' ',
 					key: 'icon',
@@ -343,6 +341,9 @@ export default {
 	methods: {
 		changeTableHeight(){
 			this.tableHeight = document.getElementById('js_split').offsetHeight;
+		},
+		doSomeWithSplit(e){
+			e.stopPropagation();
 		},
 		selectItem(row) {
 			this.selectedItem = row;
