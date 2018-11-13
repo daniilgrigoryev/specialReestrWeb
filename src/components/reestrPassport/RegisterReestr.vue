@@ -3,19 +3,13 @@
         <table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
         <Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
             <Form label-position="top">
-                <h3 class="txt-h2 my12">Фильтр объектов</h3>
+                <h3 class="txt-h3 my12">Фильтр объектов</h3>
 
                 <FormItem label="Признак активности">
                     <RadioGroup  v-model="filter.flgActive.value1">
-                        <Row>
-                            <Radio label="null">Все</Radio>
-                        </Row>
-                        <Row>
-                            <Radio label="T">Активные</Radio>
-                        </Row>
-                        <Row>
-                            <Radio label="F">Неактивные</Radio>
-                        </Row>
+                        <Radio label="null">Все</Radio>
+                        <Radio label="T">Активные</Radio>
+                        <Radio label="F">Неактивные</Radio>
                     </RadioGroup>
                 </FormItem>
 
@@ -26,8 +20,8 @@
 
                 <FormItem label="Источник" prop="">
                     <Select :clearable="true" v-model="filter.sourceId.value1">
-                            <Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </Select>
+                        <Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
                 </FormItem>
 
                 <FormItem label="Основание" prop="">
@@ -38,8 +32,8 @@
 
                 <FormItem label="Категория" prop="">
                     <Select :clearable="true" v-model="filter.categoryId.value1">
-                            <Option style="white-space: pre-wrap" v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </Select>
+                        <Option style="white-space: pre-wrap" v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
                 </FormItem>
 
 

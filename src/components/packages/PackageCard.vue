@@ -10,19 +10,19 @@
 	
 	
 	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column">
-		<Header style="background: inherit;">
+		<!-- <Header style="background: inherit;">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
 					<Icon type="ios-arrow-back" size="45"/> 
 					<span>Пакет: {{packageCard.head.name}}</span> 
 				</button>
-		</Header>
+		</Header> -->
 
 
-		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-moving="changeTableHeight">
+		<Split v-model="pageSplit" mode="vertical" class="height100-header" @on-move-end="changeTableHeight" min="520" max="300">
 			<div slot="top" style="height: 100%;">
-				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
-					<Row :gutter="16">
-						<Col :xs="{span: 12}" :md="{span: 12}">
+				<Content class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
+					<Row gutter="8" justify="center">
+						<Col :xs="{span: 12}" :md="{span: 10}">
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Основные сведения</b>
 								<div class="flex-parent flex-parent--column align-center my24">
@@ -59,7 +59,7 @@
 								</table>
 							</Card>
 						</Col>
-						<Col :xs="{span: 12}" :md="{span: 12}">
+						<Col :xs="{span: 12}" :md="{span: 10}">
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Результаты обработки</b>
 								<table class="table border--0">
@@ -101,7 +101,6 @@
 							</Card>
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Связанные файлы</b>
-				
 								<Row>
 									<Col :xs="{span: 24}" :md="{span: 12}">
 									<div style="cursor: pointer;" @click="downloadBody" class="flex-parent flex-parent--column align-center">
@@ -122,50 +121,62 @@
 				</Content>
 			</div>
 
-			<div id="js-split" slot="bottom" class="bg-white scroll-hidden">
-				<!-- <h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4> -->
 
-				<Row>
-					<Col :xs="{span: 24}" :md="{span: 18}">
-						<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
-						</Table>
-					</Col>
 
-		
-					<Col v-if="selectedItem" :xs="{span: 24}" :md="{span: 6}">
-						<Card dis-hover>
-							<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
-								<span>{{selectedItem.tcRegno}}</span>
-								<Icon type="ios-share-alt" class="mx12 mb6" size="20" />
-							</button>
-							<table class="table border--0">
-								<tbody>
-									<tr class="txt-bold">
-										<td v-if="selectedItem.operType === 1" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Добавлено</td>
-										<td v-if="selectedItem.operType === 2" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Обновлено</td>
-									</tr>
-									<tr class="txt-bold">
-										<td width="30%" class="border--0 px0 py0 color-gray">ГРЗ</td>
-										<td width="70%" class="border--0 px0 py0">{{selectedItem.tcRegno}}</td>
-									</tr>
-									<tr class="txt-bold">
-										<td width="30%" class="border--0 px0 py0 color-gray">Категория</td>
-										<td width="70%" class="border--0 px0 py0">{{selectedItem.categoryName}}</td>
-									</tr>
-									<tr class="txt-bold">
-										<td width="30%" class="border--0 px0 py0 color-gray">Марка</td>
-										<td width="70%" class="border--0 px0 py0">{{selectedItem.brand}}</td>
-									</tr>
-									<tr class="txt-bold">
-										<td width="30%" class="border--0 px0 py0 color-gray">Модель</td>
-										<td width="70%" class="border--0 px0 py0">{{selectedItem.model}}</td>
-									</tr>
-								</tbody>
-							</table>
-						</Card>
-					</Col>
-				</Row>		
+
+			<div slot="bottom" style="height: 100%; overflow: hidden">
+
+				<Split v-model="bottomSplit" mode="vertical" >
+					<div slot="top" id="js_split" style="height: 100%; overflow: hidden">
+						<!-- <h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>				 -->
+						<Row>
+							<Col :xs="{span: 18}" :md="{span: 18}">
+								<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
+								</Table>
+							</Col>
+							<Col v-if="selectedItem" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+								<Card dis-hover style="height: 100%;">
+									<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
+										<span>{{selectedItem.tcRegno}}</span>
+										<Icon type="ios-share-alt" class="mx12 mb6" size="20" />
+									</button>
+									<table class="table border--0">
+										<tbody>
+											<tr class="txt-bold">
+												<td v-if="selectedItem.operType === 1" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Добавлено</td>
+												<td v-if="selectedItem.operType === 2" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Обновлено</td>
+											</tr>
+											<tr class="txt-bold">
+												<td width="30%" class="border--0 px0 py0 color-gray">ГРЗ</td>
+												<td width="70%" class="border--0 px0 py0">{{selectedItem.tcRegno}}</td>
+											</tr>
+											<tr class="txt-bold">
+												<td width="30%" class="border--0 px0 py0 color-gray">Категория</td>
+												<td width="70%" class="border--0 px0 py0">{{selectedItem.categoryName}}</td>
+											</tr>
+											<tr class="txt-bold">
+												<td width="30%" class="border--0 px0 py0 color-gray">Марка</td>
+												<td width="70%" class="border--0 px0 py0">{{selectedItem.brand}}</td>
+											</tr>
+											<tr class="txt-bold">
+												<td width="30%" class="border--0 px0 py0 color-gray">Модель</td>
+												<td width="70%" class="border--0 px0 py0">{{selectedItem.model}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</Card>
+							</Col>
+						</Row>	
+					</div>
+					<div slot="bottom" style="height: 100%; overflow: hidden">
+						Bottom 
+					</div>
+				</Split>
+
 			</div>
+
+	
+
 
 		</Split>
 
@@ -230,7 +241,7 @@ export default {
 	data() {
 		return {
 			pageSplit: 0.7,
-			bottomSplit: 0.5,
+			bottomSplit: 0.2,
 			columnsOption: [{
 					title: ' ',
 					key: 'icon',
@@ -247,18 +258,22 @@ export default {
 				{
 					title: 'ГРЗ',
 					key: 'tcRegno',
+					minWidth: 120,
 				},
 				{
 					title: 'Состояние',
 					key: 'statusName',
+					minWidth: 100,
 				},
 				{
 					title: 'Категория спецтранспорта',
 					key: 'categoryName',
+					minWidth: 100,
 				},
 				{
 					title: 'Наименование организации',
-					key: 'ownerName'
+					key: 'ownerName',
+					minWidth: 120,
 				}
 			],
 			statistic: {
@@ -271,8 +286,7 @@ export default {
 				awaited: 0,
 			},
 			selectedItem: null,
-			tableHeight: 400,
-			collHeight: 400
+			tableHeight: 450,
 		}
 	},
 	computed: {
@@ -328,8 +342,7 @@ export default {
 	},
 	methods: {
 		changeTableHeight(){
-			this.tableHeight = document.getElementById('js-split').offsetHeight;
-			this.collHeight = document.getElementById('js-split').offsetHeight;
+			this.tableHeight = document.getElementById('js_split').offsetHeight;
 		},
 		selectItem(row) {
 			this.selectedItem = row;
