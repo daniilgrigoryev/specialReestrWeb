@@ -21,7 +21,7 @@
 		<Split v-model="pageSplit" mode="vertical" class="height100-header" @on-move-end="changeTableHeight" min="520" max="300">
 			<div slot="top" style="height: 100%;">
 				<Content class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
-					<Row gutter="8" justify="center">
+					<Row :gutter="8" justify="center">
 						<Col :xs="{span: 12}" :md="{span: 10}">
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Основные сведения</b>
@@ -121,7 +121,7 @@
 				</Content>
 			</div>
 			<div slot="bottom" style="height: 100%; overflow: hidden">
-				<Split v-model="bottomSplit" mode="vertical" @on-moving="doSomeWithSplit">
+				<Split :stopSplit="true" v-model="bottomSplit" mode="vertical">
 					<div slot="top" id="js_split" style="height: 100%; overflow: hidden">
 						<h4 class="txt-h4 my12 px24">Связанные объекты реестра</h4>				
 						<Row>
@@ -179,8 +179,8 @@
 		</Split>
 
 
-	
-	
+
+
 
 
 	</Layout>
@@ -344,6 +344,7 @@ export default {
 		},
 		doSomeWithSplit(e){
 			e.stopPropagation();
+			e.preventDefault();
 		},
 		selectItem(row) {
 			this.selectedItem = row;
