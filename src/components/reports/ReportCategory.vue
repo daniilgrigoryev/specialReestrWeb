@@ -50,115 +50,115 @@
 						<tr>
 							<td style="border-top: 1px solid" colspan="4" class="txt-h4 py18">По типам ТС</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Такси</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Маршрутный транспорт</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт обслуживаюший УДС</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт аварийных служб</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт экстренных служб</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт оперативных служб</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition"> 
+						<tr class="bg-blue-faint-on-hover transition"> 
 							<td>Транспорт службы ЖКХ</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт министерства, федеральной службы</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт международной организации</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Иной транспорт(категория ограниченного доступа)</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Грузовой транспорт</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Транспорт федеральной почтовой связи</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Инкасаторы</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Эвакуаторы</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Такси, имеющие лицензии</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Желтое такси</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Социальное такси</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-red-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Школьный автобус</td>
 							<td>342</td>
 							<td>342</td>
 							<td>342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td>Такси, имеющие лицензии МО</td>
 							<td>342</td>
 							<td>342</td>
