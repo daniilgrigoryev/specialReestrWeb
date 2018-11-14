@@ -11,8 +11,14 @@
 		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
 			<div slot="top" style="height: 100%;">
 				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
-					<Row :gutter="8" justify="center">
-						<Col :xs="{span: 12}" :md="{span: 10}">
+
+					<Row :gutter="8" justify="center" style="max-width: 740px">
+						<div class="mx-auto wmax300 align-center prose color-gray-light">
+							<Icon type="ios-lock-outline" size="150"/><br>
+							<p class="txt-h5">Данный пакет был утвержден 05.10.2018 и более не может быть изменен</p>
+						</div>
+
+						<Col :xs="{span: 12}" :md="{span: 12}">
 							<Card class="my12" :padding="0">
 								<b slot="title" class="txt-h4">Основные сведения</b>
 								<table class="table table--fixed border--0" style="max-width: 650px">
@@ -45,7 +51,7 @@
 								</table>
 							</Card>
 						</Col>
-						<Col :xs="{span: 12}" :md="{span: 10}">
+						<Col :xs="{span: 12}" :md="{span: 12}">
 							<Card class="my12">
 								<b slot="title" class="txt-h4">Результаты обработки</b>
 								<table class="table border--0">
@@ -98,8 +104,14 @@
 						</div>
 						<Row>
 							<Col :xs="{span: 18}" :md="{span: 18}">
-								<Table ref="selection" :columns="columnsOption" :data="packageCardSpecial.items" size="small" @on-row-click="selectItem" :height="tableHeight">
-								</Table>
+								<Tabs :animated="false" id="tab" size="small">
+									<TabPane label="Все">
+										<Table ref="selection" :columns="columnsOption" :data="packageCardSpecial.items" size="small" @on-row-click="selectItem" :height="tableHeight"></Table>
+									</TabPane>
+									<TabPane label="Отмеченные">标签二的内容</TabPane>
+									<TabPane label="Не отмеченные">标签三的内容</TabPane>
+								</Tabs>
+
 							</Col>
 							<Col v-if="selectedItem" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
 								<Card dis-hover style="height: 100%;">
@@ -249,7 +261,7 @@ export default {
 				awaited: 0,
 			},
 			selectedItem: null,
-			tableHeight: 315,
+			tableHeight: 280,
 		}
 	},
 	computed: {
@@ -307,6 +319,12 @@ export default {
 	methods: {
 		changeTableHeight(){
 			this.tableHeight = (document.getElementById('js_split').offsetHeight - document.getElementById('js_headingSplit').offsetHeight);
+
+			let tab = document.getElementById('tab');
+			if (tab) {
+				let tabsBar = tab.getElementsByClassName('ivu-tabs-bar')[0];
+				this.tableHeight = this.tableHeight - tabsBar.offsetHeight;
+			}
 		},
 		selectItem(row) {
 			this.selectedItem = row;
@@ -366,5 +384,7 @@ export default {
 .content {
 	max-width: 780px;
 }
-
+#tab .ivu-tabs-bar{
+	margin-bottom: 0;
+}
 </style>
