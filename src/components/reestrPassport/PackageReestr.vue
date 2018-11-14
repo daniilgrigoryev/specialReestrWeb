@@ -478,30 +478,6 @@ export default {
 						}
 					}
 				},
-				/*
-				         {
-				           title: ' ',
-				           key: 'filter',
-				           width: 50,
-				           filters: [
-				             {
-				               label: 'Вложение',
-				               value: 1,
-				             },
-				             {
-				               label: 'Время формирование подписи',
-				               value: 2,
-				             },
-				             {
-				               label: 'Дата начала действия сертификата',
-				               value: 3,
-				             },
-				             {
-				               label: 'Дата окончания действия сертификата',
-				               value: 4,
-				             },
-				           ],
-				         },*/
 				{
 					title: "Действия",
 					align: "center",
@@ -519,7 +495,8 @@ export default {
 									},
 									on: {
 										click: () => {
-											this.getPackageCard(params.row);
+											// this.getPackageCard(params.row);
+											this.getPackageCardSpecial(params.row);
 										}
 									}
 								},
@@ -591,6 +568,28 @@ export default {
 				}
 			})();
 		},
+    getPackageCardSpecial(packageItem) {
+      let params = {
+        routeName: this.$store.state.packageReestr.routeName,
+        headId: packageItem.id
+      };
+
+      let vm = this;
+      (async () => {
+        try {
+          await vm.$store.dispatch("getNextComponent", {
+            beanName: vm.$store.state.packageCardSpecial.bean
+          });
+          vm.$store.dispatch("getNextPage", {
+            vm: vm,
+            pageName: vm.$store.state.packageCardSpecial.routeName,
+            params: params
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      })();
+    },
 		packageCardFromFile() {
 			let params = {
 				routeName: this.$store.state.packageReestr.routeName
