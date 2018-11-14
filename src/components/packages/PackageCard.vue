@@ -1,10 +1,10 @@
 <template>
 	<!-- <div v-if="packageCard">
-		    <button type="button" @click="getPrev">Назад</button>
-		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
-		    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
-		    {{packageCard}}
-		  </div> -->
+			    <button type="button" @click="getPrev">Назад</button>
+			    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
+			    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
+			    {{packageCard}}
+			  </div> -->
 	
 	
 	
@@ -12,48 +12,48 @@
 	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column bg-gray">
 		<Header class="prose--dark bg-gray">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
-				<Icon type="ios-arrow-back" size="45"/> 
-				<span>Пакет: {{packageCard.head.name}}</span> 
-			</button>
+					<Icon type="ios-arrow-back" size="45"/> 
+					<span>Пакет: {{packageCard.head.name}}</span> 
+				</button>
 		</Header>
-
-
+	
+	
 		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
 			<div slot="top" style="height: 100%;">
 				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
 					<Row :gutter="8" justify="center">
 						<Col :xs="{span: 12}" :md="{span: 10}">
-							<Card class="my12" :padding="0">
-								<b slot="title" class="txt-h4">Основные сведения</b>
-								<table class="table table--fixed border--0" style="max-width: 650px">
-									<tbody>
-										<tr class="txt-bold bg-green-light">
-											<td class="border--0">Статус обработки</td>
-											<td class="border--0 color-green-dark txt-h4">Завершено</td>
-										</tr>
-										<tr class="txt-bold">
-											<td class="border--0">Источник</td>
-											<td class="border--0">{{packageCard.head.sourceName}}</td>
-										</tr>
-										<tr class="txt-bold">
-											<td class="border--0">Основание</td>
-											<td class="border--0">{{packageCard.head.reasonName}}</td>
-										</tr>
-										<tr class="txt-bold">
-											<td class="border--0">Дата создания</td>
-											<td class="border--0">{{packageCard.head.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
-										</tr>
-										<tr class="txt-bold">
-											<td class="border--0">Дата загрузки</td>
-											<td class="border--0">{{packageCard.head.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
-										</tr>
-										<tr class="txt-bold">
-											<td class="border--0">Исполнитель</td>
-											<td class="border--0">{{packageCard.head.createIspName}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</Card>
+						<Card class="my12" :padding="0">
+							<b slot="title" class="txt-h4">Основные сведения</b>
+							<div class="flex-parent flex-parent--column align-center my24">
+								<Icon type="ios-document" size="150" />
+								<span>{{packageCard.head.name + '.' + packageCard.head.formatName.toLowerCase()}}</span>
+							</div>
+							<table class="table table--fixed border--0" style="max-width: 650px">
+								<tbody>
+									<tr class="txt-bold bg-green-light">
+										<td class="border--0">Статус обработки</td>
+										<td class="border--0 color-green-dark txt-h4">Завершено</td>
+									</tr>
+									<tr class="txt-bold">
+										<td class="border--0 px5 py3 color-gray">Способ загрузки</td>
+										<td class="border--0 px5 py3">{{packageCard.head.formatName.toLowerCase()}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td class="border--0 px5 py3 color-gray">Дата создания</td>
+										<td class="border--0 px5 py3">{{packageCard.head.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td class="border--0 px5 py3 color-gray">Дата загрузки</td>
+										<td class="border--0 px5 py3">{{packageCard.head.signingTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td class="border--0 px5 py3 color-gray">Исполнитель</td>
+										<td class="border--0 px5 py3">{{packageCard.head.createIspName}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</Card>
 						</Col>
 						<Col :xs="{span: 12}" :md="{span: 10}">
 							<Card class="my12">
@@ -95,68 +95,71 @@
 									</tbody>
 								</table>
 							</Card>
+							<Card class="my12">
+								<b slot="title" class="txt-h4">Связанные файлы</b>
+								<Row>
+									<Col :xs="{span: 24}" :md="{span: 12}">
+										<div @click="downloadBody" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
+											<Icon type="ios-attach" size="60" />
+											<span>Вложение</span>
+										</div>
+									</Col>
+									<Col :xs="{span: 24}" :md="{span: 12}">
+										<div @click="downloadSign" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
+											<Icon type="ios-cog" size="60" />
+											<span>Сертификат</span>
+										</div>
+									</Col>
+								</Row>
+							</Card>
 						</Col>
 					</Row>
 				</Content>
 			</div>
-			<div slot="bottom" style="height: 100%; overflow: hidden">
-				<Split :stopSplit="true" v-model="bottomSplit" mode="vertical">
-					<div slot="top" id="js_split" class="bg-white" style="height: 100%; overflow: hidden">
-						<div id="js_headingSplit" class="py12 px24">
-							<h4 class="txt-h4 py0">Объекты реестра</h4>
-							<small class="py0">Отметьте объекты реестра для утверждения, исключите лишнее</small>
-						</div>
-						<Row>
-							<Col :xs="{span: 18}" :md="{span: 18}">
-								<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
-								</Table>
-							</Col>
-							<Col v-if="selectedItem" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
-								<Card dis-hover style="height: 100%;">
-									<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
-										<span>{{selectedItem.tcRegno}}</span>
-										<Icon type="ios-share-alt" class="mx12 mb6" size="20" />
-									</button>
-									<table class="table border--0">
-										<tbody>
-											<tr class="txt-bold">
-												<td v-if="selectedItem.operType === 1" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Добавлено</td>
-												<td v-if="selectedItem.operType === 2" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Обновлено</td>
-											</tr>
-											<tr class="txt-bold">
-												<td width="30%" class="border--0 px0 py0 color-gray">ГРЗ</td>
-												<td width="70%" class="border--0 px0 py0">{{selectedItem.tcRegno}}</td>
-											</tr>
-											<tr class="txt-bold">
-												<td width="30%" class="border--0 px0 py0 color-gray">Категория</td>
-												<td width="70%" class="border--0 px0 py0">{{selectedItem.categoryName}}</td>
-											</tr>
-											<tr class="txt-bold">
-												<td width="30%" class="border--0 px0 py0 color-gray">Марка</td>
-												<td width="70%" class="border--0 px0 py0">{{selectedItem.brand}}</td>
-											</tr>
-											<tr class="txt-bold">
-												<td width="30%" class="border--0 px0 py0 color-gray">Модель</td>
-												<td width="70%" class="border--0 px0 py0">{{selectedItem.model}}</td>
-											</tr>
-										</tbody>
-									</table>
-								</Card>
-							</Col>
-						</Row>	
+			<div slot="bottom" id="js_split" style="height: 100%; overflow: hidden" class="bg-white">
+				<div style="height: 100%; overflow: hidden">
+					<div id="js_headingSplit" class="py12 px24">
+						<h4 class="txt-h4 py0">Связанные объекты реестра</h4>
 					</div>
-					<div slot="bottom" style="height: 100%; overflow: hidden" class="bg-white">
-						<div class="flex-parent flex-parent--center-main flex-parent--center-cross flex-parent--center-cross" style="height: 100%;">
-							<Form>
-								<p class="color-gray txt-m mb12">Выберете дату утверждения и нажмите кнопку "Утвердить"</p>
-								<Row type="flex" justify="center">
-									<DatePicker type="date" placeholder="Выберете дату" class="mr6"></DatePicker>
-									<Button type="primary" class="ml6">Утвердить</Button>
-								</Row>
-							</Form> 				
-						</div>
-					</div>
-				</Split>
+					<Row>
+						<Col :xs="{span: 18}" :md="{span: 18}">
+						<Table ref="selection" :columns="columnsOption" :data="packageCard.items" size="small" @on-row-click="selectItem" :height="tableHeight">
+						</Table>
+						</Col>
+						<Col v-if="selectedItem" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+						<Card dis-hover style="height: 100%;">
+							<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
+								<span>{{selectedItem.tcRegno}}</span>
+								<Icon type="ios-share-alt" class="mx12 mb6" size="20" />
+							</button>
+							<table class="table border--0">
+								<tbody>
+									<tr class="txt-bold">
+										<td v-if="selectedItem.operType === 1" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Добавлено</td>
+										<td v-if="selectedItem.operType === 2" colspan="2" class="border--0 px0 py0 color-blue txt-uppercase">Обновлено</td>
+									</tr>
+									<tr class="txt-bold">
+										<td width="30%" class="border--0 px0 py0 color-gray">ГРЗ</td>
+										<td width="70%" class="border--0 px0 py0">{{selectedItem.tcRegno}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td width="30%" class="border--0 px0 py0 color-gray">Категория</td>
+										<td width="70%" class="border--0 px0 py0">{{selectedItem.categoryName}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td width="30%" class="border--0 px0 py0 color-gray">Марка</td>
+										<td width="70%" class="border--0 px0 py0">{{selectedItem.brand}}</td>
+									</tr>
+									<tr class="txt-bold">
+										<td width="30%" class="border--0 px0 py0 color-gray">Модель</td>
+										<td width="70%" class="border--0 px0 py0">{{selectedItem.model}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</Card>
+						</Col>
+					</Row>
+				</div>
 			</div>
 		</Split>
 	</Layout>
@@ -260,7 +263,7 @@ export default {
 				awaited: 0,
 			},
 			selectedItem: null,
-			tableHeight: 315,
+			tableHeight: 435,
 		}
 	},
 	computed: {
@@ -315,10 +318,10 @@ export default {
 		}
 	},
 	methods: {
-		changeTableHeight(){
+		changeTableHeight() {
 			this.tableHeight = (document.getElementById('js_split').offsetHeight - document.getElementById('js_headingSplit').offsetHeight);
 		},
-		doSomeWithSplit(e){
+		doSomeWithSplit(e) {
 			e.stopPropagation();
 			e.preventDefault();
 		},
@@ -442,5 +445,4 @@ export default {
 .content {
 	max-width: 780px;
 }
-
 </style>
