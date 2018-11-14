@@ -29,9 +29,6 @@
 			</Col>
 		</Row>
 
-
-
-
 		<Row type="flex">
 			<Col>
 				<table class='table table--fixed tableReport'>

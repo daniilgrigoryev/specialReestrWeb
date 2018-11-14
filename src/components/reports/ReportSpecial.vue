@@ -31,42 +31,42 @@
 
 		<Row type="flex">
 			<Col>
-				<table class='table table--fixed tableReport'>
+				<table class='table tableReport'>
 					<thead>
 						<tr class="txt-l">
-							<th class="align-center" style="border-top: 1px solid">Всего ТС c особыми разрешениями*</th>
-							<th class="align-center" style="border-top: 1px solid">Ожидает рассмотрения</th>
-							<th class="align-center" style="border-top: 1px solid">Принято решение об анулировании</th>
-							<th class="align-center" style="border-top: 1px solid">Аннулированно разрешений</th>
+							<th style="border-top: 1px solid;" width="30%">Всего ТС c особыми разрешениями*</th>
+							<th style="border-top: 1px solid">Ожидает рассмотрения</th>
+							<th style="border-top: 1px solid">Принято решение об анулировании</th>
+							<th style="border-top: 1px solid">Аннулированно разрешений</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="txt-h2 align-center">524</td>
-							<td class="txt-h2 align-center">3247</td>
-							<td class="txt-h2 align-center">2752</td>
-							<td class="txt-h2 align-center">1379</td>
+							<td class="txt-h2">524</td>
+							<td class="txt-h2">3247</td>
+							<td class="txt-h2">2752</td>
+							<td class="txt-h2">1379</td>
 						</tr>
 						<tr>
 							<td style="border-top: 1px solid" colspan="4" class="txt-h4 py18">По типам ТС</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td style="border-bottom: 1px solid; ">Транспортные средства, используемые для осуществления перевозок маломобильных пассажиров индивидуальными колллективным заявкам.</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
+						<tr class="bg-blue-faint-on-hover transition">
 							<td style="border-bottom: 1px solid">Транспортные средства, используемые в сфере, ЖКХ ДЖКХ и подведомственных ему учреждений</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
 						</tr>
-						<tr class="bg-blue-on-hover transition">
-							<td style="border-bottom: 1px solid">Транспорт средства с двухэтажным типом кузова, одобрением типа ТС которых предусмотрена наличие легко демонтируемых (съемных) стеклопакетов на втором этаже, а также наличие с движной крыши (тента) второго этажа или открытого (полуоткрытого верха второго этажа.)</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2 align-center" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
+						<tr class="bg-blue-faint-on-hover transition">
+							<td>Транспорт средства с двухэтажным типом кузова, одобрением типа ТС которых предусмотрена наличие легко демонтируемых (съемных) стеклопакетов на втором этаже, а также наличие с движной крыши (тента) второго этажа или открытого (полуоткрытого верха второго этажа.)</td>
+							<td class="txt-h2" style="vertical-align: middle;">342</td>
+							<td class="txt-h2" style="vertical-align: middle;">342</td>
+							<td class="txt-h2" style="vertical-align: middle;">342</td>
 						</tr>
 						<tr>
 							<td class="prose color-gray">

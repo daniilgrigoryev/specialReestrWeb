@@ -1,6 +1,6 @@
 <template>
   <Layout class="height100-header">
-    <Sider width="350px" style="min-width: 350px" class="bg-white">
+    <Sider width="350" style="min-width: 200px;" class="bg-white">
       <Menu @on-select="onMenuClick" :active-name="activeReport" width="auto" theme="primary">
         <MenuGroup title="Типы отчетов">
           <MenuItem name="ReportCategory">Содержание данных</MenuItem>
