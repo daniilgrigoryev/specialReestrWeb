@@ -8,6 +8,7 @@ import packageReestr from './modules/packageReestr';
 import packageCardFromFile from './modules/packageCardFromFile';
 import registerCardAccounting from './modules/registerCardAccounting';
 import packageCard from './modules/packageCard';
+import packageCardSpecial from './modules/packageCardSpecial';
 import packageCardNew from './modules/packageCardNew';
 import dictArea from './modules/dictArea';
 import dictCategory from './modules/dictCategory';
@@ -26,7 +27,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    modulesNames: ['registerReestr', 'registerCardAccounting', 'packageReestr', 'packageCardFromFile', 'packageCard', 'packageCardNew', 'dictArea',
+    modulesNames: ['registerReestr', 'registerCardAccounting', 'packageReestr', 'packageCardFromFile', 'packageCard', 'packageCardNew', 'dictArea', 'packageCardSpecial',
       'dictCategory', 'dictReason', 'dictSource', 'dictReestr', 'dictCategoryEdit', 'dictReasonEdit', 'dictSourceEdit', 'reportReestr', 'reportCategory', 'reportSpecial', 'reportZone'],
     socketInstance: null
   },
@@ -404,6 +405,7 @@ const store = new Vuex.Store({
     packageReestr,
     packageCardFromFile,
     packageCard,
+    packageCardSpecial,
     packageCardNew,
     dictArea,
     dictCategory,

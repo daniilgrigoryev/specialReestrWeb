@@ -6,6 +6,7 @@ import PackageReestr from './../components/reestrPassport/PackageReestr';
 import DictReestr from './../components/reestrPassport/DictReestr';
 import PackageCardFromFile from '../components/packages/PackageCardFromFile';
 import PackageCard from '../components/packages/PackageCard';
+import PackageCardSpecial from '../components/packages/PackageCardSpecial';
 import PackageCardNew from '../components/packages/PackageCardNew';
 import RegisterCardAccounting from './../components/registerCardAccounting/RegisterCardAccounting';
 import DictCategoryEdit from './../components/dictonary/edit/DictCategoryEdit';
@@ -49,6 +50,12 @@ const router = new Router({
       path: '/packageCard',
       name: 'PackageCard',
       component: PackageCard,
+      props: true
+    },
+    {
+      path: '/packageCardSpecial',
+      name: 'PackageCardSpecial',
+      component: PackageCardSpecial,
       props: true
     },
     {
