@@ -280,27 +280,27 @@ export default {
 					title: 'Иконка',
 					key: 'icon',
 					type: 'html',
-					width: '5%'
+					// width: '10px'
 				},
 				{
 					title: 'Дата',
 					key: 'reestrTime',
-					width: '23%'
+					// width: 'auto'
 				},
 				{
 					title: 'ФИО',
 					key: 'operName',
-					width: '23%'
+					// width: '23%'
 				},
 				{
 					title: 'Время начала действия разрешения',
 					key: 'permitStartDate',
-					width: '23%'
+					// width: '23%'
 				},
 				{
 					title: 'Время окончания действия разрешения',
 					key: 'permitEndDate',
-					width: '23%'
+					// width: '23%'
 				},
 			],
 		};
