@@ -90,7 +90,6 @@ export default {
 	},
 	methods: {
 		onFileChange(e) {
-			debugger;
 			let vm = this;
 			let files = e.target.files || e.dataTransfer.files;
 			if (files.length === 0 || files.length > 1) {

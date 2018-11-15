@@ -1,34 +1,5 @@
 <template>
 	<div>
-		<div class="heading my12">
-			<h2 class="txt-h2">Содержание данных</h2>
-			<small class="px3 color-gray">Выбор периода для отчета</small>
-		</div>
-
-		<Row type="flex">
-			<Col span="24">
-				<Form label-position="left">
-					<FormItem label="За период">
-						<Row type="flex" :gutter="8">
-							<Col>
-								<Select class="w180">
-									<Option value="beijing">New York</Option>
-									<Option value="shanghai">London</Option>
-									<Option value="shenzhen">Sydney</Option>
-								</Select>
-							</Col>
-							<Col>
-								<DatePicker type="date" placeholder="Select date" class="w180"></DatePicker>
-							</Col>
-							<Col>
-								<Button type="primary">Сформировать</Button>
-							</Col>
-						</Row>
-					</FormItem>
-				</Form>
-			</Col>
-		</Row>
-
 		<Row type="flex">
 			<Col>
 				<table class='table table--fixed tableReport'>
@@ -42,127 +13,20 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="txt-h2">524</td>
-							<td class="txt-h2">3247</td>
-							<td class="txt-h2">2752</td>
-							<td class="txt-h2">1379</td>
+							<td class="txt-h2">{{ reportCategory.length }}</td>
+							<td class="txt-h2">{{ countStat.active }}</td>
+							<td class="txt-h2">{{ countStat.disable }}</td>
+							<td class="txt-h2">{{ countStat.closed }}</td>
 						</tr>
 						<tr>
 							<td style="border-top: 1px solid" colspan="4" class="txt-h4 py18">По типам ТС</td>
 						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Такси</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Маршрутный транспорт</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт обслуживаюший УДС</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт аварийных служб</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт экстренных служб</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт оперативных служб</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition"> 
-							<td>Транспорт службы ЖКХ</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт министерства, федеральной службы</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт международной организации</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Иной транспорт(категория ограниченного доступа)</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Грузовой транспорт</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт федеральной почтовой связи</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Инкасаторы</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Эвакуаторы</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Такси, имеющие лицензии</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Желтое такси</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Социальное такси</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Школьный автобус</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Такси, имеющие лицензии МО</td>
-							<td>342</td>
-							<td>342</td>
-							<td>342</td>
+
+						<tr v-for="(item, index) in reportCategory" :key="index" class="bg-blue-faint-on-hover transition">
+							<td>{{ item.name }}</td>
+							<td>{{ item.active }}</td>
+							<td>{{ item.disable }}</td>
+							<td>{{ item.closed }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -211,7 +75,23 @@
         let res = [];
         let data = this.$store.state.reportCategory.data;
         if (data) {
-          res = data;
+          res = data.items;
+        }
+        return res;
+      },
+      countStat() {
+        let res = {
+          active: 0,
+          disabled: 0,
+          closed: 0,
+        };
+        let data = this.$store.state.reportCategory.data;
+        if (data) {
+          data.items.forEach((item) => {
+            res.active += item.active;
+            res.disabled += item.disabled;
+            res.closed += item.closed;
+          });
         }
         return res;
       }

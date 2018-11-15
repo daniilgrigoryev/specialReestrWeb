@@ -329,7 +329,7 @@ export default {
 		selectItem(row) {
 			this.selectedItem = row;
 		},
-		getPrev: function() {
+		getPrev() {
 			let vm = this;
 			let path = funcUtils.getFromSessionStorage('path');
 			(async () => {

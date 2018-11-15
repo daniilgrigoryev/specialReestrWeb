@@ -1,34 +1,5 @@
 <template>
 	<div>
-		<div class="heading my12">
-			<h2 class="txt-h2">Особый порядок аннулирования разрешений</h2>
-			<small class="px3 color-gray">Выбор периода для отчета</small>
-		</div>
-
-		<Row type="flex">
-			<Col span="24">
-				<Form label-position="left">
-					<FormItem label="За период">
-						<Row type="flex" :gutter="8">
-							<Col>
-								<Select class="w180">
-									<Option value="beijing">New York</Option>
-									<Option value="shanghai">London</Option>
-									<Option value="shenzhen">Sydney</Option>
-								</Select>
-							</Col>
-							<Col>
-								<DatePicker type="date" placeholder="Select date" class="w180"></DatePicker>
-							</Col>
-							<Col>
-								<Button type="primary">Сформировать</Button>
-							</Col>
-						</Row>
-					</FormItem>
-				</Form>
-			</Col>
-		</Row>
-
 		<Row type="flex">
 			<Col>
 				<table class='table tableReport'>
@@ -42,32 +13,20 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="txt-h2">524</td>
-							<td class="txt-h2">3247</td>
-							<td class="txt-h2">2752</td>
-							<td class="txt-h2">1379</td>
+              <td class="txt-h2">{{ reportSpecial.length }}</td>
+              <td class="txt-h2">{{ countStat.active }}</td>
+              <td class="txt-h2">{{ countStat.disable }}</td>
+              <td class="txt-h2">{{ countStat.closed }}</td>
 						</tr>
 						<tr>
 							<td style="border-top: 1px solid" colspan="4" class="txt-h4 py18">По типам ТС</td>
 						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td style="border-bottom: 1px solid; ">Транспортные средства, используемые для осуществления перевозок маломобильных пассажиров индивидуальными колллективным заявкам.</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td style="border-bottom: 1px solid">Транспортные средства, используемые в сфере, ЖКХ ДЖКХ и подведомственных ему учреждений</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-							<td class="txt-h2" style="border-bottom: 1px solid; vertical-align: middle;">342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Транспорт средства с двухэтажным типом кузова, одобрением типа ТС которых предусмотрена наличие легко демонтируемых (съемных) стеклопакетов на втором этаже, а также наличие с движной крыши (тента) второго этажа или открытого (полуоткрытого верха второго этажа.)</td>
-							<td class="txt-h2" style="vertical-align: middle;">342</td>
-							<td class="txt-h2" style="vertical-align: middle;">342</td>
-							<td class="txt-h2" style="vertical-align: middle;">342</td>
-						</tr>
+            <tr v-for="(item, index) in reportSpecial" :key="index" class="bg-blue-faint-on-hover transition">
+              <td>{{ item.name }}</td>
+              <td>{{ item.active }}</td>
+              <td>{{ item.disable }}</td>
+              <td>{{ item.closed }}</td>
+            </tr>
 						<tr>
 							<td class="prose color-gray">
 								<small>* Транспортные средства, которые используются для перевозки пассажиров имеют за исключением места водителя, более восьми места для сиденья, технически допустимая максимальная масса которых превышает 5 тонн и которым разрешено движение по полосе для маршрутных транспортных средств ДТиРДТИ</small>
@@ -110,7 +69,23 @@
         let res = [];
         let data = this.$store.state.reportSpecial.data;
         if (data) {
-          res = data;
+          res = data.items;
+        }
+        return res;
+      },
+      countStat() {
+        let res = {
+          active: 0,
+          disabled: 0,
+          closed: 0,
+        };
+        let data = this.$store.state.reportSpecial.data;
+        if (data) {
+          data.items.forEach((item) => {
+            res.active += item.active;
+            res.disabled += item.disabled;
+            res.closed += item.closed;
+          });
         }
         return res;
       }
