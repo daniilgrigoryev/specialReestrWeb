@@ -151,7 +151,7 @@ export default {
 							},
 							on: {
 								click: () => {
-									this.getNewOrEditReason(params.row.id)
+									this.getNewOrEditSource(params.row.id)
 								}
 							}
 						});

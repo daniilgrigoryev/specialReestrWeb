@@ -511,6 +511,7 @@ export default {
 					title: "Действия",
 					width: 95,
 					align: "center",
+					fixed: "right",
 					ellipsis: true,
 					tooltip: true,
 					renderHeader: (h, params) => {
