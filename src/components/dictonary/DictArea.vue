@@ -2,7 +2,7 @@
 	<div>
 		<Row type="flex" justify="space-between" align="middle">
 			<Col :xs="{span: 24}" :md="{span: 12}">
-				<h2 class="txt-h2 my12">Типы территорий</h2>
+				<h3 class="txt-h3">Типы территорий</h3>
 			</Col>
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<Row type="flex" justify="center" class="my12">

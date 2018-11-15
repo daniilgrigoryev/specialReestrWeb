@@ -1,94 +1,90 @@
 <template>
 	<Layout class="height100-header">
 		<table-poptip :expDate="expDate" :clickFunction="createExpireReestr"></table-poptip>
-		<Sider width="350px" style="min-width: 300px" class="bg-white">
-			<Card :padding="8" :bordered="false" dis-hover>
-				<Form label-position="top">
-					<h3 class="txt-h3 my12">Фильтр объектов</h3>
-	
-					<FormItem label="Признак активности" class="my0">
-						<RadioGroup v-model="filter.flgActive.value1" size="small">
-							<Radio label="null">Все</Radio>
-							<Radio label="T">Активные</Radio>
-							<Radio label="F">Неактивные</Radio>
-						</RadioGroup>
+		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
+			<Form label-position="top">
+				<h3 class="txt-h3 m12">Фильтр объектов</h3>
+				<FormItem label="Признак активности" class="my0">
+					<RadioGroup v-model="filter.flgActive.value1" size="small">
+						<Radio label="null">Все</Radio>
+						<Radio label="T">Активные</Radio>
+						<Radio label="F">Неактивные</Radio>
+					</RadioGroup>
+				</FormItem>
+				<Row :gutter="8" class="my6">
+					<Col :xs="{span: 12}" :lg="{span: 12}">
+					<FormItem label="ГРЗ" class="my0">
+						<Input v-model="filter.tcRegno.value1"></Input>
 					</FormItem>
-	
-					<Row :gutter="8" class="my6">
+					</Col>
+					<Col :xs="{span: 12}" :lg="{span: 12}">
+					<FormItem label="Источник" class="my0">
+						<Select :clearable="true" v-model="filter.sourceId.value1">
+							<Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						</Select>
+					</FormItem>
+					</Col>
+				</Row>
+				<FormItem label="Основание" class="my6">
+					<Select :clearable="true" v-model="filter.reasonId.value1" style="max-width: 380px;">
+						<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
+				</FormItem>
+				<FormItem label="Категория" class="my6">
+					<Select :clearable="true" v-model="filter.categoryId.value1" style="max-width: 380px;">
+						<Option style="white-space: pre-wrap" v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
+				</FormItem>
+				<FormItem label="Владелец (Название или ФИО)" class="my6">
+					<Input v-model="filter.ownerName.value1"></Input>
+				</FormItem>
+				<FormItem label="Время создания записи" :style="{width: '100%'}" class="my6">
+					<Row :gutter="8">
 						<Col :xs="{span: 12}" :lg="{span: 12}">
-						<FormItem label="ГРЗ" class="my0">
-							<Input v-model="filter.tcRegno.value1"></Input>
-						</FormItem>
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%"></DatePicker>
 						</Col>
 						<Col :xs="{span: 12}" :lg="{span: 12}">
-						<FormItem label="Источник" class="my0">
-							<Select :clearable="true" v-model="filter.sourceId.value1">
-	                                    <Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                                </Select>
-						</FormItem>
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%"></DatePicker>
 						</Col>
 					</Row>
-					<FormItem label="Основание" class="my6">
-						<Select :clearable="true" v-model="filter.reasonId.value1" style="max-width: 380px;">
-	                            <Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                        </Select>
-					</FormItem>
-					<FormItem label="Категория" class="my6">
-						<Select :clearable="true" v-model="filter.categoryId.value1" style="max-width: 380px;">
-	                            <Option style="white-space: pre-wrap" v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	                        </Select>
-					</FormItem>
-					<FormItem label="Владелец (Название или ФИО)" class="my6">
-						<Input v-model="filter.ownerName.value1"></Input>
-					</FormItem>
-					<FormItem label="Время создания записи" :style="{width: '100%'}" class="my6">
-						<Row :gutter="8">
-							<Col :xs="{span: 12}" :lg="{span: 12}">
-							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%"></DatePicker>
-							</Col>
-							<Col :xs="{span: 12}" :lg="{span: 12}">
-							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%"></DatePicker>
-							</Col>
-						</Row>
-					</FormItem>
-					<FormItem label="Дата начала действия разрешения" class="my6">
-						<Row :gutter="8">
-							<Col :xs="{span: 12}" :lg="{span: 12}">
+				</FormItem>
+				<FormItem label="Дата начала действия разрешения" class="my6">
+					<Row :gutter="8">
+						<Col :xs="{span: 12}" :lg="{span: 12}">
 							<DatePicker type="date" format="yyyy-MM-dd" v-model="filter.permitStartDate.value1" style="width: 100%"></DatePicker>
-							</Col>
-							<Col :xs="{span: 12}" :lg="{span: 12}">
+						</Col>
+						<Col :xs="{span: 12}" :lg="{span: 12}">
 							<DatePicker type="date" format="yyyy-MM-dd" v-model="filter.permitStartDate.value2" style="width: 100%"></DatePicker>
-							</Col>
-						</Row>
-					</FormItem>
-					<FormItem label="Дата окончания действия разрешения" class="my6">
-						<Row :gutter="8">
-							<Col :xs="{span: 12}" :lg="{span: 12}">
+						</Col>
+					</Row>
+				</FormItem>
+				<FormItem label="Дата окончания действия разрешения" class="my6">
+					<Row :gutter="8">
+						<Col :xs="{span: 12}" :lg="{span: 12}">
 							<DatePicker type="date" format="yyyy-MM-dd" v-model="filter.permitEndDate.value1" style="width: 100%"></DatePicker>
-							</Col>
-							<Col :xs="{span: 12}" :lg="{span: 12}">
+						</Col>
+						<Col :xs="{span: 12}" :lg="{span: 12}">
 							<DatePicker type="date" format="yyyy-MM-dd" v-model="filter.permitEndDate.value2" style="width: 100%"></DatePicker>
-							</Col>
-						</Row>
-					</FormItem>
-					<FormItem class="my6">
-						<Row type="flex" justify="center">
-							<Col>
+						</Col>
+					</Row>
+				</FormItem>
+				<FormItem class="my6">
+					<Row type="flex" justify="center">
+						<Col>
 							<Button @click="filterRegisters" type="primary">Применить</Button>
-							</Col>
-							<Col>
+						</Col>
+						<Col>
 							<Button class="mx6">Отчистить</Button>
-							</Col>
-						</Row>
-					</FormItem>
-				</Form>
-			</Card>
+						</Col>
+					</Row>
+				</FormItem>
+			</Form>
 		</Sider>
 		<Content>
 			<Card :padding="8" dis-hover :bordered="false">
 				<Row type="flex" justify="space-between" align="middle" class="my6">
 					<Col :xs="{span: 24}" :md="{span: 12}">
-					<h2 class="txt-h3">Регистр учета объектов ({{countRegister}})</h2>
+						<h3 class="txt-h3">Регистр учета объектов ({{countRegister}})</h3>
 					</Col>
 					<Col :xs="{span: 24}" :md="{span: 12}">
 					<Row type="flex" justify="center">
@@ -582,27 +578,6 @@ export default {
 							}
 						});
 					},
-					// render: (h, params) => {
-					//     return h("div", [
-					//         h(
-					//             "Button", {
-					//                 props: {
-					//                     type: "primary",
-					//                     size: "small"
-					//                 },
-					//                 style: {
-					//                     marginRight: "5px"
-					//                 },
-					//                 on: {
-					//                     click: () => {
-					//                         this.getCardAccounting(params.row);
-					//                     }
-					//                 }
-					//             },
-					//             "Редактировать"
-					//         )
-					//     ]);
-					// }
 				}
 			],
 			allChecked: false,

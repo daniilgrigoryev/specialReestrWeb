@@ -1,6 +1,6 @@
 <template>
 	<Layout class="height100-header">
-		<Sider width="350px" style="min-width: 350px" class="bg-white">
+		<Sider width="350px" style="min-width: 250px; max-width: 350px;" class="bg-white">
 			<Menu @on-select="onMenuClick" :active-name="activeDict" width="auto" theme="primary">
 				<MenuGroup title="Типы справочников">
 					<MenuItem name="DictAreaView">Типы территорий</MenuItem>
@@ -12,7 +12,7 @@
 		</Sider>
 	
 		<Content>
-			<Card>
+			<Card :padding="8" dis-hover :bordered="false">
 				<dict-area v-if="showDictArea"></dict-area>
 				<dict-category v-if="showDictCategory"></dict-category>
 				<dict-reason v-if="showDictReason"></dict-reason>

@@ -2,7 +2,7 @@
 	<div>
 		<Row type="flex" justify="space-between" align="middle">
 			<Col :xs="{span: 24}" :md="{span: 12}">
-				<h2 class="txt-h2 my12">Категории транспортных средств</h2>
+				<h3 class="txt-h3">Категории транспортных средств</h3>
 			</Col>
 
 			<Col :xs="{span: 24}" :md="{span: 12}">
@@ -131,26 +131,26 @@ export default {
 				},
 				{
 					title: "Действия",
-					width: 150,
-					align: 'center',
+					width: 95,
+					align: "center",
+					fixed: "right",
 					render: (h, params) => {
-						return h('div', [
-							h('Button', {
-								props: {
-									type: 'primary',
-									size: 'small'
-								},
-								style: {
-									marginRight: '5px'
-								},
-								on: {
-									click: () => {
-										this.getNewOrEditCategory(params.row.id)
-									}
+						return h("Icon", {
+							props: {
+								type: "ios-create",
+								size: 20,
+							},
+							style: {
+								cursor: "pointer",
+								color: "rgb(45, 140, 240)"
+							},
+							on: {
+								click: () => {
+									this.getNewOrEditCategory(params.row.id)
 								}
-							}, 'Редактировать')
-						]);
-					}
+							}
+						});
+					},
 				}
 			],
 		}

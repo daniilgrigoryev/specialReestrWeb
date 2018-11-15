@@ -30,50 +30,58 @@
 
 		<Sider width="350px" style="min-width: 350px" class="px18 py18 bg-white">
 			<Form label-position="top">
-				<h3 class="txt-h2 my12">Фильтр</h3>
-				<FormItem label="Время создания записи" :style="{width: '100%'}">
+				<h3 class="txt-h3 m12">Фильтр</h3>
+
+				<FormItem label="Время создания записи" class="my6" :style="{width: '100%'}">
 					<Row :gutter="8">
-						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
+						<Col :xs="{span: 12}" :lg="{span: 12}" class="my0">
 							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value1" style="width: 100%" placeholder="Период от"></DatePicker>
 						</Col>
-						<Col :md="{span: 24}" :lg="{span: 12}" class="my6">
+						<Col :xs="{span: 12}" :lg="{span: 12}" class="my0">
 							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="filter.createdTime.value2" style="width: 100%" placeholder="Период по"></DatePicker>
 						</Col>
 					</Row>
 				</FormItem>
 	
-				<FormItem label="Тип пакета документа" prop="">
-					<Select :clearable="true" v-model="filter.formatType.value1">
-						<Option style="white-space: pre-wrap" v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					</Select>
-				</FormItem>
-	
-	
-				<FormItem label="Статус обработки" prop="">
-					<Select :clearable="true" v-model="filter.status.value1">
-						<Option style="white-space: pre-wrap" v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					</Select>
-				</FormItem>
-	
-				<FormItem label="Источник" prop="">
-					<Select :clearable="true" v-model="filter.sourceId.value1">
+
+
+				<Row :gutter="8" class="my6">
+					<Col :xs="{span: 12}" :lg="{span: 12}">
+						<FormItem label="Тип пакета документа" class="my0">
+							<Select :clearable="true" v-model="filter.formatType.value1">
+								<Option style="white-space: pre-wrap" v-for="item in formatDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</FormItem>
+					</Col>
+					<Col :xs="{span: 12}" :lg="{span: 12}">
+						<FormItem label="Статус обработки" class="my0">
+							<Select :clearable="true" v-model="filter.status.value1">
+								<Option style="white-space: pre-wrap" v-for="item in stateDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</FormItem>
+					</Col>
+				</Row>
+
+
+				<FormItem label="Источник" class="my6">
+					<Select :clearable="true" v-model="filter.sourceId.value1" style="max-width: 380px;">
 						<Option style="white-space: pre-wrap" v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	
-				<FormItem label="Основание" prop="">
-					<Select :clearable="true" v-model="filter.reasonId.value1" >
+				<FormItem label="Основание" class="my6">
+					<Select :clearable="true" v-model="filter.reasonId.value1" style="max-width: 380px;">
 						<Option style="white-space: pre-wrap" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</FormItem>
 	
-				<FormItem>
-					<Row type="flex" justify="center">
-						<Col class="my6">
+				<FormItem class="my6">
+					<Row type="flex" justify="center" :gutter="8">
+						<Col>
 							<Button @click="filterRegisters" type="primary">Применить</Button>
 						</Col>
-						<Col class="my6">
-							<Button class="mx6">Отчистить</Button>
+						<Col>
+							<Button>Отчистить</Button>
 						</Col>
 					</Row>
 				</FormItem>
@@ -82,10 +90,10 @@
 	
 	
 		<Content>
-			<Card>
-				<Row type="flex" align="middle">
+			<Card :padding="8" dis-hover :bordered="false">
+				<Row type="flex" align="middle" class="my6">
 					<Col>
-						<h2 class="txt-h2 my12">Список пакетов данных</h2>
+						<h3 class="txt-h3">Список пакетов данных</h3>
 					</Col>
 				</Row>
 				<Table border size="small" ref="selection" :columns="columnsOption" :data="packages" @on-sort-change="sortRegisters"></Table>
@@ -423,87 +431,117 @@ export default {
 					minWidth: 200
 				},
 				{
+
 					title: "Подпись",
+					width: 95,
 					align: "center",
-					width: 150,
+					renderHeader: (h, params) => {
+						return h('Tooltip', {
+							props: {
+								placement: 'bottom',
+								content: params.column.title,
+								transfer: true,
+							}
+
+						}, [
+							h('span', params.column.title)
+						])
+					},
 					render: (h, params) => {
-						if (params.row.formatType === 1 || params.row.formatType === 2) {
-							return h(
-								"Button", {
-									props: {
-										type: "primary",
-										size: "small"
-									},
-									style: {
-										marginRight: "5px"
-									},
-									on: {
-										click: () => {
-											this.downloadSign(params.row);
-										}
-									}
+						if(params.row.formatType === 1 || params.row.formatType === 2){
+							return h("Icon", {
+								props: {
+									type: "ios-cloud-download",
+									size: 20,
 								},
-								"Скачать"
-							);
+								style: {
+									cursor: "pointer",
+									color: "rgb(45, 140, 240)"
+								},
+								on: {
+									click: () => {
+										this.downloadSign(params.row);
+									}
+								}
+							});
 						} else {
 							return h("p", "--");
 						}
-					}
+					},
 				},
 				{
 					title: "Вложение",
+					width: 100,
 					align: "center",
-					width: 150,
+					renderHeader: (h, params) => {
+						return h('Tooltip', {
+							props: {
+								placement: 'bottom',
+								content: params.column.title,
+								transfer: true,
+							}
+
+						}, [
+							h('span', params.column.title)
+						])
+					},
 					render: (h, params) => {
-						if (params.row.formatType === 1 || params.row.formatType === 2) {
-							return h(
-								"Button", {
-									props: {
-										type: "primary",
-										size: "small"
-									},
-									style: {
-										marginRight: "5px"
-									},
-									on: {
-										click: () => {
-											this.downloadBody(params.row);
-										}
-									}
+						if(params.row.formatType === 1 || params.row.formatType === 2){
+							return h("Icon", {
+								props: {
+									type: "ios-cloud-download",
+									size: 20,
 								},
-								"Скачать"
-							);
+								style: {
+									cursor: "pointer",
+									color: "rgb(45, 140, 240)"
+								},
+								on: {
+									click: () => {
+										this.downloadBody(params.row);
+									}
+								}
+							});
 						} else {
 							return h("p", "--");
 						}
-					}
+					},
 				},
 				{
 					title: "Действия",
+					width: 95,
 					align: "center",
-					width: 150,
+					ellipsis: true,
+					tooltip: true,
+					renderHeader: (h, params) => {
+						return h('Tooltip', {
+							props: {
+								placement: 'bottom',
+								content: params.column.title,
+								transfer: true,
+							}
+						}, [
+							h('span', params.column.title)
+						])
+					},
 					render: (h, params) => {
-						return h("div", [
-							h(
-								"Button", {
-									props: {
-										type: "primary",
-										size: "small"
-									},
-									style: {
-										marginRight: "5px"
-									},
-									on: {
-										click: () => {
-											// this.getPackageCard(params.row);
-											this.getPackageCardSpecial(params.row);
-										}
-									}
-								},
-								"Редактировать"
-							)
-						]);
-					}
+						return h("Icon", {
+							props: {
+								type: "ios-create",
+								size: 20,
+							},
+							style: {
+								cursor: "pointer",
+								color: "rgb(45, 140, 240)"
+							},
+							on: {
+								click: () => {
+									this.getPackageCard(params.row);
+									this.getPackageCardSpecial(params.row);
+								}
+							}
+						});
+					},
 				}
 			],
 			filter: {
@@ -874,5 +912,19 @@ export default {
 	cursor: pointer;
 }
 
+table th .ivu-table-cell {
+	white-space: nowrap;
+	display: block
+}
 
+table th .ivu-table-cell .ivu-tooltip {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline;
+}
+
+table th .ivu-table-cell .ivu-tooltip .ivu-tooltip-rel {
+	width: 100%;
+}
 </style>

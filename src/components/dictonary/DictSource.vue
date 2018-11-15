@@ -2,7 +2,7 @@
 	<div>
 		<Row type="flex" justify="space-between" align="middle">
 			<Col :xs="{span: 24}" :md="{span: 12}">
-				<h2 class="txt-h2 my12">Источники данных</h2>
+				<h3 class="txt-h3">Источники данных</h3>
 			</Col>
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<Row type="flex" justify="center" class="my12">
@@ -16,14 +16,8 @@
 				</Row>
 			</Col>
 		</Row>
-
 		<Table border ref="selection" size="small" :columns="columnsOption" :data="dictSource"></Table>
-
 	</div>
-
-
-
-	
 </template>
 
 <script>
@@ -116,51 +110,52 @@ export default {
 				},
 				{
 					title: "Вложение",
-					width: 150,
+					width: 100,
 					align: 'center',
 					render: (h, params) => {
-						if (params.row.hasBody) {
-							return h('Button', {
+						if(params.row.hasBody){
+							return h("Icon", {
 								props: {
-									type: 'primary',
-									size: 'small'
+									type: "ios-cloud-download",
+									size: 20,
 								},
 								style: {
-									marginRight: '5px'
+									cursor: "pointer",
+									color: "rgb(45, 140, 240)"
 								},
 								on: {
 									click: () => {
 										this.download(params.row.id)
 									}
 								}
-							}, 'Скачать');
+							});
 						} else {
-							return h('p', '--');
+							return h("p", "--");
 						}
-					}
+					},
 				},
 				{
 					title: "Действия",
-					width: 150,
-					align: 'center',
+					width: 95,
+					align: "center",
+					fixed: "right",
 					render: (h, params) => {
-						return h('div', [
-							h('Button', {
-								props: {
-									type: 'primary',
-									size: 'small'
-								},
-								style: {
-									marginRight: '5px'
-								},
-								on: {
-									click: () => {
-										this.getNewOrEditSource(params.row.id)
-									}
+						return h("Icon", {
+							props: {
+								type: "ios-create",
+								size: 20,
+							},
+							style: {
+								cursor: "pointer",
+								color: "rgb(45, 140, 240)"
+							},
+							on: {
+								click: () => {
+									this.getNewOrEditReason(params.row.id)
 								}
-							}, 'Редактировать')
-						]);
-					}
+							}
+						});
+					},
 				}
 			],
 		}
