@@ -353,7 +353,7 @@ export default {
 		this.$store.watch(this.$store.getters.packageReestrGetCommand, () => {
 			(async () => {
 				try {
-					let eventResponse = vm.$store.dispatch("prepareData", {
+					let eventResponse = await vm.$store.dispatch("prepareData", {
 						cid: cid
 					});
 					vm.$store.dispatch("fillModule", { event: eventResponse });

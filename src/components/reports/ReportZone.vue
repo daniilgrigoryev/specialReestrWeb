@@ -1,34 +1,5 @@
 <template>
 	<div>
-		<div class="heading my12">
-			<h2 class="txt-h2">Содержание данных</h2>
-			<small class="px3 color-gray">Выбор периода для отчета</small>
-		</div>
-
-		<Row type="flex">
-			<Col span="24">
-				<Form label-position="left">
-					<FormItem label="За период">
-						<Row type="flex" :gutter="8">
-							<Col>
-								<Select class="w180">
-									<Option value="beijing">New York</Option>
-									<Option value="shanghai">London</Option>
-									<Option value="shenzhen">Sydney</Option>
-								</Select>
-							</Col>
-							<Col>
-								<DatePicker type="date" placeholder="Select date" class="w180"></DatePicker>
-							</Col>
-							<Col>
-								<Button type="primary">Сформировать</Button>
-							</Col>
-						</Row>
-					</FormItem>
-				</Form>
-			</Col>
-		</Row>
-
 		<Row type="flex">
 			<Col>
 				<table class='table table--fixed tableReport'>
@@ -40,29 +11,13 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="txt-h2" style="border-bottom: 1px solid">524</td>
-							<td class="txt-h2" style="border-bottom: 1px solid">3247</td>
+							<td class="txt-h2" style="border-bottom: 1px solid">{{ countStat.all }}</td>
+							<td class="txt-h2" style="border-bottom: 1px solid">{{ countStat.pass }}</td>
 						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Мкад</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>ТТк</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Садовое кольцо</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>Бульварное кольцо</td>
-							<td>342</td>
-						</tr>
-						<tr class="bg-blue-faint-on-hover transition">
-							<td>4-е кольцо</td>
-							<td>342</td>
-						</tr>
+            <tr v-for="(item, key, index) in reportZone" :key="index" class="bg-blue-faint-on-hover transition">
+              <td>{{ key }}</td>
+              <td>{{ item }}</td>
+            </tr>
 					</tbody>
 				</table>
 			</Col>
@@ -97,10 +52,26 @@
     },
     computed: {
       reportZone() {
-        let res = [];
+        let res = {};
         let data = this.$store.state.reportZone.data;
         if (data) {
           res = data;
+        }
+        return res;
+      },
+      countStat() {
+        let res = {
+          all: 0,
+          pass: 0
+        };
+        let data = this.$store.state.reportZone.data;
+        if (data) {
+          for (let prop in data) {
+            if (data.hasOwnProperty(prop)) {
+              res.all++;
+              res.pass += data[prop];
+            }
+          }
         }
         return res;
       }
