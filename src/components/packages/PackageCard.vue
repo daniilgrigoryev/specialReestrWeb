@@ -19,8 +19,8 @@
 	
 	
 		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
-			<div slot="top" style="height: 100%;">
-				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
+			<div slot="top" style="height: 100%;  overflow: auto">
+				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%; min-height: 600px; min-width: 940px;">
 					<Row :gutter="8" justify="center">
 						<Col :xs="{span: 12}" :md="{span: 10}">
 						<Card class="my12" :padding="0">

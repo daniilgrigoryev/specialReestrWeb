@@ -51,15 +51,9 @@
 							</FormItem>
 						</Col>
 					</Row>
-
-
-
 					<FormItem label="Список оснований">
-						<Table border ref="selection" :columns="columnsOption" :data="reasonDict"></Table>
+						<Table border ref="selection" :columns="columnsOption" :data="reasonDict" height="350"></Table>
 					</FormItem>
-
-
-			
 					<FormItem class="flex-parent flex-parent--center-main">
 						<Button type="primary" size="large" @click="saveOrEdit">Сохранить</Button>
 						<Button size="large" @click="getPrev">Отмена</Button>
