@@ -1,273 +1,272 @@
 <template>
 	<!--<div>
-	    <div v-if="page === 1">
-	      <button type="button" @click="getPrev">Назад</button>
-	      <button type="button" @click="addRow">+</button>
-	      <table>
-	        <thead>
-	        <tr>
-	          <td>ГРЗ</td>
-	          <td>Дата начала действия</td>
-	          <td>Дата окончания действия</td>
-	          <td>Категория ТС</td>
-	          <td>Марка ТС</td>
-	          <td>Модель ТС</td>
-	          <td>Назавание владельца</td>
-	          <td>Адрес владельца</td>
-	          <td>Телефон владельца</td>
-	          <td>Операции</td>
-	        </tr>
-	        </thead>
-	        <tbody>
-	        <tr v-for="(value, key, id) in packageRegistersList" :key="key" class="registersRow" @click="setPackageRegister(key)">
-	          <td>{{value.tcRegno}}</td>
-	          <td>{{value.permitStartDate}}</td>
-	          <td>{{value.permitEndDate}}</td>
-	          <td>{{value.categoryId}}</td>
-	          <td>{{value.brand}}</td>
-	          <td>{{value.model}}</td>
-	          <td>{{value.ownerName}}</td>
-	          <td>{{value.ownerAddress}}</td>
-	          <td>{{value.ownerPhone}}</td>
-	          <td>
-	            <button type="button">Копия</button>
-	            <button type="button" @click="deleteRow(key)">Удалить</button>
-	          </td>
-	        </tr>
-	        </tbody>
-	      </table>
-	
-	      <div v-if="selectedPackageRegister">
-	        <div>
-	          <span>ГРЗ</span>
-	          <input type="text" v-model="selectedPackageRegister.tcRegno" />
-	        </div>
-	        <div>
-	          <span>Категория ТС</span>
-	          <Select :clearable="true" v-model="selectedPackageRegister.categoryId">
-	            <Option v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	          </Select>
-	        </div>
-	        <div>
-	          <span>Марка ТС</span>
-	          <input type="text" v-model="selectedPackageRegister.brand" />
-	        </div>
-	        <div>
-	          <span>Модель ТС</span>
-	          <input type="text" v-model="selectedPackageRegister.model" />
-	        </div>
-	        <div>
-	          <span>Назавание владельца</span>
-	          <input type="text" v-model="selectedPackageRegister.ownerName" />
-	        </div>
-	        <div>
-	          <span>Адрес владельца</span>
-	          <input type="text" v-model="selectedPackageRegister.ownerAddress" />
-	        </div>
-	        <div>
-	          <span>Телефон владельца</span>
-	          <input type="text" v-model="selectedPackageRegister.ownerPhone" />
-	        </div>
-	        <div>
-	          <span>Дата начала действия</span>
-	          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitStartDate" placeholder="Select time1"></DatePicker>
-	        </div>
-	        <div>
-	          <span>Дата окончания действия</span>
-	          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitEndDate" placeholder="Select time2"></DatePicker>
-	        </div>
-	      </div>
-	
-	      <button type="button" @click="nextStep">Выбор подписи</button>
-	    </div>
-	
-	    <div v-if="page === 2">
-	      <div>
-	        <span></span>
-	        <Select :clearable="true" v-model="sourceId">
-	          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	        </Select>
-	      </div>
-	      <div>
-	        <span></span>
-	        <Select :clearable="true" v-model="reasonId">
-	          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	        </Select>
-	      </div>
-	
-	      <div>
-	        <span>Сертификат</span>
-	        <Select :clearable="true" v-model="sertificateNumber">
-	          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	        </Select>
-	      </div>
-	      <div v-if="sertificateNumber">
-	        <div>
-	          <span>Кому выдан</span>
-	          <div>
-	            {{sertificateObj[sertificateNumber].IssuerName}}
-	          </div>
-	        </div>
-	
-	        <div>
-	          <span>Кем выдан</span>
-	          <div>
-	            {{sertificateObj[sertificateNumber].SubjectName}}
-	          </div>
-	        </div>
-	
-	        <div>
-	          <span>Срок действия</span>
-	          <div>
-	            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
-	          </div>
-	        </div>
-	
-	        <div>
-	          <span>Подпись</span>
-	          <div>
-	            {{sertificateObj[sertificateNumber].SerialNumber}}
-	          </div>
-	        </div>
-	      </div>
-	
-	      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
-	      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
-	    </div>
-	  </div>-->
-<Layout>
-	<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
-		<Card class="w-full mx12" style="max-width: 1200px; min-height: 600px;">
-			<div slot="title">
-				<Row type="flex" justify="space-between" align="center">
-					<span class="txt-h3">Список записей</span>
-					<Button type="primary" @click="addRow">Добавить новую запись <Icon type="md-add" :size="15" /></Button>
-				</Row>
-			</div>
-			<Row type="flex" justify="center" align="middle" class="py36">
-				<Col :xs="{span: 24,  offset: 1}" :md="{span: 18, offset: 5}">
+				    <div v-if="page === 1">
+				      <button type="button" @click="getPrev">Назад</button>
+				      <button type="button" @click="addRow">+</button>
+				      <table>
+				        <thead>
+				        <tr>
+				          <td>ГРЗ</td>
+				          <td>Дата начала действия</td>
+				          <td>Дата окончания действия</td>
+				          <td>Категория ТС</td>
+				          <td>Марка ТС</td>
+				          <td>Модель ТС</td>
+				          <td>Назавание владельца</td>
+				          <td>Адрес владельца</td>
+				          <td>Телефон владельца</td>
+				          <td>Операции</td>
+				        </tr>
+				        </thead>
+				        <tbody>
+				        <tr v-for="(value, key, id) in packageRegistersList" :key="key" class="registersRow" @click="setPackageRegister(key)">
+				          <td>{{value.tcRegno}}</td>
+				          <td>{{value.permitStartDate}}</td>
+				          <td>{{value.permitEndDate}}</td>
+				          <td>{{value.categoryId}}</td>
+				          <td>{{value.brand}}</td>
+				          <td>{{value.model}}</td>
+				          <td>{{value.ownerName}}</td>
+				          <td>{{value.ownerAddress}}</td>
+				          <td>{{value.ownerPhone}}</td>
+				          <td>
+				            <button type="button">Копия</button>
+				            <button type="button" @click="deleteRow(key)">Удалить</button>
+				          </td>
+				        </tr>
+				        </tbody>
+				      </table>
+				
+				      <div v-if="selectedPackageRegister">
+				        <div>
+				          <span>ГРЗ</span>
+				          <input type="text" v-model="selectedPackageRegister.tcRegno" />
+				        </div>
+				        <div>
+				          <span>Категория ТС</span>
+				          <Select :clearable="true" v-model="selectedPackageRegister.categoryId">
+				            <Option v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				          </Select>
+				        </div>
+				        <div>
+				          <span>Марка ТС</span>
+				          <input type="text" v-model="selectedPackageRegister.brand" />
+				        </div>
+				        <div>
+				          <span>Модель ТС</span>
+				          <input type="text" v-model="selectedPackageRegister.model" />
+				        </div>
+				        <div>
+				          <span>Назавание владельца</span>
+				          <input type="text" v-model="selectedPackageRegister.ownerName" />
+				        </div>
+				        <div>
+				          <span>Адрес владельца</span>
+				          <input type="text" v-model="selectedPackageRegister.ownerAddress" />
+				        </div>
+				        <div>
+				          <span>Телефон владельца</span>
+				          <input type="text" v-model="selectedPackageRegister.ownerPhone" />
+				        </div>
+				        <div>
+				          <span>Дата начала действия</span>
+				          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitStartDate" placeholder="Select time1"></DatePicker>
+				        </div>
+				        <div>
+				          <span>Дата окончания действия</span>
+				          <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitEndDate" placeholder="Select time2"></DatePicker>
+				        </div>
+				      </div>
+				
+				      <button type="button" @click="nextStep">Выбор подписи</button>
+				    </div>
+				
+				    <div v-if="page === 2">
+				      <div>
+				        <span></span>
+				        <Select :clearable="true" v-model="sourceId">
+				          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				        </Select>
+				      </div>
+				      <div>
+				        <span></span>
+				        <Select :clearable="true" v-model="reasonId">
+				          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				        </Select>
+				      </div>
+				
+				      <div>
+				        <span>Сертификат</span>
+				        <Select :clearable="true" v-model="sertificateNumber">
+				          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				        </Select>
+				      </div>
+				      <div v-if="sertificateNumber">
+				        <div>
+				          <span>Кому выдан</span>
+				          <div>
+				            {{sertificateObj[sertificateNumber].IssuerName}}
+				          </div>
+				        </div>
+				
+				        <div>
+				          <span>Кем выдан</span>
+				          <div>
+				            {{sertificateObj[sertificateNumber].SubjectName}}
+				          </div>
+				        </div>
+				
+				        <div>
+				          <span>Срок действия</span>
+				          <div>
+				            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
+				          </div>
+				        </div>
+				
+				        <div>
+				          <span>Подпись</span>
+				          <div>
+				            {{sertificateObj[sertificateNumber].SerialNumber}}
+				          </div>
+				        </div>
+				      </div>
+				
+				      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
+				      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
+				    </div>
+				  </div>-->
+	<Layout>
+		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
+			<Card class="w-full mx12" style="max-width: 1200px; min-height: 600px;">
+				<div slot="title">
+					<Row type="flex" justify="space-between" align="center">
+						<span class="txt-h3">Список записей</span>
+						<Button type="primary" @click="addRow">Добавить новую запись <Icon type="md-add" :size="15" /></Button>
+					</Row>
+				</div>
+				<Row type="flex" justify="center" align="center" class="py36">
+					<Col :xs="{span: 24,  offset: 1}" :md="{span: 18, offset: 5}">
 					<Steps :current="page">
 						<Step title="Загрузка"></Step>
 						<Step title="Подпись"></Step>
 						<Step title="Отправка"></Step>
 					</Steps>
-				</Col>
-			</Row>
-			<Row v-if="page === 0">
-				<Col :xs="{span: 24}" :md="{span: 24}">
-				<Table ref="selection" :columns="columnsOption" :data="packageRegisters" size="small" @on-row-click="setPackageRegister" height="400"></Table>
-				</Col>
-			</Row>
-	
-			<Row v-if="page === 0" class="my24" :gutter="16">
-				<Form v-if="selectedPackageRegister" label-position="top">
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<FormItem label="ГРЗ">
-						<Input v-model="selectedPackageRegister.tcRegno"></Input>
-					</FormItem>
-	
-					<FormItem label="Категория ТС">
-						<Select :clearable="true" v-model="selectedPackageRegister.categoryId">
-	                <Option v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-					</FormItem>
-	
-					<FormItem label="Марка ТС">
-						<Input v-model="selectedPackageRegister.brand"></Input>
-					</FormItem>
-					<FormItem label="Модель ТС">
-						<Input v-model="selectedPackageRegister.model"></Input>
-					</FormItem>
 					</Col>
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<FormItem label="Назавание владельца">
-						<Input v-model="selectedPackageRegister.ownerName"></Input>
-					</FormItem>
-					<FormItem label="Адрес владельца">
-						<Input v-model="selectedPackageRegister.ownerAddress" type="textarea" :rows="4"></Input>
-					</FormItem>
-					<FormItem label="Телефон владельца">
-						<Input v-model="selectedPackageRegister.ownerPhone"></Input>
-					</FormItem>
+				</Row>
+				<Row v-if="page === 0">
+					<Col :xs="{span: 24}" :md="{span: 24}">
+					<Table ref="selection" :columns="columnsOption" :data="packageRegisters" size="small" @on-row-click="setPackageRegister" height="400"></Table>
 					</Col>
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<FormItem label="Дата начала действия">
-						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitStartDate" placeholder="Select time1"></DatePicker>
-					</FormItem>
-					<FormItem label="Дата окончания действия">
-						<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitEndDate" placeholder="Select time2"></DatePicker>
-					</FormItem>
+				</Row>
+	
+				<Row v-if="page === 0" class="my24" :gutter="16">
+					<Form v-if="selectedPackageRegister" label-position="top">
+						<Col :xs="{span: 24}" :md="{span: 8}">
+						<FormItem label="ГРЗ">
+							<Input v-model="selectedPackageRegister.tcRegno"></Input>
+						</FormItem>
+	
+						<FormItem label="Категория ТС">
+							<Select :clearable="true" v-model="selectedPackageRegister.categoryId">
+				                <Option v-for="item in categoryDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				              </Select>
+						</FormItem>
+	
+						<FormItem label="Марка ТС">
+							<Input v-model="selectedPackageRegister.brand"></Input>
+						</FormItem>
+						<FormItem label="Модель ТС">
+							<Input v-model="selectedPackageRegister.model"></Input>
+						</FormItem>
+						</Col>
+						<Col :xs="{span: 24}" :md="{span: 8}">
+						<FormItem label="Назавание владельца">
+							<Input v-model="selectedPackageRegister.ownerName"></Input>
+						</FormItem>
+						<FormItem label="Адрес владельца">
+							<Input v-model="selectedPackageRegister.ownerAddress" type="textarea" :rows="4"></Input>
+						</FormItem>
+						<FormItem label="Телефон владельца">
+							<Input v-model="selectedPackageRegister.ownerPhone"></Input>
+						</FormItem>
+						</Col>
+						<Col :xs="{span: 24}" :md="{span: 8}">
+						<FormItem label="Дата начала действия">
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitStartDate" placeholder="Select time1"></DatePicker>
+						</FormItem>
+						<FormItem label="Дата окончания действия">
+							<DatePicker type="datetime" format="yyyy-MM-dd HH:mm" v-model="selectedPackageRegister.permitEndDate" placeholder="Select time2"></DatePicker>
+						</FormItem>
+						</Col>
+					</Form>
+				</Row>
+	
+				<Row type="flex" align="center" justify="space-between" class="px36 py36">
+					<Col v-if="page === 1" :xs="{span: 24}" :md="{span: 8}">
+					<Form label-position="top">
+						<FormItem label="Источник">
+							<Select clearable v-model="sourceId">
+				                <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				              </Select>
+						</FormItem>
+						<FormItem label="Основание">
+							<Select clearable v-model="reasonId" style="max-width: 380px;">
+										<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									</Select>
+						</FormItem>
+					</Form>
 					</Col>
-				</Form>
-			</Row>
 	
-			<Row type="flex" align="middle" justify="space-between" class="px36 py36">
-				<Col v-if="page === 1" :xs="{span: 24}" :md="{span: 8}">
-				<Form label-position="top">
-					<FormItem label="Источник">
-						<Select clearable v-model="sourceId">
-	                <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-					</FormItem>
-					<FormItem label="Основание">
-						<Select clearable v-model="reasonId" style="max-width: 380px;">
-							<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-						</Select>
-					</FormItem>
-				</Form>
-				</Col>
+					<Col :xs="{span: 24}" :md="{span: 8}">
+					<Form v-if="page === 1" label-position="top">
+						<FormItem label="Сертификат">
+							<Select :clearable="true" v-model="sertificateNumber">
+				                <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+				              </Select>
+						</FormItem>
+					</Form>
 	
-				<Col :xs="{span: 24}" :md="{span: 8}">
-				<Form v-if="page === 1" label-position="top">
-					<FormItem label="Сертификат">
-						<Select :clearable="true" v-model="sertificateNumber">
-	                <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-					</FormItem>
-				</Form>
+					<table v-if="sertificateNumber" class="table table--fixed border--0">
+						<tbody>
+							<tr class="txt-bold">
+								<td class="border--0 px0 py0 color-gray">Кому выдан</td>
+								<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].IssuerName}}"</td>
+							</tr>
+							<tr class="txt-bold">
+								<td class="border--0 px0 py0 color-gray">Кем выдан</td>
+								<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].SubjectName}} </td>
+							</tr>
+							<tr class="txt-bold">
+								<td class="border--0 px0 py0 color-gray">Срок действия</td>
+								<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}</td>
+							</tr>
+							<tr class="txt-bold">
+								<td class="border--0 px0 py0 color-gray">Подпись</td>
+								<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].SerialNumber}}</td>
+							</tr>
+						</tbody>
+					</table>
+					</Col>
+				</Row>
 	
-				<table v-if="sertificateNumber" class="table table--fixed border--0">
-					<tbody>
-						<tr class="txt-bold">
-							<td class="border--0 px0 py0 color-gray">Кому выдан</td>
-							<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].IssuerName}}"</td>
-						</tr>
-						<tr class="txt-bold">
-							<td class="border--0 px0 py0 color-gray">Кем выдан</td>
-							<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].SubjectName}} </td>
-						</tr>
-						<tr class="txt-bold">
-							<td class="border--0 px0 py0 color-gray">Срок действия</td>
-							<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}</td>
-						</tr>
-						<tr class="txt-bold">
-							<td class="border--0 px0 py0 color-gray">Подпись</td>
-							<td class="border--0 px0 py0">{{sertificateObj[sertificateNumber].SerialNumber}}</td>
-						</tr>
-					</tbody>
-				</table>
-				</Col>
-			</Row>
+				<Footer class="flex-parent flex-parent--center-main card-footer pt12 py12 my0 border-t border--gray-light">
+					<Button size="large" type="default" class="mx24">
+				          <span class="align-middle">Закрыть</span>
+				        </Button>
 	
-			<Footer class="flex-parent flex-parent--center-main card-footer pt36 py24 my0 border-t border--gray-light">
-				<Button size="large" type="default" class="mx24">
-	          <span class="align-middle">Закрыть</span>
-	        </Button>
-	
-				<Button v-if="page === 0" @click="nextStep" size="large" type="primary" class="mx24">
-	          <span class="align-middle">Выбор подписи</span>
-	        </Button>
-				<Button v-if="page === 1" @click="signFile" size="large" type="primary" class="mx24">
-	          <span class="align-middle">Подписать файл</span>
-	        </Button>
-				<Button v-if="page === 2 && sign" @click="signFile" size="large" type="primary" class="mx24">
-	          <span class="align-middle">Отправить файл</span>
-	        </Button>
-			</Footer>
-		</Card>
-	</div>
-</Layout>
-
+					<Button v-if="page === 0" @click="nextStep" size="large" type="primary" class="mx24">
+				          <span class="align-middle">Выбор подписи</span>
+				        </Button>
+					<Button v-if="page === 1" @click="signFile" size="large" type="primary" class="mx24">
+				          <span class="align-middle">Подписать файл</span>
+				        </Button>
+					<Button v-if="page === 2 && sign" @click="signFile" size="large" type="primary" class="mx24">
+				          <span class="align-middle">Отправить файл</span>
+				        </Button>
+				</Footer>
+			</Card>
+		</div>
+	</Layout>
 </template>
 
 <script>
@@ -356,8 +355,7 @@ export default {
 			sign: null,
 			file: null,
 			page: 0,
-			columnsOption: [
-				{
+			columnsOption: [{
 					title: 'ГРЗ',
 					key: 'tcRegno',
 					align: "center",
@@ -477,7 +475,7 @@ export default {
 						}, [
 							h('span', params.column.title)
 						])
-					}					
+					}
 				},
 				{
 					title: 'Адрес владельца',
@@ -538,11 +536,11 @@ export default {
 					},
 					render: (h, params) => {
 						return h('div', {
-								style: {
-									display: 'flex',
-									justifyContent: 'space-between'
-								},
-							},[
+							style: {
+								display: 'flex',
+								justifyContent: 'space-between'
+							},
+						}, [
 							h("Icon", {
 								props: {
 									type: "ios-copy",

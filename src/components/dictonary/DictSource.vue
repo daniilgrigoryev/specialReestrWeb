@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Row type="flex" justify="space-between" align="middle">
+		<Row type="flex" justify="space-between">
 			<Col :xs="{span: 24}" :md="{span: 12}">
 				<h3 class="txt-h3">Источники данных</h3>
 			</Col>

@@ -91,7 +91,7 @@
 	
 		<Content>
 			<Card :padding="8" dis-hover :bordered="false">
-				<Row type="flex" align="middle" class="my6">
+				<Row type="flex" class="my6">
 					<Col>
 						<h3 class="txt-h3">Список пакетов данных</h3>
 					</Col>

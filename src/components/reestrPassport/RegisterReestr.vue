@@ -82,7 +82,7 @@
 		</Sider>
 		<Content>
 			<Card :padding="8" dis-hover :bordered="false">
-				<Row type="flex" justify="space-between" align="middle" class="my6">
+				<Row type="flex" justify="space-between" class="my6">
 					<Col :xs="{span: 24}" :md="{span: 12}">
 						<h3 class="txt-h3">Регистр учета объектов ({{countRegister}})</h3>
 					</Col>

@@ -71,12 +71,12 @@
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
 			<Card class="w-full" style="max-width: 1200px;  min-height: 600px;">
 				<div slot="title">
-					<Row type="flex" justify="space-between" align="center">
+					<Row type="flex" justify="space-between">
 						<span class="txt-h3">Загрузка пакета</span>
 						<Icon style="cursor: pointer;" type="ios-close" size="40" @click="getPrev" />
 					</Row>
 				</div>
-				<Row type="flex" justify="center" align="middle" class="py36">
+				<Row type="flex" justify="center" class="py36">
 					<Col :xs="{span: 24,  offset: 1}" :md="{span: 18, offset: 5}">
 					<Steps :current="page">
 						<Step title="Загрузка"></Step>
@@ -85,7 +85,7 @@
 					</Steps>
 					</Col>
 				</Row>
-				<Row type="flex" align="middle" justify="space-between" class="px36 py36">
+				<Row type="flex" justify="space-between" class="px36 py36">
 					<Col v-if="page === 0" :xs="{span: 24}" :md="{span: 8}">
 					<Form label-position="top">
 						<FormItem label="Источник">
@@ -94,9 +94,9 @@
 											</Select>
 						</FormItem>
 						<FormItem label="Основание">
-							<Select clearable v-model="reasonId">
-												<Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-											</Select>
+							<Select clearable v-model="reasonId" style="max-width: 380px;">
+								<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
 						</FormItem>
 					</Form>
 					</Col>
@@ -142,7 +142,7 @@
 				</Row>
 	
 	
-				<Row v-if="false" type="flex" align="middle" justify="space-between" class="px36 py36">
+				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
 					<Col :xs="{span: 24}" :md="{span: 8}">
 					<Form label-position="top">
 						<FormItem label="Источник">
@@ -152,8 +152,8 @@
 									</Select>
 						</FormItem>
 						<FormItem label="Основание">
-							<Select clearable style="width:100%" size="large">
-									<Option value="">New York</Option>
+							<Select clearable style="width:100%; max-width: 380px;" size="large">
+									<Option style="white-space: pre-wrap;" value="">New York</Option>
 									<Option value="">New Amsterdam</Option>
 									</Select>
 						</FormItem>
@@ -169,7 +169,7 @@
 				</Row>
 	
 	
-				<Row v-if="false" type="flex" align="middle" justify="space-between" class="px36 py36">
+				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
 					<Col :xs="{span: 24}" :md="{span: 8}">
 					<Form label-position="top">
 						<FormItem label="Источник">
@@ -179,8 +179,8 @@
 									</Select>
 						</FormItem>
 						<FormItem label="Основание">
-							<Select clearable style="width:100%" size="large">
-									<Option value="">New York</Option>
+							<Select clearable style="width:100%; max-width: 380px" size="large">
+									<Option style="white-space: pre-wrap;" value="">New York</Option>
 									<Option value="">New Amsterdam</Option>
 									</Select>
 						</FormItem>
@@ -202,7 +202,7 @@
 				</Row>
 	
 	
-				<Row v-if="false" type="flex" align="middle" justify="space-between" class="px36 py36">
+				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
 					<Col :xs="{span: 24}" :md="{span: 8}">
 	
 	
@@ -244,7 +244,7 @@
 				</Row>
 	
 	
-				<Row v-if="false" type="flex" align="middle" justify="center" class="px36 py36">
+				<Row v-if="false" type="flex" justify="center" class="px36 py36">
 					<Col :xs="{span: 24}" :md="{span: 24}">
 					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold color-green px24 py12 mx-auto" style="max-width: 200px;">
 	
@@ -257,7 +257,7 @@
 					</Col>
 				</Row>
 	
-				<Row v-if="false" type="flex" align="middle" justify="center" class="px36 py36">
+				<Row v-if="false" type="flex" justify="center" class="px36 py36">
 					<Col :xs="{span: 24}" :md="{span: 24}">
 					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold color-green px24 py12 mx-auto" style="max-width: 200px;">
 						<Icon type="ios-document" size="150" />
