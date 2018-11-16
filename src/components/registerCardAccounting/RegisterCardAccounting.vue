@@ -1,5 +1,5 @@
 <template>
-	<Layout v-if="cardAccounting" class="height100-header flex-parent flex-parent--column bg-gray">
+	<Layout v-if="cardAccounting" class="height100-header flex-parent flex-parent--column bg-gray ">
 		<table-poptip :expDate="expDate" :clickFunction="createExpireCard"></table-poptip>
 		<Header class="prose--dark bg-gray">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
@@ -7,15 +7,15 @@
 				<span>ГРЗ: {{cardAccounting.item.tcRegno}}</span> 
 			</button>
 		</Header>
-		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
+		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-moving="changeTableHeight">
 			<div slot="top" style="height: 100%;">
-				<Content style="height: 100%;">
-					<Row>
-						<Col :xs="{span: 24}" :md="{span: 12}">
-							<Row>
-								<Col :xs="{span: 24}" :md="{span: 12}">
-									<Card class="my12">
-										<h3 slot="title" class="txt-h3">Разрешение</h3>
+				<Content style="height: 100%; min-height: 600px; min-width: 940px;  overflow: auto; padding: 10px;" >
+					<Row :gutter="5">
+						<Col :xs="{span: 12}" :md="{span: 12}">
+							<Row type="flex" :gutter="5">
+								<Col :xs="{span: 24}" :md="{span: 24}" :lg="{span: 12}">
+									<Card :padding="5" dis-hover bordered class="hmin300">
+										<h4 slot="title" class="txt-h4">Разрешение</h4>
 										<table class='table border--0'>
 											<tbody>
 												<tr class="bg-green-light color-green-dark">
@@ -37,8 +37,8 @@
 											</tbody>
 										</table>
 									</Card>
-									<Card class="my12">
-										<h3 slot="title" class="txt-h3">Системные сведения</h3>
+									<Card :padding="5" dis-hover bordered class="my12">
+										<h4 slot="title" class="txt-h4">Системные сведения</h4>
 										<div class="px12 my12">
 											<div class='txt-h5'>Источник</div>
 											<p class="txt-bold">{{cardAccounting.item.sourceName}}</p>
@@ -53,9 +53,9 @@
 										</div>
 									</Card>
 								</Col>
-								<Col :xs="{span: 24}" :md="{span: 12}">
-									<Card class="my12">
-										<h3 slot="title" class="txt-h3">Транспортное средство</h3>
+								<Col :xs="{span: 24}" :md="{span: 24}" :lg="{span: 12}" >
+									<Card :padding="5" dis-hover bordered class="wmax600 hmin300">
+										<h4 slot="title" class="txt-h4">Транспортное средство</h4>
 										<table class="table border--0 table--fixed">
 											<tbody>
 												<tr class="txt-bold">
@@ -77,8 +77,8 @@
 											</tbody>
 										</table>
 									</Card>
-									<Card class="my12">
-										<h3 slot="title" class="txt-h3">Владелец</h3>
+									<Card :padding="5" dis-hover bordered class="wmax600 my12">
+										<h4 slot="title" class="txt-h4">Владелец</h4>
 										<table class="table border--0 table--fixed">
 											<tbody>
 												<tr class="txt-bold">
@@ -96,13 +96,13 @@
 											</tbody>
 										</table>
 									</Card>
-								</Col>
+								</Col>	
 							</Row>
 						</Col>
-						<Col :xs="{span: 24}" :md="{span: 6}">
-							<Card class="my12">
+						<Col :xs="{span: 12}" :md="{ span: 12}">
+							<Card :padding="5" dis-hover bordered>
 								<h3 slot="title" class="txt-h3">Данные ФИС</h3>
-								<table class="table border--0 table--fixed">
+								<table class="table border--0">
 									<tbody>
 										<tr class="txt-bold">
 											<td class="border--0 px0 py0 color-gray">Фамилия(организация)</td>
@@ -207,21 +207,21 @@
 									</tbody>
 								</table>
 							</Card>
-						</Col>
+						</Col>		
 					</Row>
 				</Content>
 			</div>
 			<div slot="bottom" id="js_split" style="height: 100%; overflow: hidden" class="bg-white">
-				<div style="height: 100%; overflow: hidden">
+				<div style="height: 100%; overflow: auto">
 					<div id="js_headingSplit" class="py12 px24">
 						<h4 class="txt-h4 py0">Связанные пакеты</h4>
 					</div>
 					<Row v-if="cardAccounting.loadItems">
-						<Col :xs="{span: 18}" :md="{span: 18}">
+						<Col :sm="{span: 12}" :md="{span: 12}" :xl="{span: 18}">
 							<Table ref="selection" :columns="columnsOption" :data="cardAccounting.loadItems" size="small" :show-header="false" @on-row-click="selectPackage" :height="tableHeight">
 							</Table>	
 						</Col>
-						<Col v-if="package" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+						<Col v-if="package" :sm="{span: 12}" :md="{span: 12}" :xl="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
 							<Card dis-hover style="height: 100%;">
 								<Row>
 									<Col :xs="{span: 12}" :md="{span: 12}">
@@ -252,6 +252,12 @@
 								</Row>
 							</Card>
 						</Col>
+						<Col v-else :sm="{span: 12}" :md="{span: 12}" :xl="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+							<div class="prose--dark bg-gray" style="display: table; width: 100%; height: 100%;">
+  								<div style="display: table-cell;text-align: center; vertical-align: middle;" class="txt-h3">Актуальное состояние карточки</div>
+							</div>
+						</Col>
+						
 					</Row>
 				</div>
 			</div>
@@ -274,8 +280,9 @@ export default {
 			package: null,
 			fisLoadData: null,
 			expDate: null,
-			pageSplit: 0.8,
+			pageSplit: 0.7,
 			bottomSplit: 0.8,
+			tableHeight: 314,
 			columnsOption: [{
 					title: 'Иконка',
 					key: 'icon',

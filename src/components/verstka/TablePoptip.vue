@@ -28,7 +28,7 @@
 		position: fixed;
 		bottom: 50px;
 		right: 50px;
-		z-index: 8;
+		z-index: 99;
 	}
 	.poptip__icon{
 		background-color: red;
