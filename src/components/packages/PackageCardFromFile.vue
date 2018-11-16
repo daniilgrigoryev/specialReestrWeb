@@ -73,7 +73,7 @@
 				<div slot="title">
 					<Row type="flex" justify="space-between" align="center">
 						<span class="txt-h3">Загрузка пакета</span>
-						<Icon type="ios-close" size="40" />
+						<Icon style="cursor: pointer;" type="ios-close" size="40" @click="getPrev" />
 					</Row>
 				</div>
 				<Row type="flex" justify="center" align="middle" class="py36">
@@ -296,11 +296,7 @@
 								<Icon type="md-arrow-dropright" />
 							</Button>
 				</Footer>
-	
-				<Footer v-if="false" class="flex-parent flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
-					<Button size="large" type="primary">Закрыть</Button>
-				</Footer>
-	
+
 				<Footer v-if="false" class="flex-parent flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large" type="primary">Закрыть</Button>
 				</Footer>
