@@ -9,7 +9,7 @@
 		</Header>
 		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-moving="changeTableHeight">
 			<div slot="top" style="height: 100%;">
-				<Content style="height: 100%; min-height: 600px; min-width: 940px;  overflow: auto; padding: 10px;" >
+				<Content style="height: 100%; min-height: 600px; min-width: 940px; overflow: auto; padding: 10px;" >
 					<Row :gutter="5">
 						<Col :xs="{span: 12}" :md="{span: 12}">
 							<Row type="flex" :gutter="5">

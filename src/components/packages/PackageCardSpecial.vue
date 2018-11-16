@@ -8,16 +8,14 @@
 		</Header>
 
 
-		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-move-end="changeTableHeight" min="520" max="300">
-			<div slot="top" style="height: 100%;">
-				<Content class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: 100%;">
-
+		<Split v-model="pageSplit" mode="vertical" class="viewport-almost" @on-moving="changeTableHeight" min="400" max="200">
+			<div slot="top" style="height: 100%;  overflow: auto">
+				<Content style="height: 100%; min-height: 600px; min-width: 940px;" class="flex-parent flex-parent--center-main flex-parent--center-cross">
 					<Row :gutter="8" justify="center" style="max-width: 740px">
 						<div class="mx-auto wmax300 align-center prose color-gray-light">
 							<Icon type="ios-lock-outline" size="150"/><br>
 							<p class="txt-h5">Данный пакет был утвержден 05.10.2018 и более не может быть изменен</p>
 						</div>
-
 						<Col :xs="{span: 12}" :md="{span: 12}">
 							<Card class="my12" :padding="0">
 								<b slot="title" class="txt-h4">Основные сведения</b>
@@ -113,7 +111,7 @@
 								</Tabs>
 
 							</Col>
-							<Col v-if="selectedItem" :xs="{span: 6}" :md="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+							<Col v-if="selectedItem" :sm="{span: 6}" :md="{span: 6}" :xl="{span: 6}"  style="overflow: auto;" :style="{height: tableHeight + 'px'}">
 								<Card dis-hover style="height: 100%;">
 									<button type="button" @click="getCardAccounting" class="txt-bold txt-underline">
 										<span>{{selectedItem.tcRegno}}</span>
@@ -144,6 +142,11 @@
 										</tbody>
 									</table>
 								</Card>
+							</Col>
+							<Col v-else :sm="{span: 6}" :md="{span: 6}" :xl="{span: 6}" style="overflow: auto;" :style="{height: tableHeight + 'px'}">
+								<div class="prose--dark bg-gray" style="display: table; width: 100%; height: 100%;">
+									<div style="display: table-cell;text-align: center; vertical-align: middle;" class="txt-h3">Актуальное состояние карточки</div>
+								</div>
 							</Col>
 						</Row>	
 					</div>
@@ -217,7 +220,7 @@ export default {
 	data() {
 		return {
 			pageSplit: 0.6,
-			bottomSplit: 0.8,
+			bottomSplit: 0.7,
 			columnsOption: [{
 					title: ' ',
 					key: 'selected',
