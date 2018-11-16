@@ -1,5 +1,5 @@
 <template>
-	<Layout v-if="cardAccounting" class="height100-header flex-parent flex-parent--column bg-gray ">
+	<Layout v-if="cardAccounting" class="height100-header flex-parent flex-parent--column bg-gray">
 		<table-poptip :expDate="expDate" :clickFunction="createExpireCard"></table-poptip>
 		<Header class="prose--dark bg-gray">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
@@ -96,13 +96,13 @@
 											</tbody>
 										</table>
 									</Card>
-								</Col>	
+								</Col>
 							</Row>
 						</Col>
 						<Col :xs="{span: 12}" :md="{ span: 12}">
 							<Card :padding="5" dis-hover bordered>
 								<h3 slot="title" class="txt-h3">Данные ФИС</h3>
-								<table class="table border--0">
+								<table v-if="cardAccounting.fisItem" class="table border--0">
 									<tbody>
 										<tr class="txt-bold">
 											<td class="border--0 px0 py0 color-gray">Фамилия(организация)</td>
@@ -207,7 +207,7 @@
 									</tbody>
 								</table>
 							</Card>
-						</Col>		
+						</Col>
 					</Row>
 				</Content>
 			</div>
@@ -257,7 +257,7 @@
   								<div style="display: table-cell;text-align: center; vertical-align: middle;" class="txt-h3">Актуальное состояние карточки</div>
 							</div>
 						</Col>
-						
+
 					</Row>
 				</div>
 			</div>
