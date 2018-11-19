@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Indicator/>
-        <Header :style="{background: '#2d8cf0', height: 'auto'}" v-if="isHeaderRender()">
+        <Header class="page_header" :style="{background: '#2d8cf0', height: 'auto', padding: '0 20px 0 20px'}" v-if="isHeaderRender()">
     		<Row type="flex" justify="space-between" align="middle">
 				<Col>
 					<div class="layout-logo">
@@ -15,9 +15,6 @@
 				</Col>
 				<Col>
 					<Row type="flex" justify="center" >
-
-
-
 						<div class="flex-parent flex-parent--center-cross">
 							<span class="mr12 color-white">Даниил Григорьев</span>
 							<Dropdown>
@@ -73,13 +70,4 @@ export default {
 	.height100-header{
 		min-height: calc(100vh - 64px);
 	}
-
-
-    .demo-badge{
-        width: 42px;
-        height: 42px;
-        background: #eee;
-        border-radius: 6px;
-        display: inline-block;
-    }
 </style>
