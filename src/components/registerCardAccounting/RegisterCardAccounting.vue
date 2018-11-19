@@ -20,7 +20,7 @@
 											<tbody>
 												<tr class="bg-green-light color-green-dark">
 													<td>Статус</td>
-													<td class="txt-bold">Действующее</td>
+													<td class="txt-bold">{{cardAccounting.item.flgActive}}</td>
 												</tr>
 												<tr class="color-red-dark bg-red-light">
 													<td>Дата окончания</td>
@@ -363,6 +363,11 @@ export default {
 			let res;
 			let data = this.$store.state.registerCardAccounting.data;
 			if (data) {
+        if (data.item.flgActive === 'T') {
+          data.item.flgActive = 'Активно';
+        } else if (data.item.flgActive === 'F') {
+          data.item.flgActive = 'Не активно';
+        }
 				data.loadItems.sort((a, b) => {
 					return b.reestrTime - a.reestrTime;
 				});

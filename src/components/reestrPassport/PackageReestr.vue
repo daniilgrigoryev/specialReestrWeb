@@ -537,8 +537,11 @@ export default {
 							},
 							on: {
 								click: () => {
-									this.getPackageCard(params.row);
-									// this.getPackageCardSpecial(params.row);
+								  if (params.row.status === 5) {
+                    this.getPackageCardSpecial(params.row);
+                  } else {
+                    this.getPackageCard(params.row);
+                  }
 								}
 							}
 						});
