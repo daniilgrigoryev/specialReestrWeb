@@ -22,14 +22,14 @@
             <Form label-position="left">
               <FormItem label="За период">
                 <Row type="flex" :gutter="8">
-                  <Col>
+                  <Col v-if="!showReportZone">
                     <Select :clearable="true" class="w180" v-model="periodReport" @on-change="onChangePeriod">
                       <Option value="week">Неделя</Option>
                       <Option value="month">Месяц</Option>
                       <Option value="year">Год</Option>
                     </Select>
                   </Col>
-                  <Col>
+                  <Col v-if="!showReportZone">
                     <DatePicker type="datetime" format="dd-MM-yyyy HH:mm" v-model="dateReport" @on-change="onChangeDate"
                                 placeholder="Select date" class="w180"></DatePicker>
                   </Col>
@@ -110,82 +110,7 @@
                     funcUtils.addToLocalStorage('reportReestr', reportReestr);
                     vm.$store.dispatch('reportCategorySetCid', respData.cid);
                     vm.activeReport = reportCategory;
-                  }
-                } else {
-                  if (!funcUtils.isNull(respError)) {
-                    alert(respError.errorMsg);
-                  }
-                }
-              }
-            }
-          } else {
-            for (let prop in reportReestr) {
-              if (reportReestr.hasOwnProperty(prop)) {
-                if (funcUtils.isNotEmpty(reportReestr[prop].cid)) {
-                  vm.activeReport = prop;
-                  switch (prop) {
-                    case 'ReportCategory': {
-                      vm.title = 'Содержание данных';
-                      break;
-                    }
-                    case 'ReportSpecial': {
-                      vm.title = 'Особый порядок аннулирования разрешений';
-                      break;
-                    }
-                    case 'ReportZone': {
-                      vm.title = 'Действующие пропуска';
-                      break;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        } catch (e) {
-          alert(e.message);
-        }
-      })();
-    },
-    destroyed() {
-      this.$store.dispatch('reportCategorySetCid', null);
-      this.$store.dispatch('reportCategorySetData', {
-        data: null
-      });
-      (async () => {
-        try {
-          if (funcUtils.isNull(reportReestr)) {
-            reportReestr = {};
-            reportReestr[reportCategory] = {
-              cid: null,
-              moduleName: vm.$store.state.reportCategory.moduleName
-            };
-            reportReestr[reportSpecial] = {
-              cid: null,
-              moduleName: vm.$store.state.reportSpecial.moduleName
-            };
-            reportReestr[reportZone] = {
-              cid: null,
-              moduleName: vm.$store.state.reportZone.moduleName
-            };
-
-            let eventResponse = await vm.$store.dispatch('prepareData', {
-              beanName: reportCategory,
-              method: null,
-              params: null,
-              cid: null
-            });
-            if (eventResponse.status === 200) {
-              let data = eventResponse.response;
-              if (data.length > 0) {
-                let dataJson = JSON.parse(data);
-                let respData = dataJson.data;
-                let respError = dataJson.error;
-                if (!funcUtils.isNull(respData)) {
-                  if (dataJson.method === 'addCID') {
-                    reportReestr[reportCategory].cid = respData.cid;
-                    funcUtils.addToLocalStorage('reportReestr', reportReestr);
-                    vm.$store.dispatch('reportCategorySetCid', respData.cid);
-                    vm.activeReport = reportCategory;
+                    vm.title = 'Содержание данных';
                   }
                 } else {
                   if (!funcUtils.isNull(respError)) {
@@ -299,13 +224,18 @@
         }
       },
       disableCreateReport() {
-        if (typeof this.dateReport === 'string') {
+        if (this.showReportZone) {
+          return true;
+        } else if (typeof this.dateReport === 'string') {
           return funcUtils.isNotEmpty(this.periodReport) || (funcUtils.isNotEmpty(this.dateReport) && this.dateReport.trim().length > 0);
         } else {
           return funcUtils.isNotEmpty(this.periodReport) || (funcUtils.isNotEmpty(this.dateReport));
         }
       },
       onMenuClick(reportName) {
+        if (reportName === this.activeReport) {
+          return;
+        }
         let vm = this;
         let reportReestr = funcUtils.getfromLocalStorage('reportReestr');
         let cid;
