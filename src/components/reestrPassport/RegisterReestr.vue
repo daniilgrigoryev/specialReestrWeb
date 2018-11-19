@@ -875,11 +875,7 @@ export default {
 				let registers = data.data;
 				registers.forEach((register, index) => {
 					this.$set(register, "selected", false);
-					this.$set(
-						register,
-						"_disabled",
-						register.tcId === null || register.flgActive === "F"
-					);
+					this.$set(register, "_disabled", register.tcId === null || register.flgActive === "F");
 					register.num = data.from + index + 1;
 					register.createdTime = funcUtils.parseDateTime(
 						register.createdTime,
