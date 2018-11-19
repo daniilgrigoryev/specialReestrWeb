@@ -67,7 +67,7 @@
 				      </div>
 				    </div>
 				  </div>-->
-	<Layout class="height100-header">
+	<Layout>
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
 			<Card class="w-full" style="max-width: 1200px;  min-height: 600px;">
 				<div slot="title">

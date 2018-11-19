@@ -139,12 +139,12 @@
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
 			<Card class="w-full mx12" style="max-width: 1200px; min-height: 600px;">
 				<div slot="title">
-					<Row type="flex" justify="space-between" align="center">
+					<Row type="flex" justify="space-between">
 						<span class="txt-h3">Список записей</span>
 						<Button type="primary" @click="addRow">Добавить новую запись <Icon type="md-add" :size="15" /></Button>
 					</Row>
 				</div>
-				<Row type="flex" justify="center" align="center" class="py36">
+				<Row type="flex" justify="center" class="py36">
 					<Col :xs="{span: 24,  offset: 1}" :md="{span: 18, offset: 5}">
 					<Steps :current="page">
 						<Step title="Загрузка"></Step>
@@ -201,8 +201,8 @@
 					</Form>
 				</Row>
 	
-				<Row type="flex" align="center" justify="space-between" class="px36 py36">
-					<Col v-if="page === 1" :xs="{span: 24}" :md="{span: 8}">
+				<Row v-if="page === 1" type="flex" justify="space-between" class="px36 py36">
+					<Col :xs="{span: 24}" :md="{span: 8}">
 					<Form label-position="top">
 						<FormItem label="Источник">
 							<Select clearable v-model="sourceId">
@@ -522,6 +522,7 @@ export default {
 					align: 'center',
 					ellipsis: true,
 					tooltip: true,
+					fixed: 'right',
 					renderHeader: (h, params) => {
 						return h('Tooltip', {
 							props: {
