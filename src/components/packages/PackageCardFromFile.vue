@@ -136,18 +136,21 @@
 						<Form label-position="top">
 							<FormItem label="Вложение">
 								<Card :padding="0" class="relative prose prose--dark bg-gray">
-									<input type="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
+									<input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
 									<label for="file" class="relative block cursor-pointer px12 py12">
 										<Row type="flex" justify="space-between" align="middle">
 											<figure class="border block bg-white round px6 py6">
-												<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+												<Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                        <img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
 											</figure>
 											<Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
 												<div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-													<b>Выберете или перетащите файл</b>
+													<b>{{fileName}}</b>
 												</div>
 											</Col>
-											<Icon type="ios-trash" style="color: #ed4014" size="25"/>
+                      <Button>
+                        <Icon @click.stop="clearFile" type="ios-trash" style="color: #ed4014" size="25"/>
+                      </Button>
 										</Row>
 									</label>
 								</Card>
@@ -155,165 +158,12 @@
 						</Form>
 					</Col>
 				</Row>
-	
-	
-				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<Form label-position="top">
-						<FormItem label="Источник">
-							<Select clearable style="width:100%" size="large">
-										<Option value="">New York</Option>
-										<Option value="">New Amsterdam</Option>
-										</Select>
-						</FormItem>
-						<FormItem label="Основание">
-							<Select clearable style="width:100%; max-width: 380px;" size="large">
-								<Option style="white-space: pre-wrap;" value="">New York</Option>
-								<Option value="">New Amsterdam</Option>
-							</Select>
-						</FormItem>
-					</Form>
-					</Col>
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold px24 py12 fr" style="max-width: 200px;">
-						<Icon type="ios-document" size="150" />
-						<div class="color-black">93f23fa123fadfasf.xml</div>
-						<div class="color-gray txt-s">Готов к отправке на подпись</div>
-					</Card>
-					</Col>
-				</Row>
-	
-	
-				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<Form label-position="top">
-						<FormItem label="Источник">
-							<Select clearable style="width:100%" size="large">
-										<Option value="">New York</Option>
-										<Option value="">New Amsterdam</Option>
-										</Select>
-						</FormItem>
-						<FormItem label="Основание">
-							<Select clearable style="width:100%; max-width: 380px" size="large">
-										<Option style="white-space: pre-wrap;" value="">New York</Option>
-										<Option value="">New Amsterdam</Option>
-										</Select>
-						</FormItem>
-					</Form>
-					</Col>
-					<Col :xs="{span: 24}" :md="{span: 8}">
-	
-	
-	
-					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold px24 py12 fr color-red-dark" style="max-width: 200px;">
-						<Icon type="ios-document" size="150" />
-						<div class="color-black">93f23fa123fadfasf.xml</div>
-						<div class="color-gray-light txt-s color-red-dark">Файл содержит ошибки</div>
-					</Card>
-	
-	
-	
-					</Col>
-				</Row>
-	
-	
-				<Row v-if="false" type="flex" justify="space-between" class="px36 py36">
-					<Col :xs="{span: 24}" :md="{span: 8}">
-	
-	
-					<Form label-position="top">
-						<FormItem label="Сертификат">
-							<Select clearable style="width:100%" size="large">
-										<Option value="1">New York</Option>
-										<Option value="2">New Amsterdam</Option>
-										</Select>
-						</FormItem>
-					</Form>
-					<table class="table table--fixed border--0">
-						<tbody>
-							<tr class="txt-bold">
-								<td class="border--0 px0 py0 color-gray">Кому выдан</td>
-								<td class="border--0 px0 py0">ООО "ВИРАЖСИСТЕМС"</td>
-							</tr>
-							<tr class="txt-bold">
-								<td class="border--0 px0 py0 color-gray">Кем выдан</td>
-								<td class="border--0 px0 py0">UNSS LUFFJ L JJSJJ JHLA </td>
-							</tr>
-							<tr class="txt-bold">
-								<td class="border--0 px0 py0 color-gray">Срок действия</td>
-								<td class="border--0 px0 py0">25.02.2018 15:34</td>
-							</tr>
-							<tr class="txt-bold">
-								<td class="border--0 px0 py0 color-gray">Подпись</td>
-								<td class="border--0 px0 py0">6c179f21e6f62b629055d8ab40f454ed02e48b68563</td>
-							</tr>
-						</tbody>
-					</table>
-					</Col>
-					<Col :xs="{span: 24}" :md="{span: 8}">
-					<Card class="flex-parent flex-parent--center-main align-center my24 border round-bold px24 py12 fr" style="max-width: 200px;">
-						<Icon type="ios-document" size="150" />
-						<span class="color-black">93f23fa123fadfasf.xml</span>
-					</Card>
-					</Col>
-				</Row>
-	
-	
-				<Row v-if="false" type="flex" justify="center" class="px36 py36">
-					<Col :xs="{span: 24}" :md="{span: 24}">
-					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold color-green px24 py12 mx-auto" style="max-width: 200px;">
-	
-						<Icon type="ios-document" size="150" />
-	
-	
-						<div class="color-black">93f23fa123fadfasf.xml</div>
-						<div class="color-gray txt-s">Файл пакета подписан и отправлен</div>
-					</Card>
-					</Col>
-				</Row>
-	
-				<Row v-if="false" type="flex" justify="center" class="px36 py36">
-					<Col :xs="{span: 24}" :md="{span: 24}">
-					<Card :bordered="false" class="flex-parent flex-parent--center-main align-center my24 border round-bold color-green px24 py12 mx-auto" style="max-width: 200px;">
-						<Icon type="ios-document" size="150" />
-						<div class="color-black">93f23fa123fadfasf.xml</div>
-						<div class="color-gray txt-s">Файл пакета отправлен</div>
-					</Card>
-					</Col>
-				</Row>
-	
-	
-	
-				<Footer v-if="false" class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
-					<Button size="large">Отмена</Button>
-					<Button size="large" type="primary" disabled>Подписать файл</Button>
-				</Footer>
-	
+
 				<Footer class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large" @click="prevStep" :disabled="page === 0">Назад</Button>
 					<Button v-if="page === 0" size="large" type="primary" @click="nextStep">Выбор подписи</Button>
 					<Button v-if="file && page === 1" size="large" type="primary" @click="signFile">Подписать файл</Button>
 					<Button v-if="sign && page === 2" size="large" type="primary" @click="sendSignedFile">Отправить файл</Button>
-				</Footer>
-	
-				<Footer v-if="false" class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
-					<Button size="large">Отмена</Button>
-					<Button size="large" type="primary" disabled>
-									<span class="align-middle">Выбор подписи</span>
-									<Icon type="md-arrow-dropright" />
-								</Button>
-				</Footer>
-	
-				<Footer v-if="false" class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
-					<Button size="large"><Icon type="md-arrow-dropleft" /> Загрузить снова</Button>
-					<Button size="large" type="primary">
-									<span class="align-middle">Подписать и отправить</span>
-									<Icon type="md-arrow-dropright" />
-								</Button>
-				</Footer>
-	
-				<Footer v-if="false" class="flex-parent flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
-					<Button size="large" type="primary">Закрыть</Button>
 				</Footer>
 			</Card>
 		</div>
@@ -374,8 +224,10 @@ export default {
 			sertificateObj: {},
 			sertificateNumber: null,
 			file: null,
+      fileName: 'Выберете или перетащите файл',
 			page: 0,
-			sign: null
+			sign: null,
+      previewImage: null
 		};
 	},
 	methods: {
@@ -554,15 +406,29 @@ export default {
 		},
 		onFileChange(e) {
 			let files = e.target.files || e.dataTransfer.files;
-			if (!files || files.length === 0) return;
+			if (!files || files.length === 0) {
+			  return;
+      }
+      let file = files[0];
+			this.fileName = file.name;
+			let type = file.type;
 			let vm = this;
 			let reader = new FileReader();
 			reader.onload = e => {
 				vm.file = e.currentTarget.result;
-			};
-
-			reader.readAsDataURL(files[0]);
+        if (type.indexOf('image') > -1) {
+          this.previewImage = vm.file;
+        }
+      };
+			reader.readAsDataURL(file);
 		},
+    clearFile() {
+      this.file = null;
+      this.previewImage = null;
+      this.fileName = 'Выберете или перетащите файл';
+      let input = this.$refs.file;
+      input.type = 'file';
+    },
 		getSignList() {
 			let CADESCOM_CADES_BES = 1;
 			let CAPICOM_CURRENT_USER_STORE = 2;
