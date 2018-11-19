@@ -26,11 +26,27 @@
 					</FormItem>
 			
 					<FormItem label="Вложение">
-						<div class="py24">
-							<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-							<p>Click or drag files here to upload</p>
-						</div>
-						<input type="file" @change="onFileChange">
+            <Card :padding="0" class="relative prose prose--dark bg-gray">
+              <input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
+              <label for="file" class="relative block cursor-pointer px12 py12">
+                <Row type="flex" justify="space-between" align="middle">
+                  <figure class="border block bg-white round px6 py6">
+                    <Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                    <img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
+                  </figure>
+                  <Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
+                    <div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                      <b>{{fileName}}</b>
+                    </div>
+                  </Col>
+                  <Button>
+                    <Icon @click.stop="clearFile" type="ios-trash" style="color: #ed4014" size="25"/>
+                  </Button>
+                </Row>
+              </label>
+            </Card>
+          </FormItem>
+          </Col>
 					</FormItem>
 			
 					<FormItem class="flex-parent flex-parent--center-main">
@@ -85,22 +101,27 @@ export default {
 	data() {
 		return {
 			dictReasonEdit: null,
-			file: null
+			file: null,
+      fileName: 'Выберете или перетащите файл',
+      previewImage: null
 		}
 	},
 	methods: {
 		onFileChange(e) {
 			let vm = this;
 			let files = e.target.files || e.dataTransfer.files;
-			if (files.length === 0 || files.length > 1) {
-				return;
-			} else if (files[0].type !== 'application/pdf') {
-				alert('Только PDF!!!');
-				return;
-			}
+      if (!files || files.length === 0) {
+        return;
+      }
+      let file = files[0];
+      this.fileName = file.name;
+      let type = file.type;
 			let reader = new FileReader();
 			reader.onload = (e) => {
-				vm.file = e.currentTarget.result;
+        vm.file = e.currentTarget.result;
+        if (type.indexOf('image') > -1) {
+          vm.previewImage = vm.file;
+        }
 
 				(async () => {
 					try {
@@ -118,6 +139,13 @@ export default {
 			};
 			reader.readAsDataURL(files[0]);
 		},
+    clearFile() {
+      this.file = null;
+      this.previewImage = null;
+      this.fileName = 'Выберете или перетащите файл';
+      let input = this.$refs.file;
+      input.type = 'file';
+    },
 		saveOrEdit() {
 			let vm = this;
 
