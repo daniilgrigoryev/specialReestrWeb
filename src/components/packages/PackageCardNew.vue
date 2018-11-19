@@ -250,7 +250,7 @@
 				</Row>
 	
 				<Footer class="flex-parent flex-parent--center-main card-footer pt12 py12 my0 border-t border--gray-light">
-					<Button size="large" type="default" class="mx24">
+					<Button size="large" @click="getPrev" type="default" class="mx24">
 				          <span class="align-middle">Закрыть</span>
 				        </Button>
 	
