@@ -1,72 +1,72 @@
 <template>
 	<!--<div>
-				    <button type="button" @click="getPrev">Назад</button>
-				
-				    <div v-if="page === 1">
-				      <div>
-				        <span>Источник</span>
-				        <Select :clearable="true" v-model="sourceId">
-				          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-				        </Select>
-				      </div>
-				      <div>
-				        <span>Основание</span>
-				        <Select :clearable="true" v-model="reasonId">
-				          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-				        </Select>
-				      </div>
-				
-				      <button v-if="sourceId" type="button" @click="nextStep">Выбор подписи</button>
-				    </div>
-				
-				    <div v-if="page === 2">
-				      <div>
-				        <span>Сертификат</span>
-				        <Select :clearable="true" v-model="sertificateNumber">
-				          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-				        </Select>
-				      </div>
-				
-				      <div v-if="sertificateNumber">
-				        <div>
-				          <span>Кому выдан</span>
-				          <div>
-				            {{sertificateObj[sertificateNumber].IssuerName}}
-				          </div>
-				        </div>
-				
-				        <div>
-				          <span>Кем выдан</span>
-				          <div>
-				            {{sertificateObj[sertificateNumber].SubjectName}}
-				          </div>
-				        </div>
-				
-				        <div>
-				          <span>Срок действия</span>
-				          <div>
-				            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
-				          </div>
-				        </div>
-				
-				        <div>
-				          <span>Подпись</span>
-				          <div>
-				            {{sertificateObj[sertificateNumber].SerialNumber}}
-				          </div>
-				        </div>
-				      </div>
-				
-				      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
-				      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
-				    </div>
-				
-				    <div>
-				      <div>
-				        <input type="file" @change="onFileChange">
-				      </div>
-				    </div>
-				  </div>-->
+					    <button type="button" @click="getPrev">Назад</button>
+					
+					    <div v-if="page === 1">
+					      <div>
+					        <span>Источник</span>
+					        <Select :clearable="true" v-model="sourceId">
+					          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					        </Select>
+					      </div>
+					      <div>
+					        <span>Основание</span>
+					        <Select :clearable="true" v-model="reasonId">
+					          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					        </Select>
+					      </div>
+					
+					      <button v-if="sourceId" type="button" @click="nextStep">Выбор подписи</button>
+					    </div>
+					
+					    <div v-if="page === 2">
+					      <div>
+					        <span>Сертификат</span>
+					        <Select :clearable="true" v-model="sertificateNumber">
+					          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					        </Select>
+					      </div>
+					
+					      <div v-if="sertificateNumber">
+					        <div>
+					          <span>Кому выдан</span>
+					          <div>
+					            {{sertificateObj[sertificateNumber].IssuerName}}
+					          </div>
+					        </div>
+					
+					        <div>
+					          <span>Кем выдан</span>
+					          <div>
+					            {{sertificateObj[sertificateNumber].SubjectName}}
+					          </div>
+					        </div>
+					
+					        <div>
+					          <span>Срок действия</span>
+					          <div>
+					            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
+					          </div>
+					        </div>
+					
+					        <div>
+					          <span>Подпись</span>
+					          <div>
+					            {{sertificateObj[sertificateNumber].SerialNumber}}
+					          </div>
+					        </div>
+					      </div>
+					
+					      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
+					      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
+					    </div>
+					
+					    <div>
+					      <div>
+					        <input type="file" @change="onFileChange">
+					      </div>
+					    </div>
+					  </div>-->
 	<Layout>
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
 			<Card class="w-full" style="max-width: 1200px;  min-height: 600px;">
@@ -90,13 +90,13 @@
 					<Form label-position="top">
 						<FormItem label="Источник">
 							<Select clearable v-model="sourceId">
-												<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-											</Select>
+													<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+												</Select>
 						</FormItem>
 						<FormItem label="Основание">
-							<Select clearable v-model="reasonId" style="max-width: 380px;">
-								<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-							</Select>
+							<Select clearable v-model="reasonId" style="width:100%; max-width: 380px;">
+									<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+								</Select>
 						</FormItem>
 					</Form>
 					</Col>
@@ -105,8 +105,8 @@
 					<Form v-if="page === 1" label-position="top">
 						<FormItem label="Сертификат">
 							<Select :clearable="true" v-model="sertificateNumber">
-												<Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-											</Select>
+													<Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+												</Select>
 						</FormItem>
 					</Form>
 	
@@ -133,11 +133,26 @@
 					</Col>
 	
 					<Col :xs="{span: 24}" :md="{span: 8}">
-					<input type="file" @change="onFileChange">
-					<div class="px24 py24">
-						<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-						<p>Выберете файл или перетащите его сюда</p>
-					</div>
+						<Form label-position="top">
+							<FormItem label="Вложение">
+								<Card :padding="0" class="relative prose prose--dark bg-gray">
+									<input type="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
+									<label for="file" class="relative block cursor-pointer px12 py12">
+										<Row type="flex" justify="space-between" align="middle">
+											<figure class="border block bg-white round px6 py6">
+												<Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+											</figure>
+											<Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
+												<div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+													<b>Выберете или перетащите файл</b>
+												</div>
+											</Col>
+											<Icon type="ios-trash" style="color: #ed4014" size="25"/>
+										</Row>
+									</label>
+								</Card>
+							</FormItem>
+						</Form>
 					</Col>
 				</Row>
 	
@@ -147,15 +162,15 @@
 					<Form label-position="top">
 						<FormItem label="Источник">
 							<Select clearable style="width:100%" size="large">
-									<Option value="">New York</Option>
-									<Option value="">New Amsterdam</Option>
-									</Select>
+										<Option value="">New York</Option>
+										<Option value="">New Amsterdam</Option>
+										</Select>
 						</FormItem>
 						<FormItem label="Основание">
 							<Select clearable style="width:100%; max-width: 380px;" size="large">
-									<Option style="white-space: pre-wrap;" value="">New York</Option>
-									<Option value="">New Amsterdam</Option>
-									</Select>
+								<Option style="white-space: pre-wrap;" value="">New York</Option>
+								<Option value="">New Amsterdam</Option>
+							</Select>
 						</FormItem>
 					</Form>
 					</Col>
@@ -174,15 +189,15 @@
 					<Form label-position="top">
 						<FormItem label="Источник">
 							<Select clearable style="width:100%" size="large">
-									<Option value="">New York</Option>
-									<Option value="">New Amsterdam</Option>
-									</Select>
+										<Option value="">New York</Option>
+										<Option value="">New Amsterdam</Option>
+										</Select>
 						</FormItem>
 						<FormItem label="Основание">
 							<Select clearable style="width:100%; max-width: 380px" size="large">
-									<Option style="white-space: pre-wrap;" value="">New York</Option>
-									<Option value="">New Amsterdam</Option>
-									</Select>
+										<Option style="white-space: pre-wrap;" value="">New York</Option>
+										<Option value="">New Amsterdam</Option>
+										</Select>
 						</FormItem>
 					</Form>
 					</Col>
@@ -209,9 +224,9 @@
 					<Form label-position="top">
 						<FormItem label="Сертификат">
 							<Select clearable style="width:100%" size="large">
-									<Option value="1">New York</Option>
-									<Option value="2">New Amsterdam</Option>
-									</Select>
+										<Option value="1">New York</Option>
+										<Option value="2">New Amsterdam</Option>
+										</Select>
 						</FormItem>
 					</Form>
 					<table class="table table--fixed border--0">
@@ -284,19 +299,19 @@
 				<Footer v-if="false" class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large">Отмена</Button>
 					<Button size="large" type="primary" disabled>
-								<span class="align-middle">Выбор подписи</span>
-								<Icon type="md-arrow-dropright" />
-							</Button>
+									<span class="align-middle">Выбор подписи</span>
+									<Icon type="md-arrow-dropright" />
+								</Button>
 				</Footer>
 	
 				<Footer v-if="false" class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large"><Icon type="md-arrow-dropleft" /> Загрузить снова</Button>
 					<Button size="large" type="primary">
-								<span class="align-middle">Подписать и отправить</span>
-								<Icon type="md-arrow-dropright" />
-							</Button>
+									<span class="align-middle">Подписать и отправить</span>
+									<Icon type="md-arrow-dropright" />
+								</Button>
 				</Footer>
-
+	
 				<Footer v-if="false" class="flex-parent flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large" type="primary">Закрыть</Button>
 				</Footer>
@@ -639,4 +654,6 @@ export default {
 .card-footer {
 	background: #fff;
 }
+
 </style>
+
