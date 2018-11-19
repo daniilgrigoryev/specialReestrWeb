@@ -17,7 +17,7 @@
 						</FormItem>		
 						<div class="py12 align-center">		
 							<Button size="large" @click="authorize" type="primary">Войти</Button>
-            </div>
+						</div>
 					</Form>
 				</Card>
 			</div>

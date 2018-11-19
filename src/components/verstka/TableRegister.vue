@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-			<h2 class="txt-h2 my12">Регистр учета объектов</h2>
+			<h3 class="txt-h3 my12">Регистр учета объектов</h3>
       <Page :total="100" prev-text="Previous" next-text="Next" />
 		</div>
 		<Table border ref="selection" :columns="columnsOption" :data="columnsData"></Table>

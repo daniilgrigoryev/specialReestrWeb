@@ -14,18 +14,29 @@
 					</Row>
 				</Col>
 				<Col>
-					<Row>
-						<Dropdown>
-							<Button type="primary">
-								<Avatar icon="ios-person" size="large" />	
-								<Icon type="ios-arrow-down"></Icon>
-							</Button>
-							<DropdownMenu slot="list">
-								<DropdownItem>
-									<button class="btn round" @click="logout">Выйти</button>
-								</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
+					<Row type="flex" justify="center" >
+
+
+
+						<div class="flex-parent flex-parent--center-cross">
+							<span class="mr12 color-white">Даниил Григорьев</span>
+							<Dropdown>
+								<a href="javascript:void(0)" class="flex-parent flex-parent--center-cross">
+									<Badge class="block" text="new">
+										<Avatar shape="square" class="block" icon="ios-person" size="large" />
+									</Badge>
+									<Icon type="ios-arrow-down ml12" class="color-white"></Icon>
+								</a>
+								<DropdownMenu slot="list">
+									<DropdownItem>
+										<a href="javascript:void(0)" @click="logout">
+											<span>Выйти</span>
+											<Icon type="ios-log-in" size="15"/>
+										</a>
+									</DropdownItem>
+								</DropdownMenu>
+							</Dropdown>
+						</div>
 					</Row>
 				</Col>
 			</Row>
@@ -63,4 +74,12 @@ export default {
 		min-height: calc(100vh - 64px);
 	}
 
+
+    .demo-badge{
+        width: 42px;
+        height: 42px;
+        background: #eee;
+        border-radius: 6px;
+        display: inline-block;
+    }
 </style>
