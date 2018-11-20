@@ -26,26 +26,24 @@
 					</FormItem>
 			
 					<FormItem label="Вложение">
-            <Card :padding="0" class="relative prose prose--dark bg-gray">
-              <input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
-              <label for="file" class="relative block cursor-pointer px12 py12">
-                <Row type="flex" justify="space-between" align="middle">
-                  <figure class="border block bg-white round px6 py6">
-                    <Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                    <img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
-                  </figure>
-                  <Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
-                    <div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                      <b>{{fileName}}</b>
-                    </div>
-                  </Col>
-                  <Button>
-                    <Icon @click.stop="clearFile" type="ios-trash" style="color: #ed4014" size="25"/>
-                  </Button>
-                </Row>
-              </label>
-            </Card>
-          </FormItem>
+						<Card :padding="0" class="relative">
+							<input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1" />
+							<label for="file" class="relative block cursor-pointer px12 py12">
+								<Row type="flex" justify="space-between" align="middle">
+									<figure class="block bg-white round px6 py6">
+										<Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+										<img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
+									</figure>
+									<Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
+										<div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+											<b>{{fileName}}</b>
+										</div>
+									</Col>
+									<Button @click.stop="clearFile" type="error" shape="circle" icon="md-close" style="font-size: 20px;"></Button>
+								</Row>
+							</label>
+						</Card>
+					</FormItem>
           </Col>
 					</FormItem>
 			
