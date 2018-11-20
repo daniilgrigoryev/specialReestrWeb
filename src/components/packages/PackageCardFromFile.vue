@@ -408,8 +408,13 @@ export default {
 				return;
 			}
 			let file = files[0];
+      let type = file.type;
+      if (type !== 'text/xml' && type !== 'application/vnd.ms-excel' && type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+        this.clearFile();
+        alert('Только XML или XLS(XLSX)!!!');
+        return;
+      }
 			this.fileName = file.name;
-			let type = file.type;
 			let vm = this;
 			let reader = new FileReader();
 			reader.onload = e => {

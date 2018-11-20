@@ -1,14 +1,4 @@
 <template>
-	<!-- <div v-if="packageCard">
-			    <button type="button" @click="getPrev">Назад</button>
-			    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody">Вложение</button>
-			    <button type="button" v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadSign">Сертификат</button>
-			    {{packageCard}}
-			  </div> -->
-	
-	
-	
-	
 	<Layout v-if="packageCard" class="height100-header flex-parent flex-parent--column bg-gray">
 		<Header class="prose--dark bg-gray">
 			<button type="button" @click="getPrev" class="txt-h2 my12">
@@ -99,16 +89,18 @@
 								<b slot="title" class="txt-h4">Связанные файлы</b>
 								<Row>
 									<Col :xs="{span: 24}" :md="{span: 12}">
-										<div @click="downloadBody" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
+										<div v-if="packageCard.head.formatType === 1 || packageCard.head.formatType === 2" @click="downloadBody" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
 											<Icon type="ios-attach" size="60" />
 											<span>Вложение</span>
 										</div>
+                    <span v-else>Нет вложения</span>
 									</Col>
 									<Col :xs="{span: 24}" :md="{span: 12}">
-										<div @click="downloadSign" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
+										<div v-if="(packageCard.head.formatType === 1 || packageCard.head.formatType === 2) && hasSigned" @click="downloadSign" class="flex-parent flex-parent--column align-center cursor-pointer color-blue-on-hover transition">
 											<Icon type="ios-cog" size="60" />
 											<span>Сертификат</span>
 										</div>
+                    <span v-else>Нет сертификата</span>
 									</Col>
 								</Row>
 							</Card>
@@ -264,6 +256,7 @@ export default {
 			},
 			selectedItem: null,
 			tableHeight: 435,
+      hasSigned: false
 		}
 	},
 	computed: {
@@ -271,6 +264,9 @@ export default {
 			let res;
 			let data = this.$store.state.packageCard.data;
 			if (data) {
+			  if (data.head.certSerialNumber) {
+			    this.hasSigned = true;
+        }
 				data.items.forEach((item) => {
 					switch (item.operType) {
 						case 1:
@@ -320,10 +316,6 @@ export default {
 	methods: {
 		changeTableHeight() {
 			this.tableHeight = (document.getElementById('js_split').offsetHeight - document.getElementById('js_headingSplit').offsetHeight);
-		},
-		doSomeWithSplit(e) {
-			e.stopPropagation();
-			e.preventDefault();
 		},
 		selectItem(row) {
 			this.selectedItem = row;
