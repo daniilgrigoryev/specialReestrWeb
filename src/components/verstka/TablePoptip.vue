@@ -1,5 +1,5 @@
 <template>
-	<Poptip placement="left"  class="poptip" width="300">
+	<Poptip placement="left" class="poptip" width="300">
 		<Icon type="md-calendar" class="poptip__icon"/>
 		<div slot="content">
 			<Form label-position="top">
@@ -14,7 +14,7 @@
 					</Col>
 					<Col span="24">
 						<FormItem class="mx0 my0 py0 px0">
-							<Button style="width: 100%" type="error" @click="onClick" size="small">Применить к выбранным</Button>
+							<Button style="width: 100%" type="error" @click="createExpireReestr" size="small">Применить к выбранным</Button>
 						</FormItem>					
 					</Col>
 				</Row>
@@ -47,8 +47,7 @@ import * as funcUtils from "../../assets/js/utils/funcUtils";
 export default {
 	name: 'TablePoptip',
 	props: {
-		date: Object,
-		clickFunction: Function
+		date: Object
 	},
 	data() {
 		return {
@@ -56,9 +55,11 @@ export default {
 		}
 	},
 	methods: {
-		onClick() {
-			if (funcUtils.isNull(this.expDate) || this.expDate === '') return;
-			this.clickFunction();
+    createExpireReestr() {
+			if (funcUtils.isNull(this.expDate) || this.expDate === '') {
+        return;
+      }
+			this.$emit('createExpireReestr');
 		}
 	}
 }
