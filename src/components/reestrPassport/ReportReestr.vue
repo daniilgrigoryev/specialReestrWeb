@@ -14,22 +14,22 @@
       <Card>
         <div class="heading my12">
           <h2 class="txt-h2">{{ title }}</h2>
-          <small class="px3 color-gray">Выбор периода для отчета</small>
+          <small v-if="!showReportZone" class="px3 color-gray">Выбор периода для отчета</small>
         </div>
 
-        <Row type="flex">
+        <Row v-if="!showReportZone" type="flex">
           <Col span="24">
             <Form label-position="left">
               <FormItem label="За период">
                 <Row type="flex" :gutter="8">
-                  <Col v-if="!showReportZone">
+                  <Col>
                     <Select :clearable="true" class="w180" v-model="periodReport" @on-change="onChangePeriod">
                       <Option value="week">Неделя</Option>
                       <Option value="month">Месяц</Option>
                       <Option value="year">Год</Option>
                     </Select>
                   </Col>
-                  <Col v-if="!showReportZone">
+                  <Col>
                     <DatePicker type="datetime" format="dd-MM-yyyy HH:mm" v-model="dateReport" @on-change="onChangeDate"
                                 placeholder="Select date" class="w180"></DatePicker>
                   </Col>
@@ -188,31 +188,13 @@
           let vm = this;
           let reportReestr = funcUtils.getfromLocalStorage('reportReestr');
 
-          let date = this.dateReport;
-          if (funcUtils.isNotEmpty(this.periodReport)) {
-            switch (this.periodReport) {
-              case 'week': {
-                date = moment().subtract(7, 'days');
-                break;
-              }
-              case 'month': {
-                date = moment().subtract(1, 'month');
-                break;
-              }
-              case 'year': {
-                date = moment().subtract(1, 'year');
-                break;
-              }
-            }
-          }
-
           (async () => {
             try {
               let cid = reportReestr[vm.activeReport].cid;
               let eventResponse = await vm.$store.dispatch('prepareData', {
                 method: 'getData',
                 params: {
-                  fromDate: date,
+                  fromDate: vm.dateReport,
                 },
                 cid: cid
               });
@@ -224,12 +206,10 @@
         }
       },
       disableCreateReport() {
-        if (this.showReportZone) {
-          return true;
-        } else if (typeof this.dateReport === 'string') {
-          return funcUtils.isNotEmpty(this.periodReport) || (funcUtils.isNotEmpty(this.dateReport) && this.dateReport.trim().length > 0);
+        if (typeof this.dateReport === 'string') {
+          return (funcUtils.isNotEmpty(this.dateReport) && this.dateReport.trim().length > 0);
         } else {
-          return funcUtils.isNotEmpty(this.periodReport) || (funcUtils.isNotEmpty(this.dateReport));
+          return (funcUtils.isNotEmpty(this.dateReport));
         }
       },
       onMenuClick(reportName) {
@@ -290,10 +270,20 @@
                 let respError = dataJson.error;
                 if (!funcUtils.isNull(respData)) {
                   if (dataJson.method === 'addCID') {
-                    reportReestr[reportName].cid = respData.cid;
+                    cid = respData.cid;
+                    reportReestr[reportName].cid = cid;
                     funcUtils.addToLocalStorage('reportReestr', reportReestr);
-                    vm.$store.dispatch(moduleName + 'SetCid', respData.cid);
+                    vm.$store.dispatch(moduleName + 'SetCid', cid);
                     vm.activeReport = reportName;
+
+                    if (reportName === 'ReportZone') {
+                      let cid = reportReestr[vm.activeReport].cid;
+                      let eventResponse = await vm.$store.dispatch('prepareData', {
+                        method: 'getData',
+                        cid: cid
+                      });
+                      await vm.$store.dispatch('fillModule', {'event': eventResponse});
+                    }
                   }
                 } else {
                   if (!funcUtils.isNull(respError)) {
@@ -308,7 +298,22 @@
         })();
       },
       onChangePeriod() {
-        if (funcUtils.isNotEmpty(this.periodReport) && funcUtils.isNotEmpty(this.dateReport)) {
+        if (funcUtils.isNotEmpty(this.periodReport)) {
+          switch (this.periodReport) {
+            case 'week': {
+              this.dateReport = moment().subtract(7, 'days').toDate();
+              break;
+            }
+            case 'month': {
+              this.dateReport = moment().subtract(1, 'month').toDate();
+              break;
+            }
+            case 'year': {
+              this.dateReport = moment().subtract(1, 'year').toDate();
+              break;
+            }
+          }
+        } else {
           this.dateReport = null;
         }
       },
