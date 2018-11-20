@@ -1,72 +1,72 @@
 <template>
 	<!--<div>
-					    <button type="button" @click="getPrev">Назад</button>
-					
-					    <div v-if="page === 1">
-					      <div>
-					        <span>Источник</span>
-					        <Select :clearable="true" v-model="sourceId">
-					          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					        </Select>
-					      </div>
-					      <div>
-					        <span>Основание</span>
-					        <Select :clearable="true" v-model="reasonId">
-					          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					        </Select>
-					      </div>
-					
-					      <button v-if="sourceId" type="button" @click="nextStep">Выбор подписи</button>
-					    </div>
-					
-					    <div v-if="page === 2">
-					      <div>
-					        <span>Сертификат</span>
-					        <Select :clearable="true" v-model="sertificateNumber">
-					          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					        </Select>
-					      </div>
-					
-					      <div v-if="sertificateNumber">
-					        <div>
-					          <span>Кому выдан</span>
-					          <div>
-					            {{sertificateObj[sertificateNumber].IssuerName}}
-					          </div>
-					        </div>
-					
-					        <div>
-					          <span>Кем выдан</span>
-					          <div>
-					            {{sertificateObj[sertificateNumber].SubjectName}}
-					          </div>
-					        </div>
-					
-					        <div>
-					          <span>Срок действия</span>
-					          <div>
-					            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
-					          </div>
-					        </div>
-					
-					        <div>
-					          <span>Подпись</span>
-					          <div>
-					            {{sertificateObj[sertificateNumber].SerialNumber}}
-					          </div>
-					        </div>
-					      </div>
-					
-					      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
-					      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
-					    </div>
-					
-					    <div>
-					      <div>
-					        <input type="file" @change="onFileChange">
-					      </div>
-					    </div>
-					  </div>-->
+						    <button type="button" @click="getPrev">Назад</button>
+						
+						    <div v-if="page === 1">
+						      <div>
+						        <span>Источник</span>
+						        <Select :clearable="true" v-model="sourceId">
+						          <Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						        </Select>
+						      </div>
+						      <div>
+						        <span>Основание</span>
+						        <Select :clearable="true" v-model="reasonId">
+						          <Option v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						        </Select>
+						      </div>
+						
+						      <button v-if="sourceId" type="button" @click="nextStep">Выбор подписи</button>
+						    </div>
+						
+						    <div v-if="page === 2">
+						      <div>
+						        <span>Сертификат</span>
+						        <Select :clearable="true" v-model="sertificateNumber">
+						          <Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+						        </Select>
+						      </div>
+						
+						      <div v-if="sertificateNumber">
+						        <div>
+						          <span>Кому выдан</span>
+						          <div>
+						            {{sertificateObj[sertificateNumber].IssuerName}}
+						          </div>
+						        </div>
+						
+						        <div>
+						          <span>Кем выдан</span>
+						          <div>
+						            {{sertificateObj[sertificateNumber].SubjectName}}
+						          </div>
+						        </div>
+						
+						        <div>
+						          <span>Срок действия</span>
+						          <div>
+						            {{sertificateObj[sertificateNumber].ValidFromDate + ' - ' + sertificateObj[sertificateNumber].ValidToDate}}
+						          </div>
+						        </div>
+						
+						        <div>
+						          <span>Подпись</span>
+						          <div>
+						            {{sertificateObj[sertificateNumber].SerialNumber}}
+						          </div>
+						        </div>
+						      </div>
+						
+						      <button v-if="file" type="button" @click="signFile">Подписать файл</button>
+						      <button v-if="sign" type="button" @click="sendSignedFile">Отправить файл</button>
+						    </div>
+						
+						    <div>
+						      <div>
+						        <input type="file" @change="onFileChange">
+						      </div>
+						    </div>
+						  </div>-->
 	<Layout>
 		<div class="bg-gray flex-parent flex-parent--center-main flex-parent--center-cross height100-header">
 			<Card class="w-full" style="max-width: 1200px;  min-height: 600px;">
@@ -90,13 +90,13 @@
 					<Form label-position="top">
 						<FormItem label="Источник">
 							<Select clearable v-model="sourceId">
-													<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-												</Select>
+														<Option v-for="item in sourceDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+													</Select>
 						</FormItem>
 						<FormItem label="Основание">
 							<Select clearable v-model="reasonId" style="width:100%; max-width: 380px;">
-									<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-								</Select>
+										<Option style="white-space: pre-wrap;" v-for="item in reasonDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									</Select>
 						</FormItem>
 					</Form>
 					</Col>
@@ -105,8 +105,8 @@
 					<Form v-if="page === 1" label-position="top">
 						<FormItem label="Сертификат">
 							<Select :clearable="true" v-model="sertificateNumber">
-													<Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-												</Select>
+														<Option v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+													</Select>
 						</FormItem>
 					</Form>
 	
@@ -133,32 +133,30 @@
 					</Col>
 	
 					<Col :xs="{span: 24}" :md="{span: 8}">
-						<Form label-position="top">
-							<FormItem label="Вложение">
-								<Card :padding="0" class="relative prose prose--dark bg-gray">
-									<input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1"/>
-									<label for="file" class="relative block cursor-pointer px12 py12">
-										<Row type="flex" justify="space-between" align="middle">
-											<figure class="border block bg-white round px6 py6">
-												<Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                        <img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
-											</figure>
-											<Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
-												<div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-													<b>{{fileName}}</b>
-												</div>
-											</Col>
-                      <Button>
-                        <Icon @click.stop="clearFile" type="ios-trash" style="color: #ed4014" size="25"/>
-                      </Button>
-										</Row>
-									</label>
-								</Card>
-							</FormItem>
-						</Form>
+					<Form label-position="top">
+						<FormItem label="Вложение">
+							<Card :padding="0" class="relative">
+								<input type="file" ref="file" @change="onFileChange" id="file" class="absolute w-full h-full opacity0 scroll-hidden z-neg1" />
+								<label for="file" class="relative block cursor-pointer px12 py12">
+									<Row type="flex" justify="space-between" align="middle">
+										<figure class="block bg-white round px6 py6">
+											<Icon v-if="!previewImage" type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+											<img id="previewImage" v-if="previewImage" :src="previewImage" style="width: 52px; height: 52px;" />
+										</figure>
+										<Col :xs="{span: 16}" :md="{span: 15}" :lg="{span: 17}" class="align-center">
+											<div class="px6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+												<b>{{fileName}}</b>
+											</div>
+										</Col>
+										<Button @click.stop="clearFile" type="error" shape="circle" icon="md-close" style="font-size: 20px;"></Button>
+									</Row>
+								</label>
+							</Card>
+						</FormItem>
+					</Form>
 					</Col>
 				</Row>
-
+	
 				<Footer class="flex-parent flex-parent--space-between-main flex-parent--center-main card-footer px36 py24 my0 border-t border--gray-light">
 					<Button size="large" @click="prevStep" :disabled="page === 0">Назад</Button>
 					<Button v-if="page === 0" size="large" type="primary" @click="nextStep">Выбор подписи</Button>
@@ -224,10 +222,10 @@ export default {
 			sertificateObj: {},
 			sertificateNumber: null,
 			file: null,
-      fileName: 'Выберете или перетащите файл',
+			fileName: 'Выберете или перетащите файл',
 			page: 0,
 			sign: null,
-      previewImage: null
+			previewImage: null
 		};
 	},
 	methods: {
@@ -407,28 +405,28 @@ export default {
 		onFileChange(e) {
 			let files = e.target.files || e.dataTransfer.files;
 			if (!files || files.length === 0) {
-			  return;
-      }
-      let file = files[0];
+				return;
+			}
+			let file = files[0];
 			this.fileName = file.name;
 			let type = file.type;
 			let vm = this;
 			let reader = new FileReader();
 			reader.onload = e => {
 				vm.file = e.currentTarget.result;
-        if (type.indexOf('image') > -1) {
-          this.previewImage = vm.file;
-        }
-      };
+				if (type.indexOf('image') > -1) {
+					this.previewImage = vm.file;
+				}
+			};
 			reader.readAsDataURL(file);
 		},
-    clearFile() {
-      this.file = null;
-      this.previewImage = null;
-      this.fileName = 'Выберете или перетащите файл';
-      let input = this.$refs.file;
-      input.type = 'file';
-    },
+		clearFile() {
+			this.file = null;
+			this.previewImage = null;
+			this.fileName = 'Выберете или перетащите файл';
+			let input = this.$refs.file;
+			input.type = 'file';
+		},
 		getSignList() {
 			let CADESCOM_CADES_BES = 1;
 			let CAPICOM_CURRENT_USER_STORE = 2;
@@ -520,6 +518,5 @@ export default {
 .card-footer {
 	background: #fff;
 }
-
 </style>
 
