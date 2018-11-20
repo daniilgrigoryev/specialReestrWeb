@@ -12,9 +12,9 @@
 			<div slot="top" style="height: 100%;  overflow: auto">
 				<Content style="height: 100%; min-height: 600px; min-width: 940px;" class="flex-parent flex-parent--center-main flex-parent--center-cross">
 					<Row :gutter="8" justify="center" style="max-width: 740px">
-						<div class="mx-auto wmax300 align-center prose color-gray-light">
+						<div v-if="isApproved" class="mx-auto wmax300 align-center prose color-gray-light">
 							<Icon type="ios-lock-outline" size="150"/><br>
-							<p class="txt-h5">Данный пакет был утвержден 05.10.2018 и более не может быть изменен</p>
+							<p class="txt-h5">Данный пакет был утвержден {{ approveDate | formatDateTime('DD.MM.YYYY')}} и более не может быть изменен</p>
 						</div>
 						<Col :xs="{span: 12}" :md="{span: 12}">
 							<Card class="my12" :padding="0">
@@ -23,7 +23,7 @@
 									<tbody>
 										<tr class="txt-bold bg-green-light">
 											<td class="border--0">Статус обработки</td>
-											<td class="border--0 color-green-dark txt-h4">Завершено</td>
+											<td class="border--0 color-green-dark txt-h4">{{packageCardSpecial.head.statusName}}</td>
 										</tr>
 										<tr class="txt-bold">
 											<td class="border--0">Источник</td>
@@ -60,31 +60,31 @@
 										</tr>
 										<tr class="txt-bold color-green">
 											<td class="border--0 px0 py0">Добавлено</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.added}}</td>
+											<td class="border--0 px0 py0">{{statistic.added}}</td>
 										</tr>
 										<tr class="txt-bold color-green">
 											<td class="border--0 px0 py0">Обновлено</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.updated}}</td>
+											<td class="border--0 px0 py0">{{statistic.updated}}</td>
 										</tr>
 										<tr class="txt-bold color-orange">
 											<td class="border--0 px0 py0">Загружается</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.loading}}</td>
+											<td class="border--0 px0 py0">{{statistic.loading}}</td>
 										</tr>
 										<tr class="txt-bold color-red">
 											<td class="border--0 px0 py0">Обрабатывается</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.prepared}}</td>
+											<td class="border--0 px0 py0">{{statistic.prepared}}</td>
 										</tr>
 										<tr class="txt-bold">
 											<td class="border--0 px0 py0">Отклонен</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.rejected}}</td>
+											<td class="border--0 px0 py0">{{statistic.rejected}}</td>
 										</tr>
 										<tr class="txt-bold">
 											<td class="border--0 px0 py0">Принят</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.accepted}}</td>
+											<td class="border--0 px0 py0">{{statistic.accepted}}</td>
 										</tr>
 										<tr class="txt-bold">
 											<td class="border--0 px0 py0">Ожидает согласования</td>
-											<td class="border--0 px0 py0">{{packageCardSpecial.awaited}}</td>
+											<td class="border--0 px0 py0">{{statistic.awaited}}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -240,7 +240,34 @@ export default {
               },
               on: {
                 'on-change':  (event) => {
-                  vm.packageCardSpecial.items[params.index].selected = event;
+                  let cid = vm.$store.state.packageCardSpecial.cid;
+                  let item = vm.packageCardSpecial.items[params.index];
+                  item.selected = event;
+                  (async () => {
+                    try {
+                      let eventResponse;
+                      if (!item.selected) {
+                        eventResponse = await vm.$store.dispatch("prepareData", {
+                          method: 'abortItem',
+                          params: {
+                          id: item.id
+                        },
+                        cid: cid
+                      });
+                      } else {
+                        eventResponse = await vm.$store.dispatch("prepareData", {
+                          method: 'restoreItem',
+                          params: {
+                            id: item.id
+                          },
+                          cid: cid
+                        });
+                      }
+                      vm.$store.dispatch('fillModule', { 'event': eventResponse });
+                    } catch (e) {
+                      alert(e.message);
+                    }
+                  })();
                   vm.checkedItems = vm.packageCardSpecial.items.filter((item) => {
                     return item.selected;
                   });
@@ -357,7 +384,7 @@ export default {
       approveDate: null,
       checkedItems: [],
       nonCheckedItems: [],
-      isApproved:false,
+      isApproved: false,
       disableCheck: false
 		}
 	},
@@ -366,8 +393,17 @@ export default {
 			let res;
 			let data = this.$store.state.packageCardSpecial.data;
 			if (data) {
+			  if (data.head.status === 3) {
+			    this.isApproved = true;
+			    this.disableCheck = true;
+        }
 				data.items.forEach((item) => {
-				  this.$set(item, 'selected', true);
+				  this.$set(item, 'selected', item.statusId !== 3);
+				  if (item.selected) {
+            this.checkedItems.push(item);
+          } else {
+            this.nonCheckedItems.push(item);
+          }
 					switch (item.operType) {
 						case 1:
 							{
@@ -439,19 +475,7 @@ export default {
 
       (async () => {
         try {
-          let eventResponse;
-          for (let i = 0; i < vm.nonCheckedItems.length; i++) {
-            eventResponse = await vm.$store.dispatch("prepareData", {
-              method: "abortItem",
-              params: {
-                id: vm.nonCheckedItems[i].id
-              },
-              cid: cid
-            });
-            debugger;
-          }
-          debugger;
-          eventResponse = await vm.$store.dispatch("prepareData", {
+          let eventResponse = await vm.$store.dispatch("prepareData", {
             method: "approve",
             params: {
               toDate: vm.approveDate

@@ -16,7 +16,7 @@
 				<Col>
 					<Row type="flex" justify="center" >
 						<div class="flex-parent flex-parent--center-cross">
-							<span class="mr12 color-white">Даниил Григорьев</span>
+							<span class="mr12 color-white"><!--Даниил Григорьев--></span>
 							<Dropdown>
 								<a href="javascript:void(0)" class="flex-parent flex-parent--center-cross">
 									<Badge class="block" text="new">

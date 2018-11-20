@@ -537,7 +537,7 @@ export default {
 							},
 							on: {
 								click: () => {
-								  if (params.row.status === 5) {
+								  if (params.row.formatType === 5) {
                     this.getPackageCardSpecial(params.row);
                   } else {
                     this.getPackageCard(params.row);

@@ -33,7 +33,7 @@
 								<tbody>
 									<tr class="txt-bold bg-green-light">
 										<td class="border--0">Статус обработки</td>
-										<td class="border--0 color-green-dark txt-h4">Завершено</td>
+										<td class="border--0 color-green-dark txt-h4">{{packageCard.head.statusName}}</td>
 									</tr>
 									<tr class="txt-bold">
 										<td class="border--0 px5 py3 color-gray">Способ загрузки</td>
