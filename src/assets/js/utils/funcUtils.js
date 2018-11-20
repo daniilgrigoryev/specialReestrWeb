@@ -98,6 +98,7 @@ export function lookupValue(dictName, key) {
 }
 
 export function clearAll() {
+  localStorage.removeItem('userName');
   localStorage.removeItem('auth');
   localStorage.removeItem('sid');
   localStorage.removeItem('lastActive');

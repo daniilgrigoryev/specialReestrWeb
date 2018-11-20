@@ -106,6 +106,15 @@ export default {
 								'vm': vm,
 								'pageName': 'Test'
 							});
+
+              eventResponse = await vm.$store.dispatch('prepareData', {
+                method: 'getUserInfo',
+                beanName: 'UserAccessBean',
+                cid: null
+              });
+              let userInfo = JSON.parse(eventResponse.response).data;
+              localStorage.setItem('userName', userInfo['user_name']);
+
 							vm.$root.getRegisterReestr();
 						}
 					} catch (e) {
