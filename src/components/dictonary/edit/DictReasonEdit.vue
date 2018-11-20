@@ -114,8 +114,13 @@ export default {
         return;
       }
       let file = files[0];
-      this.fileName = file.name;
       let type = file.type;
+      if (type !== 'application/pdf') {
+        e.stopPropagation();
+        alert('Только PDF!!!');
+        return;
+      }
+      this.fileName = file.name;
 			let reader = new FileReader();
 			reader.onload = (e) => {
         vm.file = e.currentTarget.result;
