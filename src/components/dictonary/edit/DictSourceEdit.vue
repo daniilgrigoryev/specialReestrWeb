@@ -220,7 +220,7 @@ export default {
       let file = files[0];
       let type = file.type;
       if (type !== 'application/pdf') {
-        e.stopPropagation();
+        this.clearFile();
         alert('Только PDF!!!');
         return;
       }
