@@ -14,6 +14,7 @@ import DictReasonEdit from './../components/dictonary/edit/DictReasonEdit';
 import DictSourceEdit from './../components/dictonary/edit/DictSourceEdit';
 import ReportReestr from './../components/reestrPassport/ReportReestr';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
+import PageNotFound from '../components/404';
 Vue.use(Router);
 
 const router = new Router({
@@ -90,6 +91,11 @@ const router = new Router({
       path: '/reportReestr',
       name: 'ReportReestr',
       component: ReportReestr
+    },
+    {
+      path: '/404',
+      name: 'PageNotFound',
+      component: PageNotFound
     }
   ]
 });
